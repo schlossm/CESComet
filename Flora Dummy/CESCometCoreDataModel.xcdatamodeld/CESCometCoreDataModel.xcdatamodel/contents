@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15B22c" minimumToolsVersion="Xcode 7.0">
+    <entity name="Activity" syncable="YES">
+        <attribute name="activityData" attributeType="String" syncable="YES"/>
+        <attribute name="activityDescription" attributeType="String" syncable="YES"/>
+        <attribute name="activityID" attributeType="String" syncable="YES"/>
+        <attribute name="classID" attributeType="String" syncable="YES"/>
+        <attribute name="dueDate" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="quiz" attributeType="String" syncable="YES"/>
+        <attribute name="releaseDate" attributeType="String" syncable="YES"/>
+        <attribute name="totalPoints" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ActivitySession" syncable="YES">
+        <attribute name="activityData" attributeType="String" syncable="YES"/>
+        <attribute name="activityID" attributeType="String" syncable="YES"/>
+        <attribute name="activitySessionID" attributeType="String" syncable="YES"/>
+        <attribute name="finishDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="score" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" attributeType="String" syncable="YES"/>
+        <attribute name="status" attributeType="String" syncable="YES"/>
+        <attribute name="userID" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Class" syncable="YES">
+        <attribute name="classID" attributeType="String" syncable="YES"/>
+        <attribute name="schoolYear" attributeType="String" syncable="YES"/>
+        <attribute name="subjectID" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Color" syncable="YES">
+        <attribute name="backgroundColor" attributeType="String" syncable="YES"/>
+        <attribute name="primaryColor" attributeType="String" syncable="YES"/>
+        <attribute name="secondaryColor" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CurrentColor" syncable="YES">
+        <attribute name="backgroundColor" attributeType="String" syncable="YES"/>
+        <attribute name="primaryColor" attributeType="String" syncable="YES"/>
+        <attribute name="secondaryColor" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CurrentUser" syncable="YES">
+        <attribute name="colorID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" attributeType="String" syncable="YES"/>
+        <attribute name="grade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="homeScreenLayout" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" attributeType="String" syncable="YES"/>
+        <attribute name="password" attributeType="String" syncable="YES"/>
+        <attribute name="userID" attributeType="String" syncable="YES"/>
+        <attribute name="username" attributeType="String" syncable="YES"/>
+        <attribute name="userType" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ActivitySession" positionX="-18" positionY="18" width="128" height="165"/>
+        <element name="Class" positionX="0" positionY="99" width="128" height="90"/>
+        <element name="Color" positionX="-54" positionY="-18" width="128" height="30"/>
+        <element name="CurrentColor" positionX="-36" positionY="9" width="128" height="30"/>
+        <element name="CurrentUser" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Activity" positionX="-27" positionY="63" width="128" height="180"/>
+    </elements>
+</model>

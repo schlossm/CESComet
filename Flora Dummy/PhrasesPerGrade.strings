@@ -1,0 +1,116 @@
+/* 
+  PhrasesPerGrade.strings
+  FloraDummy
+
+  Created by Michael Schloss on 4/11/15.
+  Copyright (c) 2015 SGSC. All rights reserved.
+*/
+
+//Grade 0 = Kindergarten
+
+// Hello There -- First Time Setup
+"HelloThere-0" = "Hi";
+"HelloThere-1" = "Hi";
+"HelloThere-2" = "Hi";
+"HelloThere-3" = "Hi";
+"HelloThere-4" = "Hello There";
+"HelloThere-5" = "Hello There";
+"HelloThere-6" = "Hello There";
+
+// Welcome to Comet -- First Time Setup
+"WelcomeToComet-0" = "Welcome to Comet!";
+"WelcomeToComet-1" = "Welcome to Comet!";
+"WelcomeToComet-2" = "Welcome to Comet!";
+"WelcomeToComet-3" = "Welcome to Comet!";
+"WelcomeToComet-4" = "Welcome to Comet!";
+"WelcomeToComet-5" = "Welcome to Comet!";
+"WelcomeToComet-6" = "Welcome to Comet!";
+
+// We need your help -- First Time Setup
+"WeNeedYourHelp-0" = "Can you help us?";
+"WeNeedYourHelp-1" = "Will you help us?";
+"WeNeedYourHelp-2" = "Will you help us?";
+"WeNeedYourHelp-3" = "We need your help first!";
+"WeNeedYourHelp-4" = "We need your help\nwith a few things first";
+"WeNeedYourHelp-5" = "We need your help\nwith a few things first";
+"WeNeedYourHelp-6" = "We need your help\nwith a few things first";
+
+// Question for choice of Home layout -- First Time Setup
+"HomeLayoutQuestion-0" = "How do you want your Home Screen to look?";
+"HomeLayoutQuestion-1" = "How do you want your Home Screen to look?";
+"HomeLayoutQuestion-2" = "How do you want your Home Screen to look?";
+"HomeLayoutQuestion-3" = "How do you want your Home Screen to look?";
+"HomeLayoutQuestion-4" = "Choose a Home Screen Layout";
+"HomeLayoutQuestion-5" = "Choose a Home Screen Layout";
+"HomeLayoutQuestion-6" = "Choose a Home Screen Layout";
+
+// Detail for Big Home Screen Layout -- First Time Setup
+"DetailForBigHSL-0" = "A big Home Screen";
+"DetailForBigHSL-1" = "A large Home Screen";
+"DetailForBigHSL-2" = "A large Home Screen";
+"DetailForBigHSL-3" = "A large Home Screen";
+"DetailForBigHSL-4" = "A Home Screen with subjects, calendar, and quick assignments on separate pages";
+"DetailForBigHSL-5" = "A mutliple paged layout for your Home Screen.  Each piece of information is on a separate page";
+"DetailForBigHSL-6" = "A full-screen, spaced out layout for your Home Screen.  The subjects, calendar, and quick assignments will all be on separate pages";
+
+// Detail for Small Home Screen Layout -- First Time Setup
+"DetailForSmallHSL-0" = "A small Home Screen";
+"DetailForSmallHSL-1" = "A mini Home Screen";
+"DetailForSmallHSL-2" = "A mini Home Screen";
+"DetailForSmallHSL-3" = "A mini Home Screen";
+"DetailForSmallHSL-4" = "A Home Screen with subjects, calendar, and quick assignments on the same page";
+"DetailForSmallHSL-5" = "A single page for all of your content: subjects, calendar, and quick assignments";
+"DetailForSmallHSL-6" = "A full-screen, compact layout for your Home Screen.  The subjects, calendar, and quick assignments will all be on the same page";
+
+// SegmentedControl Options for Home Screen Layout -- First Time Setup
+"ExpandedHomeScreenOption-0" = "Big Home Screen";
+"ExpandedHomeScreenOption-1" = "Big Home Screen";
+"ExpandedHomeScreenOption-2" = "Big Home Screen";
+"ExpandedHomeScreenOption-3" = "Big Home Screen";
+"ExpandedHomeScreenOption-4" = "Expanded Home Screen";
+"ExpandedHomeScreenOption-5" = "Expanded Home Screen";
+"ExpandedHomeScreenOption-6" = "Expanded Home Screen";
+
+"CompactHomeScreenOption-0" = "Small Home Screen";
+"CompactHomeScreenOption-1" = "Small Home Screen";
+"CompactHomeScreenOption-2" = "Small Home Screen";
+"CompactHomeScreenOption-3" = "Small Home Screen";
+"CompactHomeScreenOption-4" = "Compact Home Screen";
+"CompactHomeScreenOption-5" = "Compact Home Screen";
+"CompactHomeScreenOption-6" = "Compact Home Screen";
+
+// Instructions for choosing Home Screen Layout -- First Time Setup
+"HomeLayoutInstructions-0" = "Pick the better option from the choices above.  Press the mini screen below";
+"HomeLayoutInstructions-1" = "Pick the better option from the choices above.  Press the mini screen below";
+"HomeLayoutInstructions-2" = "Pick the better option from the choices above.  Press the mini screen below";
+"HomeLayoutInstructions-3" = "Pick the better option from the choices above.  Press the mini screen below";
+"HomeLayoutInstructions-4" = "Choose an option from about that you like.  Press the mini screen below";
+"HomeLayoutInstructions-5" = "Choose an option from about that you like.  Press the mini screen below";
+"HomeLayoutInstructions-6" = "Choose an option from above that you like.  Press the mini screen below when you have the right choice";
+
+// Thank you -- First Time Setup
+"ThankYou-0" = "Thank you!";
+"ThankYou-1" = "Thank you!";
+"ThankYou-2" = "Thank you!";
+"ThankYou-3" = "Thank you!";
+"ThankYou-4" = "Thank you!";
+"ThankYou-5" = "Thank you!";
+"ThankYou-6" = "Thank you!";
+
+//Two More Questions Text -- First Time Setup
+"TwoMoreQuestions-0" = "2 questions left";
+"TwoMoreQuestions-1" = "2 questions left";
+"TwoMoreQuestions-2" = "Two questions left";
+"TwoMoreQuestions-3" = "Two questions left";
+"TwoMoreQuestions-4" = "Only 2 more questions";
+"TwoMoreQuestions-5" = "We only have 2 more questions for you";
+"TwoMoreQuestions-6" = "We just have two (2) more questions for you";
+
+// Question for choice of Color -- First Time Setup
+"ColorQuestion-0" = "What color do you want?";
+"ColorQuestion-1" = "What color do you want?";
+"ColorQuestion-2" = "Which color do you want?";
+"ColorQuestion-3" = "Which color do you want?";
+"ColorQuestion-4" = "Choose a color";
+"ColorQuestion-5" = "Choose a color";
+"ColorQuestion-6" = "Choose your preferred color";
