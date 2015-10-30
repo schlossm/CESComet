@@ -102,7 +102,6 @@ class SettingsVC: FormattedVC
     {
         NSUserDefaults.standardUserDefaults().setObject(button.titleLabel!.text, forKey: "selectedColor")
         ColorScheme.currentColorScheme().loadCurrentColor()
-        NSNotificationCenter.defaultCenter().postNotificationName(ColorSchemeDidChangeNotification, object: nil)
         
         button.setHighlighted(true, animated: true)
         button.userInteractionEnabled = false
@@ -113,11 +112,11 @@ class SettingsVC: FormattedVC
         self.colorButtons[self.selectedColorButton].setHighlighted(false, animated: true)
         self.colorButtons[self.selectedColorButton].userInteractionEnabled = true
         
-        UIView.transitionWithView(titleLabel, duration: transitionLength, options: .TransitionCrossDissolve, animations: { () -> Void in
+        UIView.transitionWithView(titleLabel, duration: CESCometTransitionDuration, options: .TransitionCrossDissolve, animations: { () -> Void in
             self.titleLabel.textColor = ColorScheme.currentColorScheme().primaryColor
         }, completion: nil)
         
-        UIView.animateKeyframesWithDuration(transitionLength, delay: 0.0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+        UIView.animateKeyframesWithDuration(CESCometTransitionDuration, delay: 0.0, options: UIViewKeyframeAnimationOptions.AllowUserInteraction, animations: { () -> Void in
             UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5, animations: { () -> Void in
                 button.transform = CGAffineTransformMakeScale(1.3, 1.3)
             })
@@ -126,7 +125,7 @@ class SettingsVC: FormattedVC
             })
             }, completion: { (finished : Bool) -> Void in
                 self.selectedColorButton = (self.colorButtons as NSArray).indexOfObject(button)
-                UIView.animateWithDuration(transitionLength, delay: 0.0, options: [.AllowAnimatedContent, .AllowUserInteraction], animations: { () -> Void in
+                UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.0, options: [.AllowAnimatedContent, .AllowUserInteraction], animations: { () -> Void in
                     button.highlighted = true
                     }, completion: nil)
         })

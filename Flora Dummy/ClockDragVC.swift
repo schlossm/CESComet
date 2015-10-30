@@ -118,7 +118,7 @@ class ClockDragVC: FormattedVC, ClockDelegate
         let checkAnswerTap = UITapGestureRecognizer(target: self, action: "checkAnswer")
         clock.addGestureRecognizer(checkAnswerTap)
         
-        clock.rotateHandsToTime(tempTime != nil ? tempTime! : startTime, animated: didCheckAnswer == true || self.renderingView == true ? false:true)
+        clock.rotateHandsToTime(tempTime != nil ? tempTime! : startTime, animated: didCheckAnswer == true || renderingView == RenderingView.Yes ? false:true)
         if didCheckAnswer == true
         {
             checkAnswer(false)
@@ -127,7 +127,7 @@ class ClockDragVC: FormattedVC, ClockDelegate
     
     //MARK: - Save and Restore and Settings
     
-    override func restoreActivityState(object: AnyObject)
+    func restoreActivityState(object: AnyObject)
     {
         let data = object as! [AnyObject]
         
@@ -172,11 +172,9 @@ class ClockDragVC: FormattedVC, ClockDelegate
             clock.showSecondsHand = showSecondsHand
             clock.minuteHandRounding = minuteHandRounding
         }
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(PageManagerShouldContinuePresentation, object: nil)
     }
     
-    override func saveActivityState() -> AnyObject
+    func saveActivityState() -> AnyObject
     {
         var returnArray = Array<AnyObject>()
         
@@ -203,7 +201,7 @@ class ClockDragVC: FormattedVC, ClockDelegate
         return returnArray
     }
     
-    override func settings() -> [NSObject : AnyObject]
+    func settings() -> [NSObject : AnyObject]
     {
         return ["Start Time" : "String",
             "End Time" : "String",

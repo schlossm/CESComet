@@ -10,17 +10,53 @@ import UIKit
 
 class HomeVC: FormattedVC//, NewsFeedDelegate
 {
-    private var titleLabel      : UILabel!
+    @IBOutlet private var titleLabel      : CESOutlinedLabel!
+        {
+        didSet
+        {
+            titleLabel.textColor = ColorScheme.currentColorScheme().primaryColor
+        }
+    }
     
     //Subject Buttons
-    private var buttonView      : UIView!
+    @IBOutlet private var buttonView      : UIView!
     
-    private var languageArts    : HomeButton!
-    private var math            : HomeButton!
-    private var history         : HomeButton!
-    private var science         : HomeButton!
-    
-    private var statusBarView   : UIView!
+    @IBOutlet private var languageArts    : HomeButton!
+        {
+        didSet
+        {
+            languageArts.actionHandler = { [unowned self] in
+                print("Language Arts")
+            }
+        }
+    }
+    @IBOutlet private var math            : HomeButton!
+        {
+        didSet
+        {
+            math.actionHandler = { [unowned self] in
+                print("Math")
+            }
+        }
+    }
+    @IBOutlet private var history         : HomeButton!
+        {
+        didSet
+        {
+            history.actionHandler = { [unowned self] in
+                print("History")
+            }
+        }
+    }
+    @IBOutlet private var science         : HomeButton!
+        {
+        didSet
+        {
+            science.actionHandler = { [unowned self] in
+                print("Science")
+            }
+        }
+    }
     
     //For View Type One
     private var scrollView      : UIScrollView!
@@ -30,59 +66,29 @@ class HomeVC: FormattedVC//, NewsFeedDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        view.backgroundColor = ColorScheme.currentColorScheme().backgroundColor
         
         if CurrentUser.hasSavedUserInformation() { CurrentUser.currentUser().loadSavedUser() }
         
-        titleLabel = CESOutlinedLabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = "Carroll Elementary School"
-        titleLabel.font = titleFont.fontWithSize(42.0)
-        view.addSubview(titleLabel)
+        var statusBarViewBackgroundColor : UIColor
+        if ColorScheme.currentColorScheme().backgroundColor.lighter == UIColor.whiteColor() || ColorScheme.currentColorScheme().backgroundColor.lighter == UIColor.clearColor()
+        {
+            statusBarViewBackgroundColor = ColorScheme.currentColorScheme().backgroundColor.darker
+        }
+        else
+        {
+            statusBarViewBackgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
+        }
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(20)-[titleLabel]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["titleLabel":titleLabel]))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(20)-[titleLabel]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["titleLabel":titleLabel]))
-        
-        statusBarView = UIView()
+        let statusBarView = UIView()
         statusBarView.translatesAutoresizingMaskIntoConstraints = false
+        statusBarView.backgroundColor = statusBarViewBackgroundColor
         view.addSubview(statusBarView)
         view.addConstraint(NSLayoutConstraint(item: statusBarView, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(item: statusBarView, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(item: statusBarView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[statusBarView(20)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["statusBarView":statusBarView]))
         
-        let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")
-        let userLoginInfo = NSArray(contentsOfFile: plistPath!)!
-        
-        if userLoginInfo.count > 6
-        {
-            if Int((userLoginInfo[6] as! String))! != -1
-            {
-                viewType = Int((userLoginInfo[6] as! String))!
-                
-                switch viewType
-                {
-                case 1:  break
-                    
-                default:
-                    scrollView = UIScrollView(frame: CGRectMake(0.0, 0.0, view.bounds.size.width, view.bounds.size.height))
-                    scrollView.exclusiveTouch = false
-                    scrollView.contentSize = CGSizeMake(view.bounds.size.width * 3.0, view.bounds.size.height)
-                    scrollView.pagingEnabled = true
-                    view.addSubview(scrollView)
-                    break
-                }
-                
-                setUpSubjectsButtons()
-            }
-        }
-    }
-    
-    override func viewWillAppear(animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        updateColors()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateColors", name: ColorSchemeDidChangeNotification, object: nil)
     }
     
     override func viewDidAppear(animated: Bool)
@@ -93,203 +99,37 @@ class HomeVC: FormattedVC//, NewsFeedDelegate
         }
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func preferredStatusBarStyle() -> UIStatusBarStyle
     {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    override func updateColors()
-    {
-        super.updateColors()
-        
-        if statusBarView != nil
+        if ColorScheme.currentColorScheme().backgroundColor.lighter == UIColor.whiteColor() || ColorScheme.currentColorScheme().backgroundColor.lighter == UIColor.clearColor()
         {
-            UIView.transitionWithView(statusBarView, duration: transitionLength, options: .TransitionCrossDissolve, animations: { () -> Void in
-                
-                self.statusBarView.backgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
-                
-                }, completion: nil)
-        }
-        
-        if titleLabel != nil
-        {
-            UIView.transitionWithView(titleLabel, duration: transitionLength, options: .TransitionCrossDissolve, animations: { () -> Void in
-                
-                self.titleLabel.textColor = ColorScheme.currentColorScheme().primaryColor
-                
-                }, completion: nil)
-        }
-        
-        if buttonView != nil
-        {
-            UIView.transitionWithView(buttonView, duration: transitionLength, options: .TransitionCrossDissolve, animations: { () -> Void in
-                
-                self.languageArts.icon.backgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
-                self.languageArts.oldBackgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
-                self.languageArts.titleLabel.textColor = ColorScheme.currentColorScheme().primaryColor
-                
-                self.math.icon.backgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
-                self.math.oldBackgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
-                self.math.titleLabel.textColor = ColorScheme.currentColorScheme().primaryColor
-                
-                self.science.icon.backgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
-                self.science.oldBackgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
-                self.science.titleLabel.textColor = ColorScheme.currentColorScheme().primaryColor
-                
-                self.history.icon.backgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
-                self.history.oldBackgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
-                self.history.titleLabel.textColor = ColorScheme.currentColorScheme().primaryColor
-                
-                }, completion: nil)
-        }
-    }
-    
-    func setUpSubjectsButtons()
-    {
-        scrollView = UIScrollView(frame: CGRectMake(0.0, 0.0, view.bounds.size.width, view.bounds.size.height))
-        scrollView.exclusiveTouch = false
-        scrollView.contentSize = CGSizeMake(view.bounds.size.width * 3.0, view.bounds.size.height)
-        scrollView.pagingEnabled = true
-        view.addSubview(scrollView)
-        //The Button View
-        buttonView = UIView()
-        buttonView.translatesAutoresizingMaskIntoConstraints = false
-        switch viewType
-        {
-        case 1:
-            view.addSubview(buttonView)
-            view.addConstraint(NSLayoutConstraint(item: buttonView, attribute: .Leading, relatedBy: .Equal, toItem: titleLabel, attribute: .Leading, multiplier: 1.0, constant: 0.0))
-            view.addConstraint(NSLayoutConstraint(item: buttonView, attribute: .Top, relatedBy: .Equal, toItem: titleLabel, attribute: .Bottom, multiplier: 1.0, constant: 10.0))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[buttonView(400)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["buttonView":buttonView]))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[buttonView(320)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["buttonView":buttonView]))
-            break
-            
-        default:
-            scrollView.addSubview(buttonView)
-            scrollView.addConstraint(NSLayoutConstraint(item: buttonView, attribute: .CenterX, relatedBy: .Equal, toItem: scrollView, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
-            scrollView.addConstraint(NSLayoutConstraint(item: buttonView, attribute: .CenterY, relatedBy: .Equal, toItem: scrollView, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
-            scrollView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[buttonView(400)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["buttonView":buttonView]))
-            scrollView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[buttonView(320)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["buttonView":buttonView]))
-            break
-        }
-        
-        
-        
-        //Language Arts
-        languageArts = HomeButton()
-        languageArts.translatesAutoresizingMaskIntoConstraints = false
-        languageArts.title = "Language Arts"
-        languageArts.layer.borderColor = view.backgroundColor?.darker.CGColor
-        languageArts.iconImage = UIImage(named: "Language Arts")
-        buttonView.addSubview(languageArts)
-        buttonView.addConstraint(NSLayoutConstraint(item: languageArts, attribute: .Leading, relatedBy: .Equal, toItem: buttonView, attribute: .Leading, multiplier: 1.0, constant: 0.0))
-        buttonView.addConstraint(NSLayoutConstraint(item: languageArts, attribute: .Top, relatedBy: .Equal, toItem: buttonView, attribute: .Top, multiplier: 1.0, constant: 0.0))
-        buttonView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[languageArts(170)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["languageArts":languageArts]))
-        buttonView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[languageArts(130)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["languageArts":languageArts]))
-        
-        //Math
-        math = HomeButton()
-        math.translatesAutoresizingMaskIntoConstraints = false
-        math.title = "Math"
-        math.layer.borderColor = view.backgroundColor?.darker.CGColor
-        math.iconImage = UIImage(named: "Math")
-        buttonView.addSubview(math)
-        buttonView.addConstraint(NSLayoutConstraint(item: math, attribute: .Trailing, relatedBy: .Equal, toItem: buttonView, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
-        buttonView.addConstraint(NSLayoutConstraint(item: math, attribute: .Top, relatedBy: .Equal, toItem: buttonView, attribute: .Top, multiplier: 1.0, constant: 0.0))
-        buttonView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[math(170)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["math":math]))
-        buttonView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[math(130)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["math":math]))
-        
-        //Science
-        science = HomeButton()
-        science.translatesAutoresizingMaskIntoConstraints = false
-        science.title = "Science"
-        science.layer.borderColor = view.backgroundColor?.darker.CGColor
-        science.iconImage = UIImage(named: "Science")
-        buttonView.addSubview(science)
-        buttonView.addConstraint(NSLayoutConstraint(item: science, attribute: .Leading, relatedBy: .Equal, toItem: buttonView, attribute: .Leading, multiplier: 1.0, constant: 0.0))
-        buttonView.addConstraint(NSLayoutConstraint(item: science, attribute: .Bottom, relatedBy: .Equal, toItem: buttonView, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-        buttonView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[science(170)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["science":science]))
-        buttonView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[science(130)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["science":science]))
-        
-        //History
-        history = HomeButton()
-        history.translatesAutoresizingMaskIntoConstraints = false
-        history.title = "History"
-        history.layer.borderColor = view.backgroundColor?.darker.CGColor
-        history.iconImage = UIImage(named: "History")
-        buttonView.addSubview(history)
-        buttonView.addConstraint(NSLayoutConstraint(item: history, attribute: .Trailing, relatedBy: .Equal, toItem: buttonView, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
-        buttonView.addConstraint(NSLayoutConstraint(item: history, attribute: .Bottom, relatedBy: .Equal, toItem: buttonView, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-        buttonView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[history(170)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["history":history]))
-        buttonView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("[history(130)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["history":history]))
-        
-        languageArts.transform = CGAffineTransformMakeScale(0.5, 0.5)
-        languageArts.alpha = 0.0
-        math.transform = CGAffineTransformMakeScale(0.5, 0.5)
-        math.alpha = 0.0
-        history.transform = CGAffineTransformMakeScale(0.5, 0.5)
-        history.alpha = 0.0
-        science.transform = CGAffineTransformMakeScale(0.5, 0.5)
-        science.alpha = 0.0
-        
-        languageArts.actionHandler = { () -> Void in
-            
-            print("Language Arts")
-        }
-        math.actionHandler = { () -> Void in
-            
-            print("Math")
-            
-        }
-        science.actionHandler = { () -> Void in
-            
-            print("Science")
-            
-        }
-        history.actionHandler = { () -> Void in
-            
-            print("History")
-            
-        }
-    }
-    
-    func setUpSettingsButton()
-    {
-        
-    }
-    
-    func showItems()
-    {
-        let plistPath = NSBundle.mainBundle().pathForResource("LoggedInUser", ofType: "plist")
-        let userLoginInfo = NSArray(contentsOfFile: plistPath!)!
-        
-        if Int((userLoginInfo[6] as! String))! == -1
-        {
-            beginIntroductionAndTutorial()
+            if ColorScheme.currentColorScheme().backgroundColor.darker.shouldUseWhiteText == true
+            {
+                return .LightContent
+            }
+            else
+            {
+                return .Default
+            }
         }
         else
         {
-            UIView.animateWithDuration(0.7, delay: self.presentedViewController != nil ? 1.2 : 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1, options: [.AllowAnimatedContent, .AllowUserInteraction], animations: { () -> Void in
-                
-                self.languageArts.transform = CGAffineTransformIdentity
-                self.languageArts.alpha = 1.0
-                self.math.transform = CGAffineTransformIdentity
-                self.math.alpha = 1.0
-                self.history.transform = CGAffineTransformIdentity
-                self.history.alpha = 1.0
-                self.science.transform = CGAffineTransformIdentity
-                self.science.alpha = 1.0
-                
-                }, completion: nil)
+            if ColorScheme.currentColorScheme().backgroundColor.lighter.shouldUseWhiteText == true
+            {
+                return .LightContent
+            }
+            else
+            {
+                return .Default
+            }
         }
     }
-    
-    //MARK: - Introduction/Tutorial
-    
-    private var homeViewType = "Expanded"
-    
-    private var blackView : UIView!
-    
+}
+
+//MARK: - Introduction/Tutorial
+/*
+extension HomeVC
+{
     private func beginIntroductionAndTutorial()
     {
         blackView = UIView()
@@ -947,7 +787,7 @@ class HomeVC: FormattedVC//, NewsFeedDelegate
     })
     }*/
 }
-
+*/
 private class MiniScreenView : UIView
 {
     var actionHandler : (() -> Void)!

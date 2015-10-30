@@ -8,10 +8,6 @@
 
 #import "Activity.h"
 
-#import "Page.h"
-
-#import "OBJ-CDefinitions.h"
-
 //PLEASE CHANGE activityData TO AN NSMutableArray
 //THIS NSMutableArray WILL HOLD DICTIONARYS OF KEY VALUE PAIRS EXACTLY AS IT USED TO.
 //i.e. [[XXActivityTypeXX:nil], [xxActivityType2XX:nil]]

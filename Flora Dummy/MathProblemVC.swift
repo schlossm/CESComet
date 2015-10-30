@@ -139,7 +139,7 @@ class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitio
     
     //MARK: - Save and Restore and Settings
     
-    override func restoreActivityState(object: AnyObject)
+    func restoreActivityState(object: AnyObject)
     {
         let settings = (object as! [AnyObject])[0] as! [String : AnyObject]
         mathEquation = settings["Equation"]! as? String
@@ -155,10 +155,9 @@ class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitio
         }
         
         view.layoutIfNeeded()
-        NSNotificationCenter.defaultCenter().postNotificationName(PageManagerShouldContinuePresentation, object: nil)
     }
     
-    override func saveActivityState() -> AnyObject
+    func saveActivityState() -> AnyObject
     {
         var returnArray = Array<Dictionary<String, AnyObject>>()
         
@@ -193,7 +192,7 @@ class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitio
         return returnArray
     }
     
-    override func settings() -> [NSObject : AnyObject]
+    func settings() -> [NSObject : AnyObject]
     {
         return ["Math Equation" : "String"]
     }

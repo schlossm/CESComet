@@ -187,8 +187,8 @@
     
     testSession.activityData = testSessionData;
     
-    activePageManager = [[PageManager alloc] initWithNibName:nil bundle:nil activitySession:testSession forActivity:activity withParent:self];
-    [activePageManager enablePreviewMode];
+    //activePageManager = [[PageManager alloc] initWithNibName:nil bundle:nil activitySession:testSession forActivity:activity withParent:self];
+    //[activePageManager enablePreviewMode];
 }
 
 -(void) launchModule

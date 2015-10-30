@@ -30,7 +30,7 @@ class PageManager: FormattedVC
         }
         set
         {
-            self.nextButton.userInteractionEnabled == newValue
+            self.nextButton.userInteractionEnabled = newValue
             
             UIView.animateWithDuration(0.3, delay: 0.0, options: .AllowUserInteraction, animations: { () -> Void in
                 
@@ -135,8 +135,8 @@ class PageManager: FormattedVC
     private var direction = "Forward" //PageManagerDirection.Forward
     
     //View Controllers On Screen
-    private var oldViewController : FormattedVC?
-    private var currentViewController : FormattedVC!
+    private var oldViewController : CESDatabaseActivity?
+    private var currentViewController : CESDatabaseActivity!
     
     //View Controllers On Screen Constraints
     private var oldViewControllerConstraints = [NSLayoutConstraint]()
@@ -159,6 +159,7 @@ class PageManager: FormattedVC
     
     private var isInTOC = false
     
+    /*
     //MARK: - View Setup
     
     required init?(coder aDecoder: NSCoder)
@@ -505,22 +506,22 @@ class PageManager: FormattedVC
                 
                 if object as! String != "<null>"
                 {
-                    viewControllerToRender.restoreActivityState(Array(newActivityData[index].values)[0])
+                    viewControllerToRender.restoreActivityState?(Array(newActivityData[index].values)[0])
                 }
                 else
                 {
-                    viewControllerToRender.restoreActivityState(Array(currentActivityPage.values)[0])
+                    viewControllerToRender.restoreActivityState?(Array(currentActivityPage.values)[0])
                 }
             }
             else    //There isn't any saved session data for this activity, so load the old session data
             {
-                viewControllerToRender.restoreActivityState(Array(currentActivityPage.values)[0])
+                viewControllerToRender.restoreActivityState?(Array(currentActivityPage.values)[0])
             }
             
-            UIView.transitionWithView(viewControllerToRender.view, duration: 0.0, options: .AllowUserInteraction, animations: { () -> Void in viewControllerToRender.view.layoutIfNeeded() }, completion: { (finished) -> Void in
+            UIView.transitionWithView((viewControllerToRender as! UIViewController).view, duration: 0.0, options: .AllowUserInteraction, animations: { () -> Void in (viewControllerToRender as! UIViewController).view.layoutIfNeeded() }, completion: { (finished) -> Void in
                 
                 UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, 0)
-                viewControllerToRender.view.drawViewHierarchyInRect(self.view.bounds, afterScreenUpdates: true)
+                (viewControllerToRender as! UIViewController).view.drawViewHierarchyInRect(self.view.bounds, afterScreenUpdates: true)
                 let copied = UIGraphicsGetImageFromCurrentImageContext()
                 UIGraphicsEndImageContext()
                 
@@ -1085,7 +1086,7 @@ class PageManager: FormattedVC
         }
     }
     
-    private func viewControllerForPageType(pageType: ActivityViewControllerType) -> FormattedVC?
+    private func viewControllerForPageType(pageType: ActivityViewControllerType) -> CESDatabaseActivity?
     {
         switch pageType
         {
@@ -1134,5 +1135,5 @@ class PageManager: FormattedVC
         default:
             return nil
         }
-    }
+    }*/
 }

@@ -15,23 +15,12 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
-    isPresented = NO;
-    
-    //Immediately set colors before presentation
-    [self updateColors];
+    self.view.backgroundColor = [ColorScheme currentColorScheme].backgroundColor;
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateColors) name:ColorSchemeDidChangeNotification object:nil];
-}
-
-- (void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -43,25 +32,12 @@
 
 - (void) updateColors
 {
-    [UIView animateWithDuration:transitionLength delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^
-     {
-         self.view.backgroundColor = [ColorScheme currentColorScheme].backgroundColor;
-     } completion:nil];
+    
 }
 
-- (id) saveActivityState
+- (BOOL) activityWantsFullScreen
 {
-    @throw [NSException exceptionWithName:@"Subclassing Required" reason:@"This method requires each activity to implement a custom solution." userInfo:nil];
-}
-
-- (void) restoreActivityState:(id)object
-{
-    @throw [NSException exceptionWithName:@"Subclassing Required" reason:@"This method requires each activity to implement a custom solution." userInfo:nil];
-}
-
-- (NSDictionary *) settings
-{
-    @throw [NSException exceptionWithName:@"Subclassing Required" reason:@"This method requires each activity to implement a custom solution." userInfo:nil];
+    return false;
 }
 
 @end

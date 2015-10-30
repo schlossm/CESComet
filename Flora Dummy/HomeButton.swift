@@ -8,67 +8,68 @@
 
 import UIKit
 
+@IBDesignable
 class HomeButton: UIView
 {
-    private var _iconImage  : UIImage!
+    @IBInspectable
     var iconImage           : UIImage!
         {
-        get
+        didSet
         {
-            return _iconImage
-        }
-        set
-        {
-            _iconImage = newValue
-            
             if icon != nil
             {
-                icon.image = newValue
+                icon.image = iconImage
             }
         }
     }
     
-    private var _title      : String!
+    @IBInspectable
     var title               : String!
         {
-        get
+        didSet
         {
-            return _title
-        }
-        set
-        {
-            _title = newValue
-            
             if titleLabel != nil
             {
-                titleLabel.text = newValue
+                titleLabel.text = title
             }
         }
     }
     
     var actionHandler : (() -> Void)!
     
-    var oldBackgroundColor : UIColor!
-    
-    var icon        : UIImageView!
-    var titleLabel  : UILabel!
+    private var oldBackgroundColor : UIColor!
+    private var icon        : UIImageView!
+    private var titleLabel  : UILabel!
     
     override init(frame: CGRect)
     {
         super.init(frame: frame)
         
+        commonInit()
+    }
+
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        
+        commonInit()
+    }
+    
+    private func commonInit()
+    {
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.mainScreen().scale
         
         icon = UIImageView()
         icon.translatesAutoresizingMaskIntoConstraints = false
-        icon.tintColor = .blackColor()
-        icon.image = _iconImage
+        icon.tintColor = ColorScheme.currentColorScheme().secondaryColor
+        icon.image = iconImage
         icon.contentMode = .ScaleAspectFit
         icon.layer.shouldRasterize = true
         icon.layer.rasterizationScale = UIScreen.mainScreen().scale
         icon.layer.cornerRadius = 20.0
         icon.layer.borderWidth = 3.0
+        icon.layer.borderColor = ColorScheme.currentColorScheme().secondaryColor.CGColor
         addSubview(icon)
         addConstraint(NSLayoutConstraint(item: icon, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: icon, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0.0))
@@ -77,7 +78,8 @@ class HomeButton: UIView
         
         titleLabel = CESOutlinedLabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = _title
+        titleLabel.text = title
+        titleLabel.textColor = ColorScheme.currentColorScheme().secondaryColor
         titleLabel.textAlignment = .Center
         titleLabel.font = bodyFont
         titleLabel.adjustsFontSizeToFitWidth = true
@@ -87,11 +89,6 @@ class HomeButton: UIView
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[titleLabel(height)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: ["height":titleLabel.font.lineHeight], views: ["titleLabel":titleLabel]))
-    }
-
-    required init?(coder aDecoder: NSCoder)
-    {
-        super.init(coder: aDecoder)
     }
     
     private func highlight()
@@ -112,7 +109,7 @@ class HomeButton: UIView
     {
         UIView.animateWithDuration(0.2, delay: 0.0, options: [.AllowAnimatedContent, .AllowUserInteraction], animations: { () -> Void in
             
-            self.icon.backgroundColor = self.icon.backgroundColor?.lighter.lighter
+            self.icon.backgroundColor = UIColor.clearColor()
             
             }, completion: nil)
     }
@@ -148,7 +145,7 @@ class HomeButton: UIView
         let touch = touches.first!
         if CGRectContainsPoint(bounds, touch.locationInView(self))
         {
-            actionHandler()
+            actionHandler?()
         }
     }
     

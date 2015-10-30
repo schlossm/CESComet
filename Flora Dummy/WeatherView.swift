@@ -30,7 +30,6 @@ class WeatherView: UIView, WeatherManagerDelegate
         super.init(coder: aDecoder)
         
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateInitialText", userInfo: nil, repeats: false)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateColors", name: ColorSchemeDidChangeNotification, object: nil)
         
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -53,7 +52,7 @@ class WeatherView: UIView, WeatherManagerDelegate
     
     func updateColors()
     {
-        UIView.transitionWithView(self, duration: transitionLength, options: .TransitionCrossDissolve, animations: { () -> Void in
+        UIView.transitionWithView(self, duration: CESCometTransitionDuration, options: .TransitionCrossDissolve, animations: { () -> Void in
             self.weatherHumidity.textColor = ColorScheme.currentColorScheme().primaryColor
             self.weatherTemp.textColor = ColorScheme.currentColorScheme().primaryColor
             self.weatherWindSpeed.textColor = ColorScheme.currentColorScheme().primaryColor

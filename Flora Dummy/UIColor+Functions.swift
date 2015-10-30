@@ -44,7 +44,7 @@ extension UIColor
             darknessScore += (componentColors[2] * 255) * 114
             darknessScore /= 1000
             
-            if (darknessScore >= 125)
+            if (darknessScore <= 125)
             {
                 return true
             }
@@ -78,7 +78,12 @@ extension UIColor
             
             getRed(&red, green: &green, blue: &blue, alpha: &alpha)
             
-            return UIColor(red: red - 0.1, green: green - 0.1, blue: blue - 0.1, alpha: alpha)
+            if red == 0.0 && blue == 0.0 && green == 0.0
+            {
+                return UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: alpha + 0.1)
+            }
+            
+            return UIColor(red: red - 0.1, green: green - 0.1, blue: blue - 0.1, alpha: alpha + 0.1)
         }
     }
     

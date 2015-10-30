@@ -143,7 +143,7 @@ private class ActivityManagerDatabaseManager: ActivityManagerVCDatabase
         
         guard let activitySession = foundActivitySession?.first else
         {
-            newActivitySession.activityData = activity.activityData as! [[NSNumber : AnyObject]]
+            newActivitySession.activityData = activity.activityData as! [[Int : AnyObject]]
             
             return newActivitySession
         }
@@ -158,7 +158,7 @@ private class ActivityManagerDatabaseManager: ActivityManagerVCDatabase
         
         newActivitySession.status = activitySession.valueForKey("status") as! String
         
-        let decryptedData = NADatabase.sharedDatabase().decryptObject(activitySession.valueForKey("activityData") as! String) as! [[NSNumber : AnyObject]]
+        let decryptedData = NADatabase.sharedDatabase().decryptObject(activitySession.valueForKey("activityData") as! String) as! [[Int : AnyObject]]
         newActivitySession.activityData = decryptedData
         
         return newActivitySession
@@ -277,8 +277,11 @@ private class UserAccountsDatabaseManager : UserAccountsDatabase
     
     private init() { }
     
-    @objc func inputtedUsernameIsValid(username: String, andPassword password: String, completion: (Bool) -> Void)
+    @objc func inputtedUsernameIsValid(user: String?, andPassword pass: String?, completion: (Bool) -> Void)
     {
+        guard let username = user  else { completion(false); return }
+        guard let password = pass  else { completion(false); return }
+        
         let newCompletion = { (success: Bool) -> Void in
             self.inputtedInfoIsValid = success
             completion(success)
@@ -295,12 +298,14 @@ private class UserAccountsDatabaseManager : UserAccountsDatabase
             guard let downloadedUserID = returnArray as? [NSDictionary] else { newCompletion(false); return }
             guard downloadedUserID.count == 1 else { newCompletion(false); return }
             
-            newCompletion((downloadedUserID.first!["SUM(userID)"] as! Int) == 1)
+            newCompletion(Int(downloadedUserID.first!["SUM(userID)"] as! String)! == 1)
         }
     }
     
-    @objc func downloadUserInformationForUser(username: String, andPassword password: String, completion: (Bool) -> Void)
+    @objc func downloadUserInformationForUser(user: String?, andPassword pass: String?, completion: (Bool) -> Void)
     {
+        guard let username = user else { completion(false); return }
+        guard let password = pass else { completion(false); return }
         guard inputtedInfoIsValid else { completion(false); return }
         
         let encryptedUserName = NADatabase.sharedDatabase().encryptString(username)
@@ -314,7 +319,7 @@ private class UserAccountsDatabaseManager : UserAccountsDatabase
             let downloadedUser = downloadedUserInfo.first!
             var SQLStatementGetSpecificUserInformation = NASQL()
             
-            switch downloadedUser["userType"] as! Int
+            switch Int(downloadedUser["userType"] as! String)!
             {
             case 0:
                 SQLStatementGetSpecificUserInformation = NASQL().select().from("Student").whereEquals("userID", downloadedUser["userID"] as! String)

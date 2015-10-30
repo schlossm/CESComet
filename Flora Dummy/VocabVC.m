@@ -24,35 +24,35 @@
         [_butAnswer1 setTitle:[NSString stringWithFormat:@"  %@",(NSString *)[_answers objectAtIndex:0]] forState:UIControlStateNormal];
         //_butAnswer1.titleLabel.font = self.font;
         [_butAnswer1 setTitleColor:[ColorScheme currentColorScheme].primaryColor forState:UIControlStateNormal];
-        [Definitions outlineButton:_butAnswer1];
+        //[Definitions outlineButton:_butAnswer1];
     }
     if(![[_answers objectAtIndex:1] isEqualToString:@""])
     {
         [_butAnswer2 setTitle:[NSString stringWithFormat:@"  %@",(NSString *)[_answers objectAtIndex:1]] forState:UIControlStateNormal];
         //_butAnswer2.titleLabel.font = self.font;
         [_butAnswer2 setTitleColor:[ColorScheme currentColorScheme].primaryColor forState:UIControlStateNormal];
-        [Definitions outlineButton:_butAnswer2];
+        //[Definitions outlineButton:_butAnswer2];
     }
     if(![[_answers objectAtIndex:2] isEqualToString:@""])
     {
         [_butAnswer3 setTitle:[NSString stringWithFormat:@"  %@",(NSString *)[_answers objectAtIndex:2]] forState:UIControlStateNormal];
         //_butAnswer3.titleLabel.font = self.font;
         [_butAnswer3 setTitleColor:[ColorScheme currentColorScheme].primaryColor forState:UIControlStateNormal];
-        [Definitions outlineButton:_butAnswer3];
+        //[Definitions outlineButton:_butAnswer3];
     }
     if(![[_answers objectAtIndex:3] isEqualToString:@""])
     {
         [_butAnswer4 setTitle:[NSString stringWithFormat:@"  %@",(NSString *)[_answers objectAtIndex:3]] forState:UIControlStateNormal];
         //_butAnswer4.titleLabel.font = self.font;
         [_butAnswer4 setTitleColor:[ColorScheme currentColorScheme].primaryColor forState:UIControlStateNormal];
-        [Definitions outlineButton:_butAnswer4];
+        //[Definitions outlineButton:_butAnswer4];
     }
     if(![[_answers objectAtIndex:4] isEqualToString:@""])
     {
         [_butAnswer5 setTitle:[NSString stringWithFormat:@"  %@",(NSString *)[_answers objectAtIndex:4]] forState:UIControlStateNormal];
         //_butAnswer5.titleLabel.font = self.font;
         [_butAnswer5 setTitleColor:[ColorScheme currentColorScheme].primaryColor forState:UIControlStateNormal];
-        [Definitions outlineButton:_butAnswer5];
+        //[Definitions outlineButton:_butAnswer5];
     }
    
     

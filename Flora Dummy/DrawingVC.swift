@@ -36,6 +36,7 @@ class DrawingVC: FormattedVC
         instructionsLabel.numberOfLines = 0
         instructionsLabel.minimumScaleFactor = 0.1
         instructionsLabel.adjustsFontSizeToFitWidth = true
+        instructionsLabel.textColor = ColorScheme.currentColorScheme().primaryColor
         view.addSubview(instructionsLabel)
         view.addConstraint(NSLayoutConstraint(item: instructionsLabel, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 20.0))
         view.addConstraint(NSLayoutConstraint(item: instructionsLabel, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: /*pageManagerParent.rightMargin*/0))
@@ -68,11 +69,9 @@ class DrawingVC: FormattedVC
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        
-        updateColors()
     }
     
-    override func restoreActivityState(object: AnyObject)
+    func restoreActivityState(object: AnyObject)
     {
         let arrayOfData = object as! Array<Dictionary<String, AnyObject>>
         
@@ -96,10 +95,9 @@ class DrawingVC: FormattedVC
         }
         
         view.layoutIfNeeded()
-        NSNotificationCenter.defaultCenter().postNotificationName(PageManagerShouldContinuePresentation, object: nil)
     }
     
-    override func saveActivityState() -> AnyObject
+    func saveActivityState() -> AnyObject
     {
         var returnArray = Array<Dictionary<String, AnyObject>>()
         
@@ -121,7 +119,7 @@ class DrawingVC: FormattedVC
         return returnArray
     }
     
-    override func settings() -> [NSObject : AnyObject]
+    func settings() -> [NSObject : AnyObject]
     {
         var settings = Dictionary<String, String>()
         
@@ -130,16 +128,6 @@ class DrawingVC: FormattedVC
         settings.updateValue("Picker - Landscape, Portrait", forKey: "Orientation")
         
         return settings
-    }
-    
-    override func updateColors()
-    {
-        super.updateColors()
-        
-        if instructionsLabel != nil
-        {
-            instructionsLabel.textColor = ColorScheme.currentColorScheme().primaryColor
-        }
     }
 }
 

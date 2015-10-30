@@ -57,7 +57,7 @@
     UIFont *subtitleFont = [UIFont fontWithName:@"MarkerFelt-Thin" size:36.0];
     
     // Initialize labels at top of page
-    otherLabel = [[UILabel alloc] init];
+    otherLabel = [[CESOutlinedLabel alloc] init];
     otherLabel.text = [NSString stringWithFormat:@"Page: %i of %i", pageNumber.intValue, pageCount.intValue];
     otherLabel.font = subtitleFont;
     [otherLabel sizeToFit];
@@ -265,7 +265,7 @@
     }
     
     otherLabel.textColor = [ColorScheme currentColorScheme].primaryColor;
-    [Definitions outlineTextInLabel:otherLabel];
+    //[Definitions outlineTextInLabel:otherLabel];
 }
 
 @end

@@ -48,7 +48,7 @@ class ColorScheme : NSObject
     {
         guard let results = (try? NADatabase.sharedDatabase().managedObjectContext.executeFetchRequest(NSFetchRequest(entityName: "CurrentColor")) as! [NSManagedObject]) ?? (try? NADatabase.sharedDatabase().managedObjectContext.executeFetchRequest(NSFetchRequest(entityName: "Color")) as! [NSManagedObject]) else
         {
-            let defaultColor = NSManagedObject(entity: NSEntityDescription.entityForName("Color", inManagedObjectContext: NADatabase.sharedDatabase().managedObjectContext)!, insertIntoManagedObjectContext: NADatabase.sharedDatabase().managedObjectContext)
+            let defaultColor = NSManagedObject(entity: NSEntityDescription.entityForName("Color", inManagedObjectContext: NADatabase.sharedDatabase().managedObjectContext)!, insertIntoManagedObjectContext: nil)
             defaultColor.setValue("FFFFFF", forKey: "primaryColor")
             defaultColor.setValue("888888", forKey: "secondaryColor")
             defaultColor.setValue("333333", forKey: "backgroundColor")
@@ -57,7 +57,7 @@ class ColorScheme : NSObject
         }
         guard results.count != 0 else
         {
-            let defaultColor = NSManagedObject(entity: NSEntityDescription.entityForName("Color", inManagedObjectContext: NADatabase.sharedDatabase().managedObjectContext)!, insertIntoManagedObjectContext: NADatabase.sharedDatabase().managedObjectContext)
+            let defaultColor = NSManagedObject(entity: NSEntityDescription.entityForName("Color", inManagedObjectContext: NADatabase.sharedDatabase().managedObjectContext)!, insertIntoManagedObjectContext: nil)
             defaultColor.setValue("FFFFFF", forKey: "primaryColor")
             defaultColor.setValue("888888", forKey: "secondaryColor")
             defaultColor.setValue("333333", forKey: "backgroundColor")

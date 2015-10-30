@@ -17,15 +17,11 @@ class ActivitySession : NSObject, NSCopying
     ///The Activity's ID
     var activityID = "000000"
     
-    ///The student's User ID
-    @available(*, deprecated=9.0, message="Use CurrentUser.currentUser.userID")
-    var userID = "000000"
-    
     ///The Activity's Grade
     var score = "000"
     
     ///The Activity's Data
-    var activityData = [[NSNumber : AnyObject]]()
+    var activityData = [[Int : AnyObject]]()
     
     ///The Activity's Start Date
     var startDate = NSDate()

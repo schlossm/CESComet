@@ -22,7 +22,7 @@ class CalculatorTransitionManager: NSObject, UIViewControllerAnimatedTransitioni
     //Returns the duration of the transition
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval
     {
-        return transitionLength
+        return CESCometTransitionDuration
     }
     
     //Animates the transition based on whether we're presenting or not

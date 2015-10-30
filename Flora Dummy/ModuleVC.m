@@ -41,7 +41,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self updateColors];
+    //[self updateColors];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,7 +59,7 @@
         if ([v isKindOfClass: [UITextView new].class])
         {
             UITextView *tV = (UITextView *)v;
-            [Definitions outlineTextInTextView:tV forFont:tV.font];
+            //[Definitions outlineTextInTextView:tV forFont:tV.font];
             tV.textColor = [ColorScheme currentColorScheme].primaryColor;
             tV.backgroundColor = [ColorScheme currentColorScheme].secondaryColor;
     
@@ -115,7 +115,7 @@
     
     // Format
     //[self outlineTextInTextView:tV];
-    [Definitions outlineView:tV];
+    //[Definitions outlineView:tV];
     tV.textColor = [ColorScheme currentColorScheme].primaryColor;
     tV.backgroundColor = [ColorScheme currentColorScheme].secondaryColor;
 

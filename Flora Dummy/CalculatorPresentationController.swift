@@ -190,19 +190,19 @@ class CalculatorPresentationController: UIPresentationController, UIGestureRecog
     func moveToRight()
     {
         NSUserDefaults.standardUserDefaults().setObject("Right", forKey: "calculatorPosition")
-        UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 0.77, initialSpringVelocity: 0.1, options: [.AllowUserInteraction, .AllowAnimatedContent], animations: { () -> Void in
+        UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.0, usingSpringWithDamping: 0.77, initialSpringVelocity: 0.1, options: [.AllowUserInteraction, .AllowAnimatedContent], animations: { () -> Void in
             
             self.presentedView()!.frame = self.frameOfPresentedViewInContainerView()
             
             }, completion:nil)
         
-        UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowUserInteraction, .AllowAnimatedContent], animations: { () -> Void in
+        UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowUserInteraction, .AllowAnimatedContent], animations: { () -> Void in
             
             self.rightArrow!.alpha = 0.0
             self.rightArrow!.userInteractionEnabled = false
             
             }, completion: nil)
-        UIView.animateWithDuration(transitionLength, delay: 0.4, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowUserInteraction, .AllowAnimatedContent], animations: { () -> Void in
+        UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.4, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowUserInteraction, .AllowAnimatedContent], animations: { () -> Void in
             
             self.leftArrow!.alpha = 1.0
             self.leftArrow!.userInteractionEnabled = true
@@ -214,19 +214,19 @@ class CalculatorPresentationController: UIPresentationController, UIGestureRecog
     func moveToLeft()
     {
         NSUserDefaults.standardUserDefaults().setObject("Left", forKey: "calculatorPosition")
-        UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 0.77, initialSpringVelocity: 0.1, options: [.AllowUserInteraction, .AllowAnimatedContent], animations: { () -> Void in
+        UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.0, usingSpringWithDamping: 0.77, initialSpringVelocity: 0.1, options: [.AllowUserInteraction, .AllowAnimatedContent], animations: { () -> Void in
             
             self.presentedView()!.frame = self.frameOfPresentedViewInContainerView()
             
             }, completion:nil)
         
-        UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowUserInteraction, .AllowAnimatedContent], animations: { () -> Void in
+        UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowUserInteraction, .AllowAnimatedContent], animations: { () -> Void in
             
             self.leftArrow!.alpha = 0.0
             self.leftArrow!.userInteractionEnabled = false
             
             }, completion: nil)
-        UIView.animateWithDuration(transitionLength, delay: 0.4, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowUserInteraction, .AllowAnimatedContent], animations: { () -> Void in
+        UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.4, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowUserInteraction, .AllowAnimatedContent], animations: { () -> Void in
             
             self.rightArrow!.alpha = 1.0
             self.rightArrow!.userInteractionEnabled = true
@@ -237,7 +237,6 @@ class CalculatorPresentationController: UIPresentationController, UIGestureRecog
     //Dismisses the calculator
     func dismissCalculator(tapGesture: UIGestureRecognizer)
     {
-        print(tapGesture.view)
         presentedViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -273,7 +272,7 @@ class CalculatorPresentationController: UIPresentationController, UIGestureRecog
                 calculatorExtension!.center = CGPointMake(calculatorExtension!.frame.size.width/2.0 + 20, oldCalculatorExtension!.center.y)
             }
             
-            UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowAnimatedContent, .AllowUserInteraction], animations: { () -> Void in
+            UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowAnimatedContent, .AllowUserInteraction], animations: { () -> Void in
                 
                 self.calculatorHolderView!.frame = self.frameOfPresentedViewInContainerView()
                 self.calculatorExtension!.frame = CGRectMake(self.calculatorExtension!.frame.origin.x, self.calculatorExtension!.frame.origin.y, self.frameOfPresentedViewInContainerView().size.width - self.presentedView()!.frame.size.width, self.frameOfPresentedViewInContainerView().size.height)
@@ -334,7 +333,7 @@ class CalculatorPresentationController: UIPresentationController, UIGestureRecog
             
             containerView!.addSubview(calculatorHolderView!)
             
-            UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowAnimatedContent, .AllowUserInteraction], animations: { () -> Void in
+            UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowAnimatedContent, .AllowUserInteraction], animations: { () -> Void in
                 
                 self.calculatorHolderView!.frame = self.frameOfPresentedViewInContainerView()
                 self.calculatorExtension!.frame = CGRectMake(self.calculatorExtension!.frame.origin.x, self.calculatorExtension!.frame.origin.y, self.frameOfPresentedViewInContainerView().size.width - self.presentedView()!.frame.size.width, self.frameOfPresentedViewInContainerView().size.height)
@@ -385,7 +384,7 @@ class CalculatorPresentationController: UIPresentationController, UIGestureRecog
         
         let widthDifference = calculatorHolderView!.frame.size.width - frameOfPresentedViewInContainerView().size.width
         
-        UIView.animateWithDuration(transitionLength, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowAnimatedContent, .AllowUserInteraction], animations: { () -> Void in
+        UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowAnimatedContent, .AllowUserInteraction], animations: { () -> Void in
             
             if self.frameOfPresentedViewInContainerView().width == self.calculatorHolderView!.frame.size.width
             {
@@ -431,7 +430,7 @@ class CalculatorPresentationController: UIPresentationController, UIGestureRecog
                 self.oldCalculatorExtension = nil
         })
         
-        UIView.animateWithDuration(transitionLength, delay: transitionLength, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowAnimatedContent, .AllowUserInteraction], animations: { () -> Void in
+        UIView.animateWithDuration(CESCometTransitionDuration, delay: CESCometTransitionDuration, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: [.AllowAnimatedContent, .AllowUserInteraction], animations: { () -> Void in
             
             self.infoView!.alpha = 1.0
             self.infoView!.userInteractionEnabled = true

@@ -43,12 +43,16 @@ enum CESDatabaseError : ErrorType
     /**
      The reference to the PageManager instance that is holding your activity.
      */
+    @available(*, deprecated=9.0, message="PageManager is deprecated.  Use `activityManager` instead.")
     var pageManager: PageManager? { get set }
     
     /**
      The reference to the ActivityManager instance that is holding your activity.
      */
     var activityManager: CESActivityManager? { get set }
+    
+    ///Variable used to show whether VC in being loaded in the Table Of Contents versus the current Activity
+    var renderingView : RenderingView { get set }
     
     /**
      Saves the Activity's state.  Any user inputted data, taps, and movements (if necessary) should be saved into an object of your choice
@@ -68,10 +72,20 @@ enum CESDatabaseError : ErrorType
      */
     optional func restoreActivityState(object: AnyObject)
     
+    ///The settings for the specific activity.  This method should return a dictionary in the ["Setting Name":"Setting Type"] format.  Supported Setting Types are:
+    ///- `String`
+    ///- `Boolean`
+    ///- `Integer` OR `NSInteger`
+    ///- `Double` OR `Float` OR `CGFloat`
+    ///- `Rect`
+    ///- `Point`
+    ///- `Picker - X, X[, X ...]` (Each X is a picker option)
+    optional func settings() -> NSDictionary
+    
     /**
      When your Activity is about to be presented, this method is called to determine the size of the activity on screen.  By default, PageManager resizes each Activity to wrap inbetween buttons onscreen.  If `true` is returned from this method, the Activity is then sized to the full screen of the device, with the navigation buttons overlayed on top.
      */
-    optional func activityWantsFullScreen() -> Bool
+    func activityWantsFullScreen() -> Bool
 }
 
 @objc protocol ActivityManagerVCDatabase
@@ -113,9 +127,9 @@ enum CESDatabaseError : ErrorType
 
 @objc protocol UserAccountsDatabase
 {
-    func inputtedUsernameIsValid(username: String, andPassword password: String, completion: (Bool) -> Void)
+    func inputtedUsernameIsValid(user: String?, andPassword pass: String?, completion: (Bool) -> Void)
     
-    func downloadUserInformationForUser(username: String, andPassword password: String, completion: (Bool) -> Void)
+    func downloadUserInformationForUser(user: String?, andPassword pass: String?, completion: (Bool) -> Void)
 }
 
 @objc protocol MainActivitiesDatabase

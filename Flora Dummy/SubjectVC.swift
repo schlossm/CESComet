@@ -36,9 +36,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        updateColors()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "activityDataLoaded", name: ActivityDataLoaded, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "activityDataLoaded", name: UIApplicationSignificantTimeChangeNotification, object: nil)
         
         activitiesTable!.layer.borderWidth = CGFloat(borderWidth)
@@ -56,6 +54,9 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         //Set colors for activitiesTable
         activitiesTable!.backgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
         activitiesTable!.separatorColor = ColorScheme.currentColorScheme().secondaryColor
+        
+        loadingView?.backgroundColor = view.backgroundColor?.lighter
+        noActivitiesView?.backgroundColor = view.backgroundColor?.lighter
         
         //Update the activities for the tableView
         activities = Array<Activity>()
@@ -125,14 +126,6 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         }
         
         activitiesTable!.reloadData()*/
-    }
-    
-    override func updateColors()
-    {
-        super.updateColors()
-        
-        loadingView?.backgroundColor = view.backgroundColor?.lighter
-        noActivitiesView?.backgroundColor = view.backgroundColor?.lighter
     }
     
     //Updates the activityTable's data if we went to this screen before it was all downloaded

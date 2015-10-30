@@ -207,7 +207,7 @@ class CESCometAlertController: FormattedVC, UIViewControllerTransitioningDelegat
             break
             
         case .Alert:
-            let titleLabel = UILabel()
+            let titleLabel = CESOutlinedLabel()
             titleLabel.textColor = ColorScheme.currentColorScheme().primaryColor
             titleLabel.text = displayTitle
             titleLabel.minimumScaleFactor = 0.1
@@ -215,8 +215,6 @@ class CESCometAlertController: FormattedVC, UIViewControllerTransitioningDelegat
             titleLabel.font = UIFont(name: "MarkerFelt-Wide", size: 36)
             titleLabel.layer.shouldRasterize = true
             titleLabel.layer.rasterizationScale = UIScreen.mainScreen().scale
-            titleLabel.sizeToFit()
-            Definitions.outlineTextInLabel(titleLabel)
             alertView.addSubview(titleLabel)
             
             if displayMessage == nil
@@ -227,7 +225,7 @@ class CESCometAlertController: FormattedVC, UIViewControllerTransitioningDelegat
             }
             else
             {
-                let messageLabel = UILabel(frame: CGRectMake(0, 0, alertViewWidth, 0))
+                let messageLabel = CESOutlinedLabel(frame: CGRectMake(0, 0, alertViewWidth, 0))
                 messageLabel.textColor = ColorScheme.currentColorScheme().primaryColor
                 messageLabel.text = displayMessage
                 messageLabel.textAlignment = .Center
@@ -235,7 +233,6 @@ class CESCometAlertController: FormattedVC, UIViewControllerTransitioningDelegat
                 messageLabel.minimumScaleFactor = 0.1
                 messageLabel.adjustsFontSizeToFitWidth = true
                 messageLabel.font = UIFont(name: "Marker Felt", size: 22)
-                Definitions.outlineTextInLabel(messageLabel)
                 messageLabel.layer.shouldRasterize = true
                 messageLabel.layer.rasterizationScale = UIScreen.mainScreen().scale
                 messageLabel.frame.size = messageLabel.sizeThatFits(CGSizeMake(alertViewWidth, view.frame.size.height - 300))

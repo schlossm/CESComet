@@ -6,18 +6,20 @@
 //  Copyright (c) 2014 SGSC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+
+typedef NS_ENUM(NSInteger, RenderingView) {
+    RenderingViewYes,
+    RenderingViewNo
+};
 
 @class PageManager;
-@protocol CESActivityManager;
+@protocol CESActivityManager, CESDatabaseActivity;
 
-@interface FormattedVC : UIViewController
-{
-    BOOL isPresented;
-}
+@interface FormattedVC : UIViewController <CESDatabaseActivity>
 
 ///Variable used to show whether VC in being loaded in the Table Of Contents versus the
-@property (nonatomic) BOOL renderingView;
+@property (nonatomic) RenderingView renderingView;
 @property (nonatomic, weak) NSObject<CESActivityManager> * _Nullable activityManager;
 
 @property (nonatomic, strong) PageManager * _Nullable pageManager __deprecated;
@@ -27,6 +29,7 @@
 /// Subclasses should override this method to perform custom color updating
 - (void) updateColors NS_REQUIRES_SUPER DEPRECATED_MSG_ATTRIBUTE("User can not update colors while in an activity");
 
+/*
 ///Restores the activity's state.\n This method should process the received object, update the ViewController's display, and then call the notification \p'PageManagerShouldContinuePresentation'
 ///\param object The object given to the activity that was returned after a call to \p'saveActivityState'
 - (void) restoreActivityState:(nonnull id)object;
@@ -51,5 +54,11 @@
 ///
 /// \p Picker - X, X[, X ...] (Each X is a picker option)
 - (NSDictionary  * _Nonnull) settings;
+
+///Tells the current activityManager that how to display your Activity to the user.
+///
+///Return \p true to tell the current activityManager your Activity is requesting the full screen for use.
+///Return \p false to tell the current activityManager your Activity does not require full screen and activityManager will automatically display your Activity around the screen elements
+- (BOOL) activityWantsFullScreen;*/
 
 @end

@@ -10,17 +10,31 @@
 
 import UIKit
 
-//MARK: - Global Variables
-
-@available(*, deprecated=9.0, message="Use \"true\" instead")
-let YES = 1 as Bool
-@available(*, deprecated=9.0, message="Use \"false\" instead")
-let NO = 0 as Bool
+//------------------
+//  Global Variables
+//------------------
 
 let titleFont = UIFont(name: "MarkerFelt-Wide", size: 48.0)!
 let bodyFont  = UIFont(name: "Marker Felt", size: 24.0)!
 
-//MARK: - String Extension
+let CESCometTransitionDuration = 0.3
+
+let ActivityDataLoaded = "CESDatabase Activity Data Downloaded"
+
+@objc enum ActivityViewControllerType : Int
+{
+    case Intro, Module, Sandbox, Read, SquaresDragAndDrop, MathProblem, DrawingVC, Calculator, Garden, ClockDrag, PictureQuiz, QuickQuiz, Vocab, Spelling
+}
+
+@objc enum DrawingVCOrientation : Int
+{
+    case Landscape, Portrait
+}
+
+//--------------------
+//  String Extension
+//--------------------
+
 extension String {
     
     subscript (i: Int) -> Character
@@ -39,112 +53,13 @@ extension String {
     }
 }
 
-//MARK: - Definitions Class
+//-------------------
+//  Definitions Class
+//-------------------
 
 @available(*, deprecated=9.0, message="Definitions is now deprecated, refer to specific function deprecation messages for what to do")
 class Definitions: NSObject
 {
-    //MARK: - Color Methods
-    
-    //Convert a hex string to UIColor
-    @available(*, deprecated=9.0, message="Use UIColor(hexString: String) instead")
-    class func colorWithHexString(hexString : String) -> UIColor
-    {
-        let colorString = ((hexString as NSString).stringByReplacingOccurrencesOfString("#", withString: "")) as String
-        
-        let alpha = 1.0
-        let red = colorCompenentFrom(colorString, atStartIndex: 0, withLength: 2)
-        let greenComponent = colorCompenentFrom(colorString, atStartIndex: 2, withLength: 2)
-        let blue = colorCompenentFrom(colorString, atStartIndex: 4, withLength: 2)
-        
-        return UIColor(red: CGFloat(red), green: CGFloat(greenComponent), blue: CGFloat(blue), alpha: CGFloat(alpha))
-    }
-    
-    //Lighten a UIColor
-    @available(*, deprecated=9.0, message="Use UIColor.lighter instead")
-    class func lighterColorForColor(color : UIColor) -> UIColor
-    {
-        var alpha : CGFloat = 0.0
-        var red : CGFloat = 0.0
-        var green : CGFloat = 0.0
-        var blue : CGFloat = 0.0
-        
-        color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        
-        return UIColor(red: red + 0.1, green: green + 0.1, blue: blue + 0.1, alpha: alpha)
-    }
-    
-    //Darken a UIColor
-    @available(*, deprecated=9.0, message="Use UIColor.darker instead")
-    class func darkerColorForColor(color : UIColor) -> UIColor
-    {
-        var alpha : CGFloat = 0.0
-        var red : CGFloat = 0.0
-        var green : CGFloat = 0.0
-        var blue : CGFloat = 0.0
-        
-        color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        
-        return UIColor(red: red - 0.1, green: green - 0.1, blue: blue - 0.1, alpha: alpha)
-    }
-    
-    //MARK: - Outline Methods
-    
-    //Outline a UILabel
-    @available(*, deprecated=9.0, message="Use class CESOutlinedLabel instead")
-    class func outlineTextInLabel(label : UILabel)
-    {
-        label.layer.shadowColor = UIColor.blackColor().CGColor
-        label.layer.shadowOffset = CGSizeMake(0.1, 0.1)
-        label.layer.shadowOpacity = 1.0
-        label.layer.shadowRadius = 1.0
-    }
-    
-    //Outline a UITextView
-    class func outlineTextInTextView(textView : UITextView, forFont font : UIFont!)
-    {
-        //Store the text since we're working with it
-        let text = textView.text
-        
-        //Format the paragraphs -- APPLE CODE
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.headIndent = 10.0
-        paragraphStyle.firstLineHeadIndent = 10.0
-        paragraphStyle.tailIndent = -10.0
-        
-        let attributes = [NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle]
-        textView.attributedText = NSAttributedString(string: text, attributes: attributes)
-        
-        //Create the shadow
-        textView.textInputView.layer.shadowColor = UIColor.blackColor().CGColor
-        textView.textInputView.layer.shadowOffset = CGSizeMake(0.1, 0.1)
-        textView.textInputView.layer.shadowOpacity = 1.0
-        textView.textInputView.layer.shadowRadius = 1.0
-        
-        //Add cushion so that we don't have text touching the border
-        textView.contentInset = UIEdgeInsetsMake(10.0, 0.0, 10.0, 0.0)
-    }
-    
-    //Outline a UIView
-    @available(*, deprecated=9.0, message="Use class CESOutlinedView instead")
-    class func outlineView(view : UIView)
-    {
-        view.layer.borderWidth = 2.0
-        view.layer.borderColor = ColorScheme.currentColorScheme().secondaryColor.CGColor
-    }
-    
-    //Outline a UIButton
-    class func outlineButton(button : UIButton)
-    {
-        Definitions.outlineTextInLabel(button.titleLabel!)
-        
-        button.layer.borderWidth = 4.0
-        button.layer.borderColor = ColorScheme.currentColorScheme().secondaryColor.CGColor
-    }
-    
-    //MARK: - Other Equations
-    
     //Calculate the answer to a math problem
     class func calculate(equation: String) -> Double
     {
@@ -275,31 +190,6 @@ class Definitions: NSObject
         finalAnswer = (numbers[0] as NSString).doubleValue
         
         return finalAnswer
-    }
-    
-    ///Returns a string for the current grade given the key.  This application handles six different
-    @available(*, deprecated=9.0, message="Use global stringForKey: function instead")
-    class func stringForKey(key: String) -> String
-    {
-        guard CurrentUser.currentUser().grade != nil else { return key }
-        
-        let newKey = key + "-\(CurrentUser.currentUser().grade!.rawValue)"
-        
-        return NSBundle.mainBundle().localizedStringForKey(newKey, value: "", table: "PhrasesPerGrade")
-    }
-    
-    // MARK: - Private Methods for Definitions
-    //These will NOT be able to be referenced outside this Swift file (They don't need to be).
-    private class func colorCompenentFrom(string : String, atStartIndex start : Int, withLength length : Int) ->Float
-    {
-        let subString = ((string as NSString).substringWithRange(NSMakeRange(start, length))) as String
-        let fullHex = length == 2 ? subString : (subString + subString)
-        
-        var hexCompenent : UInt32 = 0
-        let scanner = NSScanner(string: fullHex)
-        scanner.scanHexInt(&hexCompenent)
-        
-        return Float(hexCompenent) / 255.0
     }
 }
 
