@@ -53,7 +53,7 @@ extension UIColor
         }
     }
     
-    var lighter : UIColor
+    /*var lighter : UIColor
         {
         get
         {
@@ -66,7 +66,8 @@ extension UIColor
             
             return UIColor(red: red + 0.1, green: green + 0.1, blue: blue + 0.1, alpha: alpha)
         }
-    }
+    }*/
+    
     var darker : UIColor
         {
         get
