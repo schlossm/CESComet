@@ -19,6 +19,9 @@
 		104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */; };
 		104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F81A042717007BD9DE /* Page_IntroVC.swift */; };
 		1051A5911BC4637800D3CBB9 /* NALoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051A5901BC4637800D3CBB9 /* NALoginTextField.swift */; };
+		105C7C1E1BE50C06003B413A /* CESSubjectSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C7C1D1BE50C06003B413A /* CESSubjectSegue.swift */; };
+		105C7C201BE513C5003B413A /* CESSubjectUnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C7C1F1BE513C5003B413A /* CESSubjectUnwindSegue.swift */; };
+		105C7C241BE52799003B413A /* ActivityProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C7C231BE52799003B413A /* ActivityProtocols.swift */; };
 		106948E71A6301AA0093F9DF /* SubjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106948E61A6301AA0093F9DF /* SubjectVC.swift */; };
 		107363C31A702F2D000D13A6 /* CESDatabaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107363C21A702F2D000D13A6 /* CESDatabaseProtocols.swift */; };
 		1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078FC1B1A0E952C00A14836 /* CalculatorPresentationController.swift */; };
@@ -50,7 +53,6 @@
 		10ACD4981BC9CCF7004BE460 /* ActivityManagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ACD4971BC9CCF7004BE460 /* ActivityManagerVC.swift */; };
 		10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787819FC1B40005D9937 /* AppDelegate.swift */; };
 		10B8787E19FC2881005D9937 /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787D19FC2881005D9937 /* Definitions.swift */; };
-		10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8788019FC3342005D9937 /* LanguageArtsVC.swift */; };
 		10BF3F9F1A2BB80100B1A755 /* SquaresDragAndDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BF3F9E1A2BB80100B1A755 /* SquaresDragAndDrop.swift */; };
 		10BF3FA11A2BEF5900B1A755 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */; };
 		10BFE6DF1A2020D200E68C77 /* DragAndDropVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BFE6DE1A2020D200E68C77 /* DragAndDropVC.swift */; };
@@ -71,8 +73,6 @@
 		10D9770A1AB8D00800BD54BD /* DrawingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D977091AB8D00800BD54BD /* DrawingVC.swift */; };
 		10DD07D21A1661350026B0DA /* MathProblemTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DD07D11A1661350026B0DA /* MathProblemTextField.swift */; };
 		10DDE8C81A00616C0079FAB9 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787B19FC250A005D9937 /* HomeVC.swift */; };
-		10DDE8C91A0061F60079FAB9 /* MathVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD519FEE55B009B0983 /* MathVC.swift */; };
-		10DDE8CA1A0061FA0079FAB9 /* ScienceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD719FEE574009B0983 /* ScienceVC.swift */; };
 		10DDE8CB1A0061FC0079FAB9 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD319FED841009B0983 /* SettingsVC.swift */; };
 		10E76B241A86D4F600D9BD83 /* CESCometUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E76B231A86D4F600D9BD83 /* CESCometUIImageView.swift */; };
 		4C6A6C321A0E8C9500C3A7A7 /* trigView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A6C311A0E8C9500C3A7A7 /* trigView.xib */; };
@@ -108,7 +108,6 @@
 		9208CD0F18F8CD3500D83602 /* Flora_Garden.png in Resources */ = {isa = PBXBuildFile; fileRef = 9208CD0E18F8CD3500D83602 /* Flora_Garden.png */; };
 		921194FF19FE015100644054 /* QuickQuizVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 921194FE19FE015100644054 /* QuickQuizVC.m */; };
 		9211950719FE01C000644054 /* FormattedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9211950219FE01C000644054 /* FormattedVC.m */; };
-		9211950F19FE01CC00644054 /* TestingTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9211950E19FE01CC00644054 /* TestingTVC.m */; };
 		9211951519FE01DC00644054 /* GardenDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9211951219FE01DC00644054 /* GardenDetailVC.m */; };
 		9211951719FE01DC00644054 /* Page_GardenDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9211951419FE01DC00644054 /* Page_GardenDataVC.m */; };
 		9211951E19FE02CB00644054 /* ModuleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9211951D19FE02CB00644054 /* ModuleVC.m */; };
@@ -142,7 +141,6 @@
 		92C261C11840414400FDA09B /* DragObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C261C01840414400FDA09B /* DragObject.m */; };
 		92C2620518419B5600FDA09B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C2620418419B5600FDA09B /* QuartzCore.framework */; };
 		92CB44911A203C550082C761 /* ActivityCreationTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB44901A203C550082C761 /* ActivityCreationTVC.m */; };
-		92CB44941A203DBD0082C761 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB44931A203DBD0082C761 /* Activity.m */; };
 		92CB44971A203F140082C761 /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB44961A203F140082C761 /* Page.m */; };
 		92CB449A1A203F740082C761 /* Content.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB44991A203F740082C761 /* Content.m */; };
 		92CB44D61A2106120082C761 /* PageCreationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB44D41A2106120082C761 /* PageCreationVC.m */; };
@@ -195,10 +193,11 @@
 		104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_ReadVC.swift; sourceTree = "<group>"; };
 		104BA0F81A042717007BD9DE /* Page_IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_IntroVC.swift; sourceTree = "<group>"; };
 		1051A5901BC4637800D3CBB9 /* NALoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NALoginTextField.swift; sourceTree = "<group>"; };
+		105C7C1D1BE50C06003B413A /* CESSubjectSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESSubjectSegue.swift; sourceTree = "<group>"; };
+		105C7C1F1BE513C5003B413A /* CESSubjectUnwindSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESSubjectUnwindSegue.swift; sourceTree = "<group>"; };
+		105C7C231BE52799003B413A /* ActivityProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityProtocols.swift; sourceTree = "<group>"; };
 		106948E61A6301AA0093F9DF /* SubjectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectVC.swift; sourceTree = "<group>"; };
 		106C8BD319FED841009B0983 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
-		106C8BD519FEE55B009B0983 /* MathVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathVC.swift; sourceTree = "<group>"; };
-		106C8BD719FEE574009B0983 /* ScienceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScienceVC.swift; sourceTree = "<group>"; };
 		107363C21A702F2D000D13A6 /* CESDatabaseProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESDatabaseProtocols.swift; sourceTree = "<group>"; };
 		1078FC1B1A0E952C00A14836 /* CalculatorPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorPresentationController.swift; sourceTree = "<group>"; };
 		1078FC1C1A0E952C00A14836 /* CalculatorTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorTransitionManager.swift; sourceTree = "<group>"; };
@@ -238,7 +237,6 @@
 		10B8787819FC1B40005D9937 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10B8787B19FC250A005D9937 /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		10B8787D19FC2881005D9937 /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
-		10B8788019FC3342005D9937 /* LanguageArtsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageArtsVC.swift; sourceTree = "<group>"; };
 		10BF3F9E1A2BB80100B1A755 /* SquaresDragAndDrop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquaresDragAndDrop.swift; sourceTree = "<group>"; };
 		10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		10BFE6DE1A2020D200E68C77 /* DragAndDropVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropVC.swift; sourceTree = "<group>"; };
@@ -359,8 +357,6 @@
 		92C2620418419B5600FDA09B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		92CB448F1A203C550082C761 /* ActivityCreationTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCreationTVC.h; sourceTree = "<group>"; };
 		92CB44901A203C550082C761 /* ActivityCreationTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCreationTVC.m; sourceTree = "<group>"; };
-		92CB44921A203DBD0082C761 /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
-		92CB44931A203DBD0082C761 /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity.m; sourceTree = "<group>"; };
 		92CB44951A203F140082C761 /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
 		92CB44961A203F140082C761 /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
 		92CB44981A203F740082C761 /* Content.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Content.h; sourceTree = "<group>"; };
@@ -426,6 +422,7 @@
 		1009AC3B1A3BD5FC009B4813 /* CESDatabase */ = {
 			isa = PBXGroup;
 			children = (
+				105C7C231BE52799003B413A /* ActivityProtocols.swift */,
 				104A4C9F1A6AD75800BE217A /* ActivitySession.swift */,
 				107363C21A702F2D000D13A6 /* CESDatabaseProtocols.swift */,
 				1009AC3C1A3BD712009B4813 /* CESDatabase.swift */,
@@ -458,9 +455,29 @@
 			name = "Sound Files";
 			sourceTree = "<group>";
 		};
+		105C7C211BE52247003B413A /* Core Pages */ = {
+			isa = PBXGroup;
+			children = (
+				10B8787B19FC250A005D9937 /* HomeVC.swift */,
+				106948E61A6301AA0093F9DF /* SubjectVC.swift */,
+				106C8BD319FED841009B0983 /* SettingsVC.swift */,
+			);
+			name = "Core Pages";
+			sourceTree = "<group>";
+		};
+		105C7C221BE5225A003B413A /* CES Subject Segues */ = {
+			isa = PBXGroup;
+			children = (
+				105C7C1D1BE50C06003B413A /* CESSubjectSegue.swift */,
+				105C7C1F1BE513C5003B413A /* CESSubjectUnwindSegue.swift */,
+			);
+			name = "CES Subject Segues";
+			sourceTree = "<group>";
+		};
 		105E129D1A887AED00130E7B /* UI Objects */ = {
 			isa = PBXGroup;
 			children = (
+				10CF10E51AD8D7AF0016207D /* HomeButton.swift */,
 				103E82F11BE3BF5B0076E8DB /* MSProgressView.swift */,
 				1051A5901BC4637800D3CBB9 /* NALoginTextField.swift */,
 				100ACDE31AA156F100B0FAC2 /* CESCometAlertController.swift */,
@@ -620,8 +637,6 @@
 			children = (
 				108E9B031A27A5EB00120A63 /* News Feed */,
 				10BFE6E41A20466A00E68C77 /* Weather View */,
-				10B8787B19FC250A005D9937 /* HomeVC.swift */,
-				10CF10E51AD8D7AF0016207D /* HomeButton.swift */,
 			);
 			name = "Home View Controller";
 			sourceTree = "<group>";
@@ -648,6 +663,7 @@
 			children = (
 				10ACD4971BC9CCF7004BE460 /* ActivityManagerVC.swift */,
 				100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */,
+				105C7C211BE52247003B413A /* Core Pages */,
 				1009AC3B1A3BD5FC009B4813 /* CESDatabase */,
 				10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */,
 				10AA29BE1BBD7594004AB2B1 /* NA Framework */,
@@ -660,6 +676,7 @@
 		10EE3B7C1BE0271A00285448 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				105C7C221BE5225A003B413A /* CES Subject Segues */,
 				1078FC151A0E945000A14836 /* Calculator Transition */,
 				101F311D1A87D3B300F81711 /* ColorManager.swift */,
 				10AA29991BBD74E1004AB2B1 /* CurrentUser.swift */,
@@ -771,8 +788,6 @@
 				10BFE6E01A20465100E68C77 /* Home View Controller */,
 				9211950D19FE01CC00644054 /* TestingTVC.h */,
 				9211950E19FE01CC00644054 /* TestingTVC.m */,
-				92E7A12D1864E372006A712B /* Subjects */,
-				106C8BD319FED841009B0983 /* SettingsVC.swift */,
 				92E7A1281864E303006A712B /* Pages */,
 				92E7A12C1864E34F006A712B /* Pictures */,
 				921894FE17F7752A00DFB26B /* Images.xcassets */,
@@ -867,8 +882,6 @@
 		92C1177E1A22A15B003506DB /* Activity/Page Classes */ = {
 			isa = PBXGroup;
 			children = (
-				92CB44921A203DBD0082C761 /* Activity.h */,
-				92CB44931A203DBD0082C761 /* Activity.m */,
 				92CB44951A203F140082C761 /* Page.h */,
 				92CB44961A203F140082C761 /* Page.m */,
 				92CB44981A203F740082C761 /* Content.h */,
@@ -954,17 +967,6 @@
 				92C261BC183BFBBC00FDA09B /* woods.png */,
 			);
 			name = Pictures;
-			sourceTree = "<group>";
-		};
-		92E7A12D1864E372006A712B /* Subjects */ = {
-			isa = PBXGroup;
-			children = (
-				106948E61A6301AA0093F9DF /* SubjectVC.swift */,
-				10B8788019FC3342005D9937 /* LanguageArtsVC.swift */,
-				106C8BD519FEE55B009B0983 /* MathVC.swift */,
-				106C8BD719FEE574009B0983 /* ScienceVC.swift */,
-			);
-			name = Subjects;
 			sourceTree = "<group>";
 		};
 		92E7A1331864E3DC006A712B /* Page_GardenData */ = {
@@ -1197,6 +1199,7 @@
 				10AA29C91BBD75A7004AB2B1 /* NADatabase.swift in Sources */,
 				10AA29CE1BBD75A7004AB2B1 /* NACoreDataStack.swift in Sources */,
 				92C117791A225F99003506DB /* ContentPopOverVC.m in Sources */,
+				105C7C241BE52799003B413A /* ActivityProtocols.swift in Sources */,
 				9211951719FE01DC00644054 /* Page_GardenDataVC.m in Sources */,
 				1051A5911BC4637800D3CBB9 /* NALoginTextField.swift in Sources */,
 				9211951E19FE02CB00644054 /* ModuleVC.m in Sources */,
@@ -1205,8 +1208,6 @@
 				1078FC1E1A0E952C00A14836 /* CalculatorTransitionManager.swift in Sources */,
 				92CB44D61A2106120082C761 /* PageCreationVC.m in Sources */,
 				92C261C11840414400FDA09B /* DragObject.m in Sources */,
-				9211950F19FE01CC00644054 /* TestingTVC.m in Sources */,
-				92CB44941A203DBD0082C761 /* Activity.m in Sources */,
 				4CC305E819FC42C00066A53B /* VocabVC.m in Sources */,
 				10DDE8CB1A0061FC0079FAB9 /* SettingsVC.swift in Sources */,
 				1093A14B1A2137A2002B2B0A /* Clock.swift in Sources */,
@@ -1238,20 +1239,18 @@
 				92F78DAA1A2664E10048612E /* VocabCreationVC.m in Sources */,
 				10BFE6DF1A2020D200E68C77 /* DragAndDropVC.swift in Sources */,
 				10AA29CA1BBD75A7004AB2B1 /* NADataDownloader.swift in Sources */,
+				105C7C201BE513C5003B413A /* CESSubjectUnwindSegue.swift in Sources */,
 				921DD2681A2A434D00C18079 /* PageVC.m in Sources */,
 				92F78D911A26176A0048612E /* ReadingCreationVC.m in Sources */,
 				92CB44971A203F140082C761 /* Page.m in Sources */,
-				10DDE8C91A0061F60079FAB9 /* MathVC.swift in Sources */,
 				100ACDE41AA156F100B0FAC2 /* CESCometAlertController.swift in Sources */,
 				108E9B191A27A6C900120A63 /* NewsFeed.swift in Sources */,
 				9211950719FE01C000644054 /* FormattedVC.m in Sources */,
-				10DDE8CA1A0061FA0079FAB9 /* ScienceVC.swift in Sources */,
 				108E9B011A279EEC00120A63 /* WeatherView.swift in Sources */,
 				10DD07D21A1661350026B0DA /* MathProblemTextField.swift in Sources */,
 				10CF10E61AD8D7AF0016207D /* HomeButton.swift in Sources */,
 				10AA29CB1BBD75A7004AB2B1 /* NADataUploader.swift in Sources */,
 				1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */,
-				10B8788219FC3974005D9937 /* LanguageArtsVC.swift in Sources */,
 				10CA6B8C1BBD9EDC00DFFC35 /* UIColor+Functions.swift in Sources */,
 				4C7DC3FE1A09A32C006E3E23 /* CalculatorVC.m in Sources */,
 				108E9B151A27A67E00120A63 /* NSString+HTML.m in Sources */,
@@ -1260,6 +1259,7 @@
 				92C117821A22A1A4003506DB /* ActivityInfoVC.m in Sources */,
 				107363C31A702F2D000D13A6 /* CESDatabaseProtocols.swift in Sources */,
 				108E9B161A27A67E00120A63 /* NSDate+InternetDateTime.m in Sources */,
+				105C7C1E1BE50C06003B413A /* CESSubjectSegue.swift in Sources */,
 				104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */,
 				103265CF1A600CF800511546 /* PageManager.swift in Sources */,
 				10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */,

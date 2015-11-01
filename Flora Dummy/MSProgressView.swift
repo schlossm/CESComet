@@ -230,7 +230,7 @@ class MSProgressView: UIView
         greenViewShapeLayer.strokeStart = 0.5
         greenViewShapeLayer.strokeEnd = 0.5
         
-        UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: { () -> Void in
+        UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1.0, options: [.AllowUserInteraction, .AllowAnimatedContent], animations: { () -> Void in
             greenViewShapeLayer.strokeStart = 0.5
             greenViewShapeLayer.strokeEnd = 0.5
             self.progressLayer.opacity = 0.0

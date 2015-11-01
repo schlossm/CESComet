@@ -22,8 +22,26 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
     @IBOutlet private var pageNumberLabel: UILabel!
     @IBOutlet private var tableOfContentsButton: UIButton!
     @IBOutlet private var previousButton: UIButton!
+        {
+        didSet
+        {
+            UILabel.outlineLabel(previousButton.titleLabel!)
+        }
+    }
     @IBOutlet private var saveButton: UIButton!
+        {
+        didSet
+        {
+            UILabel.outlineLabel(saveButton.titleLabel!)
+        }
+    }
     @IBOutlet private var nextButton: UIButton!
+        {
+        didSet
+        {
+            UILabel.outlineLabel(nextButton.titleLabel!)
+        }
+    }
     @IBOutlet private var contentView: UIView!
     @IBOutlet var saveProgressIndicator: MSProgressView!
     @IBOutlet var tableOfContentsView: UIView!
@@ -52,7 +70,7 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
         {
             guard currentActivity == nil else { return }
             _currentActivity = newValue
-            self.currentActivitySession = databaseManager.activitySessionForActivityID(currentActivity.activityID, activity: currentActivity)
+            self.currentActivitySession = databaseManager.activitySessionForActivity(currentActivity)
         }
     }
     private var currentActivitySession : ActivitySession!
@@ -230,8 +248,8 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
             }
             else
             {
-                activityType = ActivityViewControllerType(rawValue: (self.currentActivity.activityData[self.currentActivityIndex] as! NSDictionary).allKeys.first! as! Int)!
-                activityData = (self.currentActivity.activityData[self.currentActivityIndex] as! NSDictionary).allValues.first!
+                activityType = ActivityViewControllerType(rawValue: self.currentActivity.activityData[self.currentActivityIndex].keys.first!)!
+                activityData = self.currentActivity.activityData[self.currentActivityIndex].values.first!
             }
             
             var previousActivityType : ActivityViewControllerType
@@ -242,7 +260,7 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
             }
             else
             {
-                previousActivityType = (self.currentActivity.activityData[self.currentActivityIndex + 1] as! NSDictionary).allKeys.first! as! ActivityViewControllerType
+                previousActivityType = (self.currentActivity.activityData[self.currentActivityIndex + 1] as NSDictionary).allKeys.first! as! ActivityViewControllerType
             }
             
             self.currentActivitySession.activityData[self.currentActivityIndex + 1].updateValue(self.currentViewController.saveActivityState?() ?? "", forKey: previousActivityType.rawValue)
@@ -284,7 +302,7 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
             }
             else
             {
-                previousActivityType = (self.currentActivity.activityData[self.currentActivityIndex + 1] as! NSDictionary).allKeys.first! as! ActivityViewControllerType
+                previousActivityType = ActivityViewControllerType(rawValue: self.currentActivity.activityData[self.currentActivityIndex + 1].keys.first!)!
             }
             self.currentActivitySession.activityData[self.currentActivityIndex].updateValue(self.currentViewController.saveActivityState?() ?? "", forKey: previousActivityType.rawValue)
             
@@ -337,8 +355,8 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
             }
             else
             {
-                activityType = ActivityViewControllerType(rawValue: (self.currentActivity.activityData[self.currentActivityIndex] as! NSDictionary).allKeys.first! as! Int)!
-                activityData = (self.currentActivity.activityData[self.currentActivityIndex] as! NSDictionary).allValues.first!
+                activityType = ActivityViewControllerType(rawValue: self.currentActivity.activityData[self.currentActivityIndex].keys.first!)!
+                activityData = self.currentActivity.activityData[self.currentActivityIndex].keys.first!
             }
             
             var previousActivityType : ActivityViewControllerType
@@ -349,7 +367,7 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
             }
             else
             {
-                previousActivityType = (self.currentActivity.activityData[self.currentActivityIndex - 1] as! NSDictionary).allKeys.first! as! ActivityViewControllerType
+                previousActivityType = ActivityViewControllerType(rawValue: self.currentActivity.activityData[self.currentActivityIndex - 1].keys.first!)!
             }
             
             self.currentActivitySession.activityData[self.currentActivityIndex - 1].updateValue(self.currentViewController.saveActivityState?() ?? "", forKey: previousActivityType.rawValue)
@@ -508,5 +526,4 @@ extension ActivityManagerVC
     {
         
     }
-    
 }

@@ -114,7 +114,7 @@ class PageManager: FormattedVC
     var currentActivity : Activity!
     
     private var currentActivitySession : ActivitySession!
-    private var activityID : String
+    private var activityID : Int
         {
         get
         {

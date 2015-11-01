@@ -7,6 +7,7 @@
 //
 
 #import "ActivityInfoVC.h"
+#import "CES-Swift.h"
 
 @interface ActivityInfoVC ()
 
@@ -17,25 +18,13 @@
 @synthesize saveButton;
 @synthesize activity;
 
--(id)init
-{
-    if (self = [super init])
-    {
-        // Initialize
-        activity = [[Activity alloc] init];
-        
-    }
-    return self;
-}
 
--(id)initWithActivity: (Activity *)a
+-(id)initWithActivity: (id<Activity>)a
 {
     if (self = [super init])
     {
         // Initialize
-        activity = [[Activity alloc] init];
         activity = a;
-        
     }
     return self;
 }
@@ -59,12 +48,6 @@
         duePicker.date = activity.dueDate;
     }
     
-    
-    if (activity.iconImageName != nil)
-    {
-        imageField.text = activity.iconImageName;
-    }
-    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -85,12 +68,12 @@
 
 -(void)packageActivity
 {
-    activity.name = nameField.text;
+    //activity.name = nameField.text;
     
-    activity.releaseDate = releasePicker.date;
-    activity.dueDate = duePicker.date;
+    //activity.releaseDate = releasePicker.date;
+    //activity.dueDate = duePicker.date;
     
-    activity.iconImageName = imageField.text;
+    //activity.iconImageName = imageField.text;
 }
 
 -(IBAction)save:(id)sender

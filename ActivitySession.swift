@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ActivitySession : NSObject, NSCopying
+class PrivateActivitySession : NSObject, NSCopying
 {
     ///The ActivitySession's ID
     var activitySessionID = "000000"
@@ -39,7 +39,7 @@ class ActivitySession : NSObject, NSCopying
     
     func copyWithZone(zone: NSZone) -> AnyObject
     {
-        let returnActivitySession = ActivitySession()
+        let returnActivitySession = PrivateActivitySession()
         
         returnActivitySession.activityID = self.activityID
         returnActivitySession.score = self.score

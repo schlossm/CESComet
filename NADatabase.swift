@@ -52,7 +52,7 @@ public class NADatabase: NSObject
     func keyValuePairIsNewForEntity(entity: String, keyValuePair: (key: String, value: String)) -> Bool
     {
         let request = NSFetchRequest(entityName: entity)
-        request.predicate = NSPredicate(format: "%@==%@", keyValuePair.key, keyValuePair.value)
+        request.predicate = NSPredicate(format: "\(keyValuePair.key) ==[c] %@", keyValuePair.value)
         
         let results = try! managedObjectContext.executeFetchRequest(request) as! [NSManagedObject]
         
@@ -89,7 +89,7 @@ extension NADatabase
     
     func decryptObject(encryptedString: String) -> AnyObject?
     {
-        let data = try! NSData().dataFromHexString(encryptedString).decryptedAES256DataUsingKey(")UdU@!:)S*)h\\.3K0R8I")
+        guard let data = try? NSData().dataFromHexString(encryptedString).decryptedAES256DataUsingKey(")UdU@!:)S*)h\\.3K0R8I") else { return nil }
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
         let object = unarchiver.decodeObjectForKey("object")
         unarchiver.finishDecoding()

@@ -18,7 +18,11 @@ class ColorScheme : NSObject
         {
         get
         {
+            if currentColor != nil
+            {
             return UIColor(hexString: currentColor.valueForKey("primaryColor") as! String)
+            }
+            return UIColor(hexString: "FFFFFF")
         }
     }
     
@@ -26,7 +30,11 @@ class ColorScheme : NSObject
         {
         get
         {
+            if currentColor != nil
+            {
             return UIColor(hexString: currentColor.valueForKey("secondaryColor") as! String)
+            }
+            return UIColor(hexString: "888888")
         }
     }
     
@@ -34,7 +42,11 @@ class ColorScheme : NSObject
         {
         get
         {
+            if currentColor != nil
+            {
             return UIColor(hexString: currentColor.valueForKey("backgroundColor") as! String)
+            }
+            return UIColor(hexString: "333333")
         }
     }
     
@@ -48,20 +60,10 @@ class ColorScheme : NSObject
     {
         guard let results = (try? NADatabase.sharedDatabase().managedObjectContext.executeFetchRequest(NSFetchRequest(entityName: "CurrentColor")) as! [NSManagedObject]) ?? (try? NADatabase.sharedDatabase().managedObjectContext.executeFetchRequest(NSFetchRequest(entityName: "Color")) as! [NSManagedObject]) else
         {
-            let defaultColor = NSManagedObject(entity: NSEntityDescription.entityForName("Color", inManagedObjectContext: NADatabase.sharedDatabase().managedObjectContext)!, insertIntoManagedObjectContext: nil)
-            defaultColor.setValue("FFFFFF", forKey: "primaryColor")
-            defaultColor.setValue("888888", forKey: "secondaryColor")
-            defaultColor.setValue("333333", forKey: "backgroundColor")
-            currentColor = defaultColor
             return
         }
         guard results.count != 0 else
         {
-            let defaultColor = NSManagedObject(entity: NSEntityDescription.entityForName("Color", inManagedObjectContext: NADatabase.sharedDatabase().managedObjectContext)!, insertIntoManagedObjectContext: nil)
-            defaultColor.setValue("FFFFFF", forKey: "primaryColor")
-            defaultColor.setValue("888888", forKey: "secondaryColor")
-            defaultColor.setValue("333333", forKey: "backgroundColor")
-            currentColor = defaultColor
             return
         }
         currentColor = results.first!

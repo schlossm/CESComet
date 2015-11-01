@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class CESOutlinedView: UIView
 {
     override init(frame: CGRect)

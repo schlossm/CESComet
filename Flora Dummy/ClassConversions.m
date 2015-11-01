@@ -7,41 +7,42 @@
 //
 
 #import "ClassConversions.h"
+#import "CES-Swift.h"
 
-#import "Activity.h"
 #import "Page.h"
 #import "Content.h"
 
 @implementation ClassConversions
 
--(NSDictionary *)dictionaryForActivity: (Activity *)a
+-(NSDictionary *)dictionaryForActivity: (id<Activity>)a
 {
     NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
     [outputFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
     
     NSMutableDictionary *output = [[NSMutableDictionary alloc] init];
     [output setValue:a.name forKey:@"Name"];
-    [output setValue:[outputFormatter stringFromDate:a.modDate] forKey:@"ModDate"];
+    //[output setValue:[outputFormatter stringFromDate:a.modDate] forKey:@"ModDate"];
     [output setValue:[outputFormatter stringFromDate:a.releaseDate] forKey:@"ReleaseDate"];
     [output setValue:[outputFormatter stringFromDate:a.dueDate] forKey:@"DueDate"];
-    [output setValue:a.iconImageName forKey:@"Icon"];
-    [output setValue:a.activityID forKey:@"ActivityID"];
+    //[output setValue:a.iconImageName forKey:@"Icon"];
+    [output setValue:@(a.activityID) forKey:@"ActivityID"];
     
-    
+    /*
     NSMutableArray *outputPages = [[NSMutableArray alloc] init];
     for (Page *p in a.pageArray)
     {
         [outputPages addObject:[self dictionaryForPage: p]];
     }
     
-    [output setValue:outputPages forKey:@"Pages"];
+    [output setValue:outputPages forKey:@"Pages"];*/
     
     return output;
 }
 
--(Activity *)activityFromDictionary: (NSDictionary *)dict
+-(id<Activity>)activityFromDictionary: (NSDictionary *)dict
 {
-    Activity *output = [[Activity alloc] init];
+    /*
+    id<Activity> output = [[Activity alloc] init];
     
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
     [inputFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
@@ -61,7 +62,8 @@
     
     output.pageArray = inputPages;
     
-    return output;
+    return output;*/
+    return nil;
 }
 
 

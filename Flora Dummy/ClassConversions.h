@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Activity.h"
 #import "Page.h"
 #import "Content.h"
+
+@protocol Activity;
 
 @interface ClassConversions : NSObject
 
 // Activity
--(NSDictionary *)dictionaryForActivity: (Activity *)a;
--(Activity *)activityFromDictionary: (NSDictionary *)dict;
+-(NSDictionary *)dictionaryForActivity: (id<Activity>)a;
+-(id<Activity>)activityFromDictionary: (NSDictionary *)dict;
 
 // Page
 -(NSDictionary *)dictionaryForPage: (Page *)p;

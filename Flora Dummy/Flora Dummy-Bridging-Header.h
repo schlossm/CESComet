@@ -1,8 +1,5 @@
 #import "FormattedVC.h"
 #import "NAEncryption.h"
-#import "Activity.h"
-
-#import "TestingTVC.h"
 
 
 //[[Weather View]]\\

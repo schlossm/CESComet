@@ -38,7 +38,16 @@ class HomeButton: UIView
     var actionHandler : (() -> Void)!
     
     private var oldBackgroundColor : UIColor!
+    
     private var icon        : UIImageView!
+    var iconRect : CGRect
+        {
+        get
+        {
+            return icon.frame
+        }
+    }
+    
     private var titleLabel  : UILabel!
     
     override init(frame: CGRect)
@@ -81,14 +90,15 @@ class HomeButton: UIView
         titleLabel.text = title
         titleLabel.textColor = ColorScheme.currentColorScheme().secondaryColor
         titleLabel.textAlignment = .Center
-        titleLabel.font = bodyFont
+        titleLabel.font = UIFont.systemFontOfSize(26.0, weight: UIFontWeightBold)
         titleLabel.adjustsFontSizeToFitWidth = true
-        titleLabel.minimumScaleFactor = 0.1
+        titleLabel.minimumScaleFactor = 0.5
+        titleLabel.numberOfLines = 2
         addSubview(titleLabel)
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[titleLabel(height)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: ["height":titleLabel.font.lineHeight], views: ["titleLabel":titleLabel]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[icon][titleLabel]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: ["height":titleLabel.font.lineHeight], views: ["icon":icon, "titleLabel":titleLabel]))
     }
     
     private func highlight()

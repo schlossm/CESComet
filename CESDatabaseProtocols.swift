@@ -90,38 +90,12 @@ enum CESDatabaseError : ErrorType
 
 @objc protocol ActivityManagerVCDatabase
 {
-    /**
-     Returns the Activity Session for the activity with the specified activityID
-     
-     - parameter activityID: The activityID of the activity requesting its data
-     - returns: The Session of data that was initally uploaded with the activity
-     */
-    func activitySessionForActivityID(activityID: String, activity: Activity) -> ActivitySession
-    
-    /**
-     Uploads a new activity session, or updates it if it already exists.
-     
-     This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity session failed to upload, or has an invalid structure, the completion handler will be called with 'NO" for 'uploadSuccess'
-     
-     - parameter activitySession: An ActivitySession object
-     - parameter completion: The Completion Handler to be called when the upload finishes
-     
-     */
+    func activitySessionForActivity(activity: Activity) -> ActivitySession
     func uploadActivitySession(activitySession: ActivitySession, completion: ((uploadSuccess: Bool) -> Void))
 }
 
 @objc protocol ActivityCreationDatabase
 {
-    /**
-     
-     Uploads the activity data to the database.
-     
-     This method immediately returns control to the application and will call the completion handler upon completion of the upload.  If the activity failed to upload, or has an invalid structure, the completion handler will be called with a `nil` activityID
-     
-     - parameter activity: An `Activity` object containing all the necessary information about the activity to uplaod
-     - parameter completion: Called when the activity is uploaded.  Contains a string parameter that will contain the activity's ID if the upload succeeded or `nil` if the upload failed
-     
-     */
     func uploadNewActivity(activity: Activity, completion: ((activityID: String?) -> Void))
 }
 
@@ -134,11 +108,9 @@ enum CESDatabaseError : ErrorType
 
 @objc protocol MainActivitiesDatabase
 {
+    var activityDataIsLoaded : Bool { get set }
+    
     func loadUserActivities()
     
-    @available(*, deprecated=9.0, message="Use 'activityForActivityID:' instead")
-    func activityForActivityDictionary(activityDict: NSDictionary) -> Activity
-    
-    //TEMP Optional
-    optional func activityForActivityID(activityID: String) -> Activity
+    func activityForActivityID(activityID: String) -> Activity
 }

@@ -7,10 +7,9 @@
 //
 
 #import "ActivityCreationTVC.h"
+#import "CES-Swift.h"
 
 #import "PageCreationVC.h"
-
-#import "Activity.h"
 #import "Page.h"
 #import "Content.h"
 #import "ClassConversions.h"
@@ -36,7 +35,7 @@
     
     self.title = @"Activity";
     
-    activity = [[Activity alloc] init];
+    //activity = [[Activity alloc] init];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = [paths objectAtIndex:0];
@@ -45,6 +44,7 @@
 
     pagesArray = [NSMutableArray array];
 
+    /*
     if ([NSDictionary dictionaryWithContentsOfFile:path])
     {
         NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
@@ -52,7 +52,7 @@
         activity = [cc activityFromDictionary:dict];
         pagesArray = [[NSMutableArray alloc] initWithArray: activity.pageArray];
 
-    }
+    }*/
     
     currentIndex = 0;
     
@@ -322,12 +322,12 @@
 
 }
 
--(void)finishSavingActivity: (Activity *)a
+-(void)finishSavingActivity: (id<Activity>)a
 {
     NSLog(@"Finishing saving activity");
     
-    activity.pageArray = pagesArray;
-    activity.modDate = [NSDate date];
+    //activity.pageArray = pagesArray;
+    //activity.modDate = [NSDate date];
     
     // Generate activity ID
     //activity.activityID = @"aaaaaa"

@@ -196,9 +196,9 @@ class Definitions: NSObject
 ///Returns a string for the current grade given the key.  This application handles six different grades
 func stringForKey(key: String) -> String
 {
-    guard CurrentUser.currentUser().grade != nil else { return key }
+    guard CurrentUser.currentUser().grade != Grade.None else { return key }
     
-    let newKey = key + "-\(CurrentUser.currentUser().grade!.rawValue)"
+    let newKey = key + "-\(CurrentUser.currentUser().grade.rawValue)"
     
     return NSBundle.mainBundle().localizedStringForKey(newKey, value: "", table: "PhrasesPerGrade")
 }

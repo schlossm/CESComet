@@ -27,7 +27,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTv-NI-vUr">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CES Comet Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hU6-Aw-0eN">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CES Comet Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hU6-Aw-0eN" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
                                         <rect key="frame" x="124" y="177" width="352" height="50.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="42"/>
@@ -162,7 +162,7 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <animations/>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page X of X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7C-fw-XbQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page X of X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7C-fw-XbQ" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
                                 <rect key="frame" x="20" y="20" width="178" height="50"/>
                                 <animations/>
                                 <constraints>
@@ -279,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="he0-cF-NoY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1505" y="-331"/>
+            <point key="canvasLocation" x="2569" y="1305"/>
         </scene>
         <!--HomeVC-->
         <scene sceneID="GlT-tI-zWw">
@@ -301,7 +301,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mu1-BH-fzk">
-                                <rect key="frame" x="160" y="120" width="280" height="360"/>
+                                <rect key="frame" x="20" y="90.5" width="280" height="360"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0B-RO-Ltd" customClass="HomeButton" customModule="CES" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="130" height="170"/>
@@ -313,7 +313,10 @@
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="iconImage" value="Language Arts"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Language Arts"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title">
+                                                <string key="value">Language
+Arts</string>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYI-aH-eBS" customClass="HomeButton" customModule="CES" customModuleProvider="target">
@@ -377,9 +380,9 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mu1-BH-fzk" firstAttribute="centerX" secondItem="4Ig-Rm-Hz3" secondAttribute="centerX" id="5hv-NZ-52O"/>
-                            <constraint firstItem="mu1-BH-fzk" firstAttribute="centerY" secondItem="4Ig-Rm-Hz3" secondAttribute="centerY" id="9xs-qp-APS"/>
                             <constraint firstItem="jDn-vy-LtG" firstAttribute="top" secondItem="UAa-gV-c2L" secondAttribute="bottom" id="AtZ-31-IG1"/>
+                            <constraint firstItem="mu1-BH-fzk" firstAttribute="leading" secondItem="4Ig-Rm-Hz3" secondAttribute="leadingMargin" id="mur-cm-eOJ"/>
+                            <constraint firstItem="mu1-BH-fzk" firstAttribute="top" secondItem="jDn-vy-LtG" secondAttribute="bottom" constant="20" id="w3e-JW-3Ha"/>
                             <constraint firstAttribute="leadingMargin" secondItem="jDn-vy-LtG" secondAttribute="leading" id="zVR-WE-pUM"/>
                         </constraints>
                     </view>
@@ -390,11 +393,489 @@
                         <outlet property="science" destination="VYI-aH-eBS" id="sDO-iR-CYh"/>
                         <outlet property="titleLabel" destination="jDn-vy-LtG" id="PyU-ma-gsn"/>
                         <segue destination="II0-Wg-N4P" kind="presentation" identifier="loginScreen" id="dy5-JE-DcW"/>
+                        <segue destination="oUn-n2-GXL" kind="custom" identifier="languageArts" customClass="CESSubjectSegue" customModule="CES" customModuleProvider="target" id="083-9t-jmS"/>
+                        <segue destination="dYs-TJ-pFa" kind="custom" identifier="math" customClass="CESSubjectSegue" customModule="CES" customModuleProvider="target" id="xtJ-Nh-tQt"/>
+                        <segue destination="4Hd-Eo-SsX" kind="custom" identifier="history" customClass="CESSubjectSegue" customModule="CES" customModuleProvider="target" id="WL9-ge-gkq"/>
+                        <segue destination="pVU-qu-p08" kind="custom" identifier="science" customClass="CESSubjectSegue" customModule="CES" customModuleProvider="target" id="D04-SL-rQa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F7J-1c-HYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="558" y="334"/>
+        </scene>
+        <!--SubjectVC-->
+        <scene sceneID="IVo-VP-Yb9">
+            <objects>
+                <viewController id="oUn-n2-GXL" customClass="SubjectVC" customModule="CES" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xfb-1w-q3Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="4MH-Pn-Wvb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ejf-rA-0xB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language Arts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8OY-S9-Muf" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="311" height="50.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="42"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIw-0e-j6l">
+                                <rect key="frame" x="254" y="529" width="93" height="51"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="9AN-B1-o6t"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissSelf" destination="oUn-n2-GXL" eventType="touchUpInside" id="U1p-fL-OPb"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Ura-VC-fk9">
+                                <rect key="frame" x="20" y="78" width="280" height="442.5"/>
+                                <animations/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SubjectCell" textLabel="hM9-EL-4zp" style="IBUITableViewCellStyleDefault" id="UBp-ro-jpd">
+                                        <rect key="frame" x="0.0" y="49.5" width="280" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UBp-ro-jpd" id="5aU-HZ-waX">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hM9-EL-4zp">
+                                                    <rect key="frame" x="15" y="0.0" width="250" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="oUn-n2-GXL" id="Jca-bv-aZY"/>
+                                    <outlet property="delegate" destination="oUn-n2-GXL" id="YKN-Pu-Hkh"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ca1-8X-Bm1" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                                <rect key="frame" x="308" y="78" width="272" height="221.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KPc-1d-Yb7" customClass="SubjectLoadingView" customModule="CES" customModuleProvider="target">
+                                <rect key="frame" x="20" y="78" width="280" height="442.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Activities" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnW-bl-hJC" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                                        <rect key="frame" x="21" y="229" width="238.5" height="31.5"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="26"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZA3-VG-Q81" customClass="MSProgressView" customModule="CES" customModuleProvider="target">
+                                        <rect key="frame" x="110" y="153" width="60" height="60"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="5NX-gZ-yUy"/>
+                                            <constraint firstAttribute="width" secondItem="ZA3-VG-Q81" secondAttribute="height" multiplier="1:1" id="TSO-aj-bpL"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="barColor">
+                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="barWidth">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ZA3-VG-Q81" firstAttribute="centerX" secondItem="cnW-bl-hJC" secondAttribute="centerX" id="ROa-Nd-DYT"/>
+                                    <constraint firstItem="cnW-bl-hJC" firstAttribute="top" secondItem="ZA3-VG-Q81" secondAttribute="bottom" constant="16" id="XoB-cD-Ltb"/>
+                                    <constraint firstItem="cnW-bl-hJC" firstAttribute="top" secondItem="KPc-1d-Yb7" secondAttribute="centerY" constant="8" id="aQ6-38-lNb"/>
+                                    <constraint firstItem="cnW-bl-hJC" firstAttribute="centerX" secondItem="KPc-1d-Yb7" secondAttribute="centerX" id="gft-cz-QHw"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="label" destination="cnW-bl-hJC" id="q4h-s6-p2R"/>
+                                    <outlet property="loadingIndicator" destination="ZA3-VG-Q81" id="qR7-fk-WOo"/>
+                                </connections>
+                            </view>
+                            <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USb-eb-3j2" customClass="SubjectNoActivitesView" customModule="CES" customModuleProvider="target">
+                                <rect key="frame" x="20" y="78" width="280" height="442.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no activities for this subject yet!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSS-2u-ndy" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                                        <rect key="frame" x="34" y="179" width="212.5" height="86"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="VSS-2u-ndy" firstAttribute="centerY" secondItem="USb-eb-3j2" secondAttribute="centerY" id="Id2-5b-eFo"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VSS-2u-ndy" secondAttribute="trailing" constant="8" id="KjS-mf-tP0"/>
+                                    <constraint firstItem="VSS-2u-ndy" firstAttribute="centerX" secondItem="USb-eb-3j2" secondAttribute="centerX" id="UDK-Gg-8el"/>
+                                    <constraint firstItem="VSS-2u-ndy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="USb-eb-3j2" secondAttribute="leading" constant="8" id="y1b-KC-6eh"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="label" destination="VSS-2u-ndy" id="WWj-oa-fsl"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="USb-eb-3j2" firstAttribute="leading" secondItem="Ura-VC-fk9" secondAttribute="leading" id="4K3-ki-lKc"/>
+                            <constraint firstItem="USb-eb-3j2" firstAttribute="top" secondItem="Ura-VC-fk9" secondAttribute="top" id="51P-rz-YlA"/>
+                            <constraint firstItem="8OY-S9-Muf" firstAttribute="top" secondItem="Ejf-rA-0xB" secondAttribute="topMargin" constant="20" id="9fa-AQ-812"/>
+                            <constraint firstItem="Ca1-8X-Bm1" firstAttribute="bottom" secondItem="Ura-VC-fk9" secondAttribute="centerY" id="BbR-7a-DpC"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="8OY-S9-Muf" secondAttribute="leading" id="BnP-vH-EH8"/>
+                            <constraint firstItem="KPc-1d-Yb7" firstAttribute="leading" secondItem="Ura-VC-fk9" secondAttribute="leading" id="DBF-VU-ki5"/>
+                            <constraint firstItem="KPc-1d-Yb7" firstAttribute="top" secondItem="Ura-VC-fk9" secondAttribute="top" id="DPL-hd-JlN"/>
+                            <constraint firstItem="USb-eb-3j2" firstAttribute="trailing" secondItem="Ura-VC-fk9" secondAttribute="trailing" id="E0P-6y-qUu"/>
+                            <constraint firstItem="KPc-1d-Yb7" firstAttribute="trailing" secondItem="Ura-VC-fk9" secondAttribute="trailing" id="EuC-XS-Bd6"/>
+                            <constraint firstItem="oIw-0e-j6l" firstAttribute="centerX" secondItem="Ejf-rA-0xB" secondAttribute="centerX" id="F4l-il-o1C"/>
+                            <constraint firstItem="KPc-1d-Yb7" firstAttribute="bottom" secondItem="Ura-VC-fk9" secondAttribute="bottom" id="Tqi-4J-6RZ"/>
+                            <constraint firstItem="Ura-VC-fk9" firstAttribute="trailing" secondItem="Ejf-rA-0xB" secondAttribute="centerXWithinMargins" id="Wef-dK-aAN"/>
+                            <constraint firstItem="Ura-VC-fk9" firstAttribute="top" secondItem="8OY-S9-Muf" secondAttribute="bottom" constant="7.5" id="YEn-Uq-y54"/>
+                            <constraint firstItem="Ca1-8X-Bm1" firstAttribute="top" secondItem="Ura-VC-fk9" secondAttribute="top" id="a7L-QM-rvu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ca1-8X-Bm1" secondAttribute="trailing" id="c0n-JG-IUH"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Ura-VC-fk9" secondAttribute="leading" id="gyT-g4-pQd"/>
+                            <constraint firstItem="USb-eb-3j2" firstAttribute="bottom" secondItem="Ura-VC-fk9" secondAttribute="bottom" id="lHH-5N-EEy"/>
+                            <constraint firstItem="4MH-Pn-Wvb" firstAttribute="top" secondItem="oIw-0e-j6l" secondAttribute="bottom" constant="20" id="uVT-yX-o1z"/>
+                            <constraint firstItem="Ca1-8X-Bm1" firstAttribute="leading" secondItem="Ura-VC-fk9" secondAttribute="trailing" constant="8" symbolic="YES" id="yFd-k1-9Z3"/>
+                            <constraint firstItem="Ura-VC-fk9" firstAttribute="bottom" secondItem="oIw-0e-j6l" secondAttribute="top" constant="-8" id="zzY-eH-xh0"/>
+                        </constraints>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="subjectID">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="activitiesTable" destination="Ura-VC-fk9" id="RF3-tp-EZS"/>
+                        <outlet property="homeButton" destination="oIw-0e-j6l" id="fuz-Pk-wAp"/>
+                        <outlet property="loadingView" destination="KPc-1d-Yb7" id="ED1-fl-Ebl"/>
+                        <outlet property="noActivitiesView" destination="USb-eb-3j2" id="fUd-B5-azd"/>
+                        <outlet property="notificationField" destination="Ca1-8X-Bm1" id="00a-8o-fkq"/>
+                        <outlet property="titleLabel" destination="8OY-S9-Muf" id="aTc-uZ-0th"/>
+                        <segue destination="3BI-0y-lzv" kind="unwind" identifier="subjectUnwind" customClass="CESSubjectUnwindSegue" customModule="CES" customModuleProvider="target" unwindAction="returnFromSegueActions:" id="LdW-tQ-qUn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HcP-OD-ZQ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="3BI-0y-lzv" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1365" y="334"/>
+        </scene>
+        <!--SubjectVC-->
+        <scene sceneID="onk-ds-wvl">
+            <objects>
+                <viewController id="dYs-TJ-pFa" customClass="SubjectVC" customModule="CES" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xhz-pD-Jhi"/>
+                        <viewControllerLayoutGuide type="bottom" id="zzi-L2-KmM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Avb-aN-Gd6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Math" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U68-CF-Nby" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="109" height="50.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="42"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NlQ-jv-OQD">
+                                <rect key="frame" x="254" y="529" width="93" height="51"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="gqp-a3-6Rm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissSelf" destination="dYs-TJ-pFa" eventType="touchUpInside" id="388-Xj-pOB"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="rAz-i2-e0q">
+                                <rect key="frame" x="20" y="78.5" width="280" height="442.5"/>
+                                <animations/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SubjectCell" textLabel="CQ5-5y-HBt" style="IBUITableViewCellStyleDefault" id="IF1-o0-eow">
+                                        <rect key="frame" x="0.0" y="49.5" width="280" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IF1-o0-eow" id="S23-lR-BM4">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CQ5-5y-HBt">
+                                                    <rect key="frame" x="15" y="0.0" width="250" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="dYs-TJ-pFa" id="uQZ-V3-mlx"/>
+                                    <outlet property="delegate" destination="dYs-TJ-pFa" id="Ugt-9f-8fy"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urB-tE-27Y" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                                <rect key="frame" x="308" y="78.5" width="264" height="221.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohP-aL-q2C" customClass="SubjectLoadingView" customModule="CES" customModuleProvider="target">
+                                <rect key="frame" x="20" y="78.5" width="280" height="442.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Activities" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cJ-HV-8e5" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                                        <rect key="frame" x="21" y="229" width="238.5" height="31.5"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="26"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVn-SH-GGZ" customClass="MSProgressView" customModule="CES" customModuleProvider="target">
+                                        <rect key="frame" x="110" y="153" width="60" height="60"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="IwL-UN-z3r"/>
+                                            <constraint firstAttribute="width" secondItem="TVn-SH-GGZ" secondAttribute="height" multiplier="1:1" id="eqg-ys-A55"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="barColor">
+                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="barWidth">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="0cJ-HV-8e5" firstAttribute="centerX" secondItem="ohP-aL-q2C" secondAttribute="centerX" id="KaO-0Z-zlH"/>
+                                    <constraint firstItem="0cJ-HV-8e5" firstAttribute="top" secondItem="TVn-SH-GGZ" secondAttribute="bottom" constant="16" id="iaL-Sh-yE5"/>
+                                    <constraint firstItem="0cJ-HV-8e5" firstAttribute="top" secondItem="ohP-aL-q2C" secondAttribute="centerY" constant="8" id="oBW-we-pl0"/>
+                                    <constraint firstItem="TVn-SH-GGZ" firstAttribute="centerX" secondItem="0cJ-HV-8e5" secondAttribute="centerX" id="rGb-eG-jAq"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="label" destination="0cJ-HV-8e5" id="oUx-DA-0R3"/>
+                                    <outlet property="loadingIndicator" destination="TVn-SH-GGZ" id="8CV-HK-3Fu"/>
+                                </connections>
+                            </view>
+                            <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMm-uE-u7i" customClass="SubjectNoActivitesView" customModule="CES" customModuleProvider="target">
+                                <rect key="frame" x="20" y="78.5" width="280" height="442.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no activities for this subject yet!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8F-uP-8li" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                                        <rect key="frame" x="34" y="179" width="212.5" height="86"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="24"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="m8F-uP-8li" firstAttribute="centerX" secondItem="HMm-uE-u7i" secondAttribute="centerX" id="Kfy-K8-H3t"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="m8F-uP-8li" secondAttribute="trailing" constant="8" id="RAH-Jd-kux"/>
+                                    <constraint firstItem="m8F-uP-8li" firstAttribute="centerY" secondItem="HMm-uE-u7i" secondAttribute="centerY" id="ZXz-ke-Dqa"/>
+                                    <constraint firstItem="m8F-uP-8li" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HMm-uE-u7i" secondAttribute="leading" constant="8" id="v5K-78-pYa"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="label" destination="m8F-uP-8li" id="Mot-lh-k6Y"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="U68-CF-Nby" secondAttribute="leading" id="0UP-2J-ASC"/>
+                            <constraint firstItem="NlQ-jv-OQD" firstAttribute="top" secondItem="rAz-i2-e0q" secondAttribute="bottom" constant="8" id="2yI-1h-yKa"/>
+                            <constraint firstItem="HMm-uE-u7i" firstAttribute="leading" secondItem="rAz-i2-e0q" secondAttribute="leading" id="4gj-tm-UM4"/>
+                            <constraint firstItem="rAz-i2-e0q" firstAttribute="trailing" secondItem="Avb-aN-Gd6" secondAttribute="centerXWithinMargins" id="C1c-Bh-fhk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="urB-tE-27Y" secondAttribute="trailing" constant="8" id="JdA-cV-pJ9"/>
+                            <constraint firstItem="ohP-aL-q2C" firstAttribute="trailing" secondItem="rAz-i2-e0q" secondAttribute="trailing" id="KSp-o5-mGj"/>
+                            <constraint firstItem="NlQ-jv-OQD" firstAttribute="centerX" secondItem="Avb-aN-Gd6" secondAttribute="centerX" id="PCQ-ON-kTO"/>
+                            <constraint firstItem="zzi-L2-KmM" firstAttribute="top" secondItem="NlQ-jv-OQD" secondAttribute="bottom" constant="20" id="RRH-Qk-uYP"/>
+                            <constraint firstItem="HMm-uE-u7i" firstAttribute="bottom" secondItem="rAz-i2-e0q" secondAttribute="bottom" id="SNO-dY-AFf"/>
+                            <constraint firstItem="urB-tE-27Y" firstAttribute="leading" secondItem="rAz-i2-e0q" secondAttribute="trailing" constant="8" symbolic="YES" id="VAK-aJ-DL7"/>
+                            <constraint firstItem="rAz-i2-e0q" firstAttribute="top" secondItem="U68-CF-Nby" secondAttribute="bottom" constant="8" id="VSf-tT-Gx2"/>
+                            <constraint firstItem="HMm-uE-u7i" firstAttribute="top" secondItem="rAz-i2-e0q" secondAttribute="top" id="VTm-Mi-BVS"/>
+                            <constraint firstItem="U68-CF-Nby" firstAttribute="top" secondItem="Avb-aN-Gd6" secondAttribute="topMargin" constant="20" id="ZFG-nM-dkH"/>
+                            <constraint firstItem="urB-tE-27Y" firstAttribute="bottom" secondItem="rAz-i2-e0q" secondAttribute="centerY" id="djy-cR-0vv"/>
+                            <constraint firstItem="ohP-aL-q2C" firstAttribute="bottom" secondItem="rAz-i2-e0q" secondAttribute="bottom" id="fWv-wf-jxW"/>
+                            <constraint firstItem="rAz-i2-e0q" firstAttribute="leading" secondItem="Avb-aN-Gd6" secondAttribute="leadingMargin" id="hfE-51-n7a"/>
+                            <constraint firstItem="HMm-uE-u7i" firstAttribute="trailing" secondItem="rAz-i2-e0q" secondAttribute="trailing" id="opM-e5-Y2s"/>
+                            <constraint firstItem="ohP-aL-q2C" firstAttribute="top" secondItem="rAz-i2-e0q" secondAttribute="top" id="wCH-4c-Pim"/>
+                            <constraint firstItem="urB-tE-27Y" firstAttribute="top" secondItem="rAz-i2-e0q" secondAttribute="top" id="wqL-y7-M5L"/>
+                            <constraint firstItem="ohP-aL-q2C" firstAttribute="leading" secondItem="rAz-i2-e0q" secondAttribute="leading" id="ybt-a9-IUJ"/>
+                        </constraints>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="subjectID">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="activitiesTable" destination="rAz-i2-e0q" id="Pny-37-O0P"/>
+                        <outlet property="homeButton" destination="NlQ-jv-OQD" id="NtE-wm-qhG"/>
+                        <outlet property="loadingView" destination="ohP-aL-q2C" id="eaK-4L-KAr"/>
+                        <outlet property="noActivitiesView" destination="HMm-uE-u7i" id="ahL-EW-Noa"/>
+                        <outlet property="notificationField" destination="urB-tE-27Y" id="yyB-uy-hvr"/>
+                        <outlet property="titleLabel" destination="U68-CF-Nby" id="Uc5-dx-tAt"/>
+                        <segue destination="Cj0-uY-fim" kind="unwind" identifier="subjectUnwind" customClass="CESSubjectUnwindSegue" customModule="CES" customModuleProvider="target" unwindAction="returnFromSegueActions:" id="4iy-ys-ODC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LGK-Nv-kyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Cj0-uY-fim" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1365" y="976"/>
+        </scene>
+        <!--SubjectVC-->
+        <scene sceneID="2Xc-41-aAa">
+            <objects>
+                <viewController id="4Hd-Eo-SsX" customClass="SubjectVC" customModule="CES" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XHN-b4-f48"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mk3-bi-ahz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xjm-to-1Or">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YJv-Ro-rhT">
+                                <rect key="frame" x="254" y="529" width="93" height="51"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissSelf" destination="4Hd-Eo-SsX" eventType="touchUpInside" id="6ld-YL-ygv"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pu-kl-KJG" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="157.5" height="50.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="42"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YJv-Ro-rhT" firstAttribute="centerX" secondItem="xjm-to-1Or" secondAttribute="centerX" id="DwM-5c-Kwb"/>
+                            <constraint firstItem="6pu-kl-KJG" firstAttribute="leading" secondItem="xjm-to-1Or" secondAttribute="leadingMargin" id="Kq4-6q-3sh"/>
+                            <constraint firstItem="6pu-kl-KJG" firstAttribute="top" secondItem="xjm-to-1Or" secondAttribute="topMargin" constant="20" id="Ozv-hB-yp4"/>
+                            <constraint firstItem="Mk3-bi-ahz" firstAttribute="top" secondItem="YJv-Ro-rhT" secondAttribute="bottom" constant="20" id="eW1-9U-yGy"/>
+                        </constraints>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="subjectID">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="homeButton" destination="YJv-Ro-rhT" id="hf8-k4-ijc"/>
+                        <outlet property="titleLabel" destination="6pu-kl-KJG" id="nph-jN-yDp"/>
+                        <segue destination="yjg-az-re6" kind="unwind" identifier="subjectUnwind" customClass="CESSubjectUnwindSegue" customModule="CES" customModuleProvider="target" unwindAction="returnFromSegueActions:" id="Eh9-ye-4Li"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sl8-pr-dh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yjg-az-re6" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1365" y="1621"/>
+        </scene>
+        <!--SubjectVC-->
+        <scene sceneID="hRY-dh-HQd">
+            <objects>
+                <viewController id="pVU-qu-p08" customClass="SubjectVC" customModule="CES" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zs0-12-VjB"/>
+                        <viewControllerLayoutGuide type="bottom" id="ItX-rh-kJa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="itM-j6-rLQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Science" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYI-tr-Vh6" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="170.5" height="50.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="42"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YkD-B0-mEc">
+                                <rect key="frame" x="254" y="528" width="93" height="51"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissSelf" destination="pVU-qu-p08" eventType="touchUpInside" id="qDl-ng-8qR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ItX-rh-kJa" firstAttribute="top" secondItem="YkD-B0-mEc" secondAttribute="bottom" constant="20.5" id="RAJ-zV-ZkU"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="fYI-tr-Vh6" secondAttribute="leading" id="h9p-qW-4Rx"/>
+                            <constraint firstItem="fYI-tr-Vh6" firstAttribute="top" secondItem="itM-j6-rLQ" secondAttribute="topMargin" constant="20" id="ixG-DH-fWr"/>
+                            <constraint firstItem="YkD-B0-mEc" firstAttribute="centerX" secondItem="itM-j6-rLQ" secondAttribute="centerX" id="oE7-lr-vGF"/>
+                        </constraints>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="subjectID">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="homeButton" destination="YkD-B0-mEc" id="WAk-fC-Olf"/>
+                        <outlet property="titleLabel" destination="fYI-tr-Vh6" id="OXT-oV-ojw"/>
+                        <segue destination="daD-Rk-eCg" kind="unwind" identifier="subjectUnwind" customClass="CESSubjectUnwindSegue" customModule="CES" customModuleProvider="target" unwindAction="returnFromSegueActions:" id="iIu-ld-y4A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dsl-1g-70m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="daD-Rk-eCg" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1365" y="2263"/>
         </scene>
     </scenes>
     <resources>

@@ -19,6 +19,7 @@ extension UILabel
     }
 }
 
+@IBDesignable
 class CESOutlinedLabel: UILabel
 {
     override init(frame: CGRect)

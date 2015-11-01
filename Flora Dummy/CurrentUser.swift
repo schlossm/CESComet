@@ -11,7 +11,7 @@ import CoreData
 
 @objc enum Grade : UInt
 {
-    case Kindergarten, First, Second, Third, Fourth, Fixth, Sixth
+    case Kindergarten, First, Second, Third, Fourth, Fixth, Sixth, None
 }
 
 @objc enum UserType : UInt
@@ -30,12 +30,12 @@ class CurrentUser : NSObject
 {
     private var currentUserObject : NSManagedObject!
     
-    var grade : Grade?
+    var grade : Grade
         {
         get
         {
-            guard currentUserObject.valueForKey("grade") != nil else { return nil }
-            return Grade(rawValue: UInt(currentUserObject.valueForKey("grade") as! String)!)
+            guard currentUserObject.valueForKey("grade") != nil else { return .None }
+            return Grade(rawValue: UInt(currentUserObject.valueForKey("grade") as! String)!)!
         }
     }
     

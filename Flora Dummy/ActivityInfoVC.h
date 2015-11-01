@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-#import "Activity.h"
+@protocol Activity;
 
 @protocol ActivityInfoDelegate <NSObject>
--(void)finishSavingActivity: (Activity *)a;
+-(void)finishSavingActivity: (id<Activity>)a;
 @end
 
 @interface ActivityInfoVC : UIViewController
 
-@property(nonatomic, retain) Activity *activity;
+@property(nonatomic, retain) id<Activity> activity;
 
 @property(nonatomic, retain) IBOutlet UITextField *nameField;
 @property(nonatomic, retain) IBOutlet UIDatePicker *releasePicker;
@@ -27,7 +27,7 @@
 @property (nonatomic, weak) id<ActivityInfoDelegate>delegate;
 
 -(id)init;
--(id)initWithActivity: (Activity *)a;
+-(id)initWithActivity: (id<Activity>)a;
 -(IBAction)save:(id)sender;
 
 @end

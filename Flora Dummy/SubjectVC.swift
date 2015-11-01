@@ -7,262 +7,250 @@
 //
 
 import UIKit
+import CoreData
+
+func subjectIDToName(subjectID: Int) -> String
+{
+    switch subjectID
+    {
+    case 1: return "Math"
+    case 2: return "Science"
+    case 3: return "History"
+    case 4: return "Language Arts"
+    default: return "None"
+    }
+}
+
+class SubjectLoadingView : UIView
+{
+    @IBOutlet var loadingIndicator : MSProgressView!
+        {
+        didSet
+        {
+            loadingIndicator.barColor = ColorScheme.currentColorScheme().primaryColor
+            loadingIndicator.startAnimating(true)
+        }
+    }
+    
+    @IBOutlet var label : CESOutlinedLabel!
+        {
+        didSet
+        {
+            label.textColor = ColorScheme.currentColorScheme().primaryColor
+        }
+    }
+}
+
+class SubjectNoActivitesView : UIView
+{
+    @IBOutlet var label : CESOutlinedLabel!
+}
 
 class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
 {
-    //The current grade
-    private var gradeNumber : String?
+    lazy private var activities = [Activity]()
     
-    //The borderWidth for display views
-    private let borderWidth = 2.0
+    var sourceRect : CGRect!
+    var sourceView : UIView!
     
-    //List of activities come from the dictionary of courses
-    private var activities = Array<Activity>()
+    @IBOutlet private var loadingView : SubjectLoadingView!
+        {
+        didSet
+        {
+            loadingView.backgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
+        }
+    }
+    @IBOutlet private var noActivitiesView : SubjectNoActivitesView!
+        {
+        didSet
+        {
+            noActivitiesView.backgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
+            noActivitiesView.label.textColor = ColorScheme.currentColorScheme().primaryColor
+        }
+    }
     
-    //The feedback views
-    private var loadingView : UIView?
-    private var noActivitiesView : UIView?
+    @IBOutlet var titleLabel : CESOutlinedLabel!
+        {
+        didSet
+        {
+            titleLabel.textColor = ColorScheme.currentColorScheme().primaryColor
+        }
+    }
+    @IBOutlet var activitiesTable : UITableView!
+        {
+        didSet
+        {
+            activitiesTable!.layer.borderWidth = 2.0
+            activitiesTable!.layer.borderColor = ColorScheme.currentColorScheme().secondaryColor.CGColor
+            activitiesTable!.backgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
+            activitiesTable!.separatorColor = ColorScheme.currentColorScheme().secondaryColor
+        }
+    }
+    @IBOutlet var notificationField : CESOutlinedLabel!
+        {
+        didSet
+        {
+            notificationField.textColor = ColorScheme.currentColorScheme().primaryColor
+            notificationField.backgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
+            notificationField.layer.borderWidth = 2.0
+            notificationField.layer.borderColor = ColorScheme.currentColorScheme().secondaryColor.CGColor
+        }
+    }
     
-    @IBOutlet var titleLabel : CESOutlinedLabel?
-    @IBOutlet var activitiesTable : UITableView?
-    @IBOutlet var notificationField : UITextView?
+    @IBOutlet var homeButton : UIButton!
+        {
+        didSet
+        {
+            UILabel.outlineLabel(homeButton.titleLabel!)
+            homeButton.setTitleColor(ColorScheme.currentColorScheme().primaryColor, forState: .Normal)
+        }
+    }
     
-    internal var subjectID = String(-1)
-    internal var subjectName = "Nil Subject"
+    @IBInspectable
+    var subjectID : Int = -1
+    var subjectName : String
+        {
+        get
+        {
+            return subjectIDToName(self.subjectID)
+        }
+    }
     
     private var activitiesLoaded = false
     
-    //Everytime the view is shown on screen, make sure all data is updated
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        view.backgroundColor = ColorScheme.currentColorScheme().backgroundColor
+        
+        var statusBarViewBackgroundColor : UIColor
+        if ColorScheme.currentColorScheme().backgroundColor.lighter == UIColor.whiteColor() || ColorScheme.currentColorScheme().backgroundColor.lighter == UIColor.clearColor()
+        {
+            statusBarViewBackgroundColor = ColorScheme.currentColorScheme().backgroundColor.darker
+        }
+        else
+        {
+            statusBarViewBackgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
+        }
+        
+        let statusBarView = UIView()
+        statusBarView.translatesAutoresizingMaskIntoConstraints = false
+        statusBarView.backgroundColor = statusBarViewBackgroundColor
+        view.addSubview(statusBarView)
+        view.addConstraint(NSLayoutConstraint(item: statusBarView, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0.0))
+        view.addConstraint(NSLayoutConstraint(item: statusBarView, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
+        view.addConstraint(NSLayoutConstraint(item: statusBarView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[statusBarView(20)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["statusBarView":statusBarView]))
+        
+        checkForActivityDataLoaded()
+    }
+    
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "activityDataLoaded", name: ActivityDataLoaded, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "activityDataLoaded", name: UIApplicationSignificantTimeChangeNotification, object: nil)
-        
-        activitiesTable!.layer.borderWidth = CGFloat(borderWidth)
-        activitiesTable!.layer.borderColor = ColorScheme.currentColorScheme().secondaryColor.CGColor
-        
-        titleLabel!.textColor = ColorScheme.currentColorScheme().primaryColor
-        
-        notificationField!.textColor = ColorScheme.currentColorScheme().primaryColor
-        notificationField!.backgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
-        //Definitions.outlineTextInTextView(notificationField!, forFont: bodyFont)
-        notificationField!.layer.borderWidth = 2.0
-        notificationField!.layer.borderColor = ColorScheme.currentColorScheme().secondaryColor.CGColor
-        notificationField!.textColor = ColorScheme.currentColorScheme().primaryColor
-        
-        //Set colors for activitiesTable
-        activitiesTable!.backgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
-        activitiesTable!.separatorColor = ColorScheme.currentColorScheme().secondaryColor
-        
-        loadingView?.backgroundColor = view.backgroundColor?.lighter
-        noActivitiesView?.backgroundColor = view.backgroundColor?.lighter
-        
-        //Update the activities for the tableView
-        activities = Array<Activity>()
-        //activitiesLoaded = CESDatabase.databaseManagerForMainActivitiesClass().activitiesLoaded
-        /*
-        let classesPlistPath = NSBundle.mainBundle().pathForResource("Classes", ofType: "plist")
-        let activitiesPlistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")
-        
-        let classesArray = NSArray(contentsOfFile: classesPlistPath!)
-        let activitiesArray = NSArray(contentsOfFile: activitiesPlistPath!)
-        
-        if activitiesArray != nil && classesArray != nil
-        {
-            for subjectClass in classesArray as! Array<Dictionary<String, String>>
-            {
-                if subjectClass["Subject_ID"] == subjectID
-                {
-                    for activity in activitiesArray as! Array<Dictionary<String, String>>
-                    {
-                        let dateFormatter = NSDateFormatter()
-                        dateFormatter.timeZone = NSTimeZone.localTimeZone()
-                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                        
-                        let releaseDate = dateFormatter.dateFromString(activity["Release_Date"]!)!
-                        let dueDate = dateFormatter.dateFromString(activity["Due_Date"]!)!
-                        
-                        if activity["Class_ID"] == subjectClass["Class_ID"] && (releaseDate.compare(NSDate()) == .OrderedAscending || releaseDate.compare(NSDate()) == .OrderedSame) && (dueDate.compare(NSDate()) == .OrderedDescending || dueDate.compare(NSDate()) == .OrderedSame)
-                        {
-                            activities.append(CESDatabase.databaseManagerForMainActivitiesClass().activityForActivityDictionary(activity))
-                        }
-                    }
-                }
-            }
-        }
-        
-        if CESDatabase.databaseManagerForMainActivitiesClass().activitiesLoaded == false && activities.count == 0
-        {
-            if loadingView == nil
-            {
-                showLoadingView()
-            }
-        }
-        else if activities.count == 0
-        {
-            if noActivitiesView == nil
-            {
-                showNoActivites()
-            }
-        }
-        else
-        {
-            if loadingView == nil && activitiesLoaded == false
-            {
-                showLittleLoadingView()
-            }
-            else if activitiesLoaded == true
-            {
-                UIView.animateWithDuration(transitionLength, delay: 0.0, options: .AllowAnimatedContent, animations: { () -> Void in
-                    self.loadingView?.alpha = 0.0
-                    self.noActivitiesView?.alpha = 0.0
-                    self.activitiesTable!.reloadData()
-                    }, completion: { (finished) -> Void in
-                        self.noActivitiesView?.removeFromSuperview()
-                        self.loadingView?.removeFromSuperview()
-                })
-            }
-        }
-        
-        activitiesTable!.reloadData()*/
     }
     
-    //Updates the activityTable's data if we went to this screen before it was all downloaded
-    func activityDataLoaded()
+    override func viewDidAppear(animated: Bool)
     {
-        /*
-        activitiesLoaded = true
-        
-        activities = Array<Activity>()
-        let classesPlistPath = NSBundle.mainBundle().pathForResource("Classes", ofType: "plist")
-        let activitiesPlistPath = NSBundle.mainBundle().pathForResource("Activities", ofType: "plist")
-        
-        let classesArray = NSArray(contentsOfFile: classesPlistPath!)
-        let activitiesArray = NSArray(contentsOfFile: activitiesPlistPath!)
-        
-        if activitiesArray != nil && classesArray != nil
-        {
-            for subjectClass in (classesArray as! Array<Dictionary<String, String>>)
-            {
-                if subjectClass["Subject_ID"] == subjectID
-                {
-                    for activity in (activitiesArray as! Array<Dictionary<String, String>>)
-                    {
-                        let dateFormatter = NSDateFormatter()
-                        dateFormatter.timeZone = NSTimeZone.localTimeZone()
-                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                        
-                        let releaseDate = dateFormatter.dateFromString(activity["Release_Date"]!)!
-                        let dueDate = dateFormatter.dateFromString(activity["Due_Date"]!)!
-                        
-                        if activity["Class_ID"] == subjectClass["Class_ID"] && (releaseDate.compare(NSDate()) == .OrderedAscending || releaseDate.compare(NSDate()) == .OrderedSame) && (dueDate.compare(NSDate()) == .OrderedDescending || dueDate.compare(NSDate()) == .OrderedSame)
-                        {
-                            activities.append(CESDatabase.databaseManagerForMainActivitiesClass().activityForActivityDictionary(activity))
-                        }
-                    }
-                }
-            }
-        }
-        
-        if activities.count != 0
-        {
-            UIView.animateWithDuration(transitionLength, delay: 0.0, options: .AllowAnimatedContent, animations: { () -> Void in
-                self.loadingView?.alpha = 0.0
-                self.noActivitiesView?.alpha = 0.0
-                self.activitiesTable!.reloadData()
-                }, completion: { (finished) -> Void in
-                    self.noActivitiesView?.removeFromSuperview()
-                    self.loadingView?.removeFromSuperview()
-            })
-        }
-        else
-        {
-            showNoActivites()
-        }*/
+        super.viewDidAppear(animated)
     }
     
     override func viewWillDisappear(animated: Bool)
     {
         super.viewWillDisappear(animated)
         
+        loadingView?.loadingIndicator?.stopAnimating(true)
+        
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    internal func showNoActivites()
+    func checkForActivityDataLoaded()
     {
-        noActivitiesView = UIView(frame: activitiesTable!.frame)
-        noActivitiesView!.backgroundColor = view.backgroundColor?.lighter
-        
-        let noActivitiesLabel = CESOutlinedLabel(frame: CGRectMake(0, 0, noActivitiesView!.frame.size.width, noActivitiesView!.frame.size.height))
-        noActivitiesLabel.textColor = ColorScheme.currentColorScheme().primaryColor
-        noActivitiesLabel.font = bodyFont
-        noActivitiesLabel.numberOfLines = 0
-        noActivitiesLabel.textAlignment = .Center
-        noActivitiesLabel.text = "There are no activites for you in\n\(subjectName)!"
-        noActivitiesLabel.sizeToFit()
-        noActivitiesLabel.center = CGPointMake(noActivitiesView!.frame.size.width/2.0, noActivitiesView!.frame.size.height/2.0)
-        noActivitiesView!.addSubview(noActivitiesLabel)
-        
-        noActivitiesView!.layer.borderWidth = CGFloat(borderWidth)
-        noActivitiesView!.layer.borderColor = UIColor.whiteColor().CGColor
-        
-        view.addSubview(noActivitiesView!)
+        if CESDatabase.databaseManagerForMainActivitiesClass().activityDataIsLoaded == true
+        {
+            loadingView?.loadingIndicator.stopAnimating(true)
+            activities = [Activity]()
+            let request = NSFetchRequest(entityName: "Activity")
+            request.predicate = NSPredicate(format: "classID ==[c] %d", subjectID)
+            let results = try! NADatabase.sharedDatabase().managedObjectContext.executeFetchRequest(request) as! [NSManagedObject]
+            for result in results
+            {
+                activities.append(CESDatabase.databaseManagerForMainActivitiesClass().activityForActivityID(result.valueForKey("activityID") as! String))
+            }
+            activitiesTable?.reloadData()
+            loadingView?.removeFromSuperview()
+            if activities.isEmpty
+            {
+                noActivitiesView?.alpha = 1.0
+                noActivitiesView?.userInteractionEnabled = true
+            }
+        }
     }
     
-    internal func showLoadingView()
+    func activityDataLoaded()
     {
-        loadingView = UIView(frame: activitiesTable!.frame)
-        loadingView!.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
-        
-        let wheel = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        wheel.center = CGPointMake(loadingView!.frame.size.width/2.0, loadingView!.frame.size.height/2.0 - 10 - wheel.frame.size.height/2.0)
-        wheel.startAnimating()
-        loadingView!.addSubview(wheel)
-        
-        let loadingLabel = CESOutlinedLabel()
-        loadingLabel.textColor = ColorScheme.currentColorScheme().primaryColor
-        loadingLabel.font = bodyFont
-        loadingLabel.text = "Loading Activities..."
-        loadingLabel.sizeToFit()
-        loadingLabel.center = CGPointMake(loadingView!.frame.size.width/2.0, loadingView!.frame.size.height/2.0 + 10 + loadingLabel.frame.size.height/2.0)
-        loadingView!.addSubview(loadingLabel)
-        
-        loadingView!.layer.borderWidth = CGFloat(borderWidth)
-        loadingView!.layer.borderColor = UIColor.whiteColor().CGColor
-        
-        view.addSubview(loadingView!)
+        loadingView?.loadingIndicator?.showComplete()
+        activities = [Activity]()
+        let request = NSFetchRequest(entityName: "Activity")
+        request.predicate = NSPredicate(format: "classID ==[c] %@", subjectID)
+        let results = try! NADatabase.sharedDatabase().managedObjectContext.executeFetchRequest(request) as! [NSManagedObject]
+        for result in results
+        {
+            activities.append(CESDatabase.databaseManagerForMainActivitiesClass().activityForActivityID(result.valueForKey("activityID") as! String))
+        }
+        activitiesTable.reloadData()
+        UIView.animateWithDuration(CESCometTransitionDuration, delay: 2.3, options: [.AllowAnimatedContent], animations: { [unowned self] () -> Void in
+            self.loadingView?.alpha = 0.0
+            if self.activities.isEmpty
+            {
+                self.noActivitiesView?.alpha = 1.0
+                self.noActivitiesView?.userInteractionEnabled = true
+            }
+            }) { [unowned self] (finished) -> Void in
+                self.loadingView?.removeFromSuperview()
+        }
     }
     
-    func showLittleLoadingView()
+    @IBAction func dismissSelf()
     {
-        loadingView = UIView(frame: CGRectMake(0, activitiesTable!.frame.size.height - 100, activitiesTable!.frame.size.width, 100))
-        loadingView!.backgroundColor = view.backgroundColor?.lighter
+        performSegueWithIdentifier("subjectUnwind", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        guard let unwindSegue = segue as? CESSubjectUnwindSegue else { return }
         
-        let loadingLabel = CESOutlinedLabel()
-        loadingLabel.textColor = ColorScheme.currentColorScheme().primaryColor
-        loadingLabel.font = bodyFont
-        loadingLabel.text = "Updating Activities..."
-        loadingLabel.sizeToFit()
-        
-        let wheel = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        wheel.startAnimating()
-        
-        let tempView = UIView(frame: CGRectMake(0, 0, wheel.frame.size.width + 36 + loadingLabel.frame.size.width, 100))
-        wheel.center = CGPointMake(8 + wheel.frame.size.width/2.0, tempView.frame.size.height/2.0)
-        loadingLabel.center = CGPointMake(tempView.frame.size.width - 8 - loadingLabel.frame.size.width/2.0, tempView.frame.size.height/2.0)
-        tempView.addSubview(wheel)
-        tempView.addSubview(loadingLabel)
-        
-        tempView.center = CGPointMake(loadingView!.frame.size.width/2.0, loadingView!.frame.size.height/2.0)
-        loadingView!.addSubview(tempView)
-        
-        loadingView!.layer.borderWidth = CGFloat(borderWidth)
-        loadingView!.layer.borderColor = UIColor.whiteColor().CGColor
-        loadingView!.layer.shadowOpacity = 0.85
-        
-        loadingView!.layer.zPosition = 2
-        activitiesTable!.addSubview(loadingView!)
+        unwindSegue.sourceRect = sourceRect
+        unwindSegue.sourceView = sourceView
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle
+    {
+        if ColorScheme.currentColorScheme().backgroundColor.lighter == UIColor.whiteColor() || ColorScheme.currentColorScheme().backgroundColor.lighter == UIColor.clearColor()
+        {
+            if ColorScheme.currentColorScheme().backgroundColor.darker.shouldUseWhiteText == true
+            {
+                return .LightContent
+            }
+            else
+            {
+                return .Default
+            }
+        }
+        else
+        {
+            if ColorScheme.currentColorScheme().backgroundColor.lighter.shouldUseWhiteText == true
+            {
+                return .LightContent
+            }
+            else
+            {
+                return .Default
+            }
+        }
     }
     
     //MARK: - Table View Methods
@@ -285,37 +273,41 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         //Get a cell that isn't currently on screen
-        let cell = tableView.dequeueReusableCellWithIdentifier("SubjectCell") 
+        let cell = tableView.dequeueReusableCellWithIdentifier("SubjectCell")!
         
         //Update the titleLabel for the cell to the Activity's Name
-        cell!.textLabel!.text = activities[indexPath.row].name
-        cell!.textLabel!.font = bodyFont
-        cell!.textLabel!.textColor = ColorScheme.currentColorScheme().primaryColor
-        UILabel.outlineLabel(cell!.textLabel!)
+        cell.textLabel?.text = activities[indexPath.row].name
+        cell.textLabel?.font = bodyFont
+        cell.textLabel?.textColor = ColorScheme.currentColorScheme().primaryColor
+        //UILabel.outlineLabel(cell.textLabel!)
         
         //Update the cell's colors
-        cell!.backgroundColor = .clearColor()
+        cell.backgroundColor = .clearColor()
         
         //NOTE: -  Update this line to get an image based on the activity
-        cell!.imageView!.image = UIImage(named: "117-todo.png")
+        cell.imageView!.image = UIImage(named: "117-todo.png")
         
-        return cell!
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        //Visually deselect the cell since we're moving away from the view
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        UIApplication.sharedApplication().keyWindow?.userInteractionEnabled = false
+        view.userInteractionEnabled = false
         
-        let activityLoadingView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        let cell = tableView.cellForRowAtIndexPath(indexPath)!
+        
+        let activityLoadingView = UIVisualEffectView(effect: nil)
         activityLoadingView.layer.cornerRadius = 0.001
         activityLoadingView.clipsToBounds = true
-        activityLoadingView.frame = tableView.cellForRowAtIndexPath(indexPath)!.convertRect(tableView.cellForRowAtIndexPath(indexPath)!.frame, toView: view)
-        activityLoadingView.alpha = 0.0
+        activityLoadingView.frame = view.convertRect(cell.frame, fromView: tableView)
+        activityLoadingView.contentView.alpha = 0.0
         
-        let loadingWheel = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        loadingWheel.startAnimating()
+        
+        let loadingWheel = MSProgressView(frame: CGRectMake(0, 0, 37, 37))
+        loadingWheel.barColor = ColorScheme.currentColorScheme().primaryColor
+        loadingWheel.barWidth = 3.0
+        loadingWheel.startAnimating(true)
         
         let loadingLabel = CESOutlinedLabel()
         loadingLabel.textColor = ColorScheme.currentColorScheme().primaryColor
@@ -333,9 +325,10 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         activityLoadingLoadingView.center = CGPointMake(activityLoadingView.frame.size.width/2.0, activityLoadingView.frame.size.height/2.0)
         
         view.addSubview(activityLoadingView)
-        UIView.animateWithDuration(0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.1, options: .AllowAnimatedContent, animations: { () -> Void in
-            activityLoadingView.alpha = 1.0
-            }, completion: { (finished) -> Void in
+        UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.0, options: .AllowAnimatedContent, animations: { () -> Void in
+            activityLoadingView.contentView.alpha = 1.0
+            activityLoadingView.effect = UIBlurEffect(style: .Dark)
+            }, completion: { [unowned self] (finished) -> Void in
                 
                 self.setCornerRadius(activityLoadingView)
                 UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
@@ -355,15 +348,16 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
                         //let pageManager = NewPageManager(nibName: nil, bundle: nil, activitySession: activitySession, forActivity: self.activities[indexPath.row], withParent:self)
                         
                         //Debug code
-                        UIView.animateWithDuration(1.5, delay: 1.5, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
+                        UIView.animateWithDuration(1.5, delay: 1.5, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { [unowned self] () -> Void in
                             
                             activityLoadingView.transform = CGAffineTransformMakeScale(self.view.frame.size.width/activityLoadingView.frame.size.width, self.view.frame.size.height/activityLoadingView.frame.size.height)
-                            activityLoadingView.alpha = 0.0
+                            activityLoadingView.effect = nil
+                            activityLoadingView.contentView.alpha = 0.0
                             
-                            }, completion: { (finished) -> Void in
+                            }, completion: { [unowned self] (finished) -> Void in
                                 
                                 activityLoadingView.removeFromSuperview()
-                                UIApplication.sharedApplication().keyWindow?.userInteractionEnabled = true
+                                self.view.userInteractionEnabled = true
                         })
                 })
         })
@@ -388,5 +382,4 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
     {
         loadingView?.frame = CGRectMake(0, scrollView.frame.size.height - 100 + scrollView.contentOffset.y, scrollView.frame.size.width, 100)
     }
-
 }
