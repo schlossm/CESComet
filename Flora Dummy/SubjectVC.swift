@@ -195,7 +195,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         loadingView?.loadingIndicator?.showComplete()
         activities = [Activity]()
         let request = NSFetchRequest(entityName: "Activity")
-        request.predicate = NSPredicate(format: "classID ==[c] %@", subjectID)
+        request.predicate = NSPredicate(format: "classID ==[c] %d", subjectID)
         let results = try! NADatabase.sharedDatabase().managedObjectContext.executeFetchRequest(request) as! [NSManagedObject]
         for result in results
         {
@@ -219,12 +219,25 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         performSegueWithIdentifier("subjectUnwind", sender: self)
     }
     
+    private var selectedActivity : Activity!
+    private var vevView : UIVisualEffectView!
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        guard let unwindSegue = segue as? CESSubjectUnwindSegue else { return }
-        
-        unwindSegue.sourceRect = sourceRect
-        unwindSegue.sourceView = sourceView
+        if segue.identifier == "subjectUnwind"
+        {
+            guard let unwindSegue = segue as? CESSubjectUnwindSegue else { return }
+            
+            unwindSegue.sourceRect = sourceRect
+            unwindSegue.sourceView = sourceView
+        }
+        else
+        {
+            guard let activityManagerDisplaySegue = segue as? ActivityManagerPresentationSegue else { return }
+            
+            activityManagerDisplaySegue.sourceView = vevView
+            (segue.destinationViewController as! CESActivityManager).currentActivity = selectedActivity
+        }
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle
@@ -272,26 +285,21 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        //Get a cell that isn't currently on screen
         let cell = tableView.dequeueReusableCellWithIdentifier("SubjectCell")!
         
-        //Update the titleLabel for the cell to the Activity's Name
         cell.textLabel?.text = activities[indexPath.row].name
         cell.textLabel?.font = bodyFont
         cell.textLabel?.textColor = ColorScheme.currentColorScheme().primaryColor
-        //UILabel.outlineLabel(cell.textLabel!)
-        
-        //Update the cell's colors
         cell.backgroundColor = .clearColor()
-        
-        //NOTE: -  Update this line to get an image based on the activity
         cell.imageView!.image = UIImage(named: "117-todo.png")
+        UILabel.outlineLabel(cell.textLabel!)
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        selectedActivity = activities[indexPath.item]
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         view.userInteractionEnabled = false
         
@@ -302,7 +310,6 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         activityLoadingView.clipsToBounds = true
         activityLoadingView.frame = view.convertRect(cell.frame, fromView: tableView)
         activityLoadingView.contentView.alpha = 0.0
-        
         
         let loadingWheel = MSProgressView(frame: CGRectMake(0, 0, 37, 37))
         loadingWheel.barColor = ColorScheme.currentColorScheme().primaryColor
@@ -331,7 +338,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
             }, completion: { [unowned self] (finished) -> Void in
                 
                 self.setCornerRadius(activityLoadingView)
-                UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { () -> Void in
+                UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { [unowned self] () -> Void in
                     
                     activityLoadingView.frame = CGRectMake(0, 0, self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
                     activityLoadingView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height/2.0)
@@ -340,27 +347,14 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
                     loadingWheel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 - 4 - loadingWheel.frame.size.height/2.0)
                     loadingLabel.center = CGPointMake(activityLoadingLoadingView.frame.size.width/2.0, activityLoadingLoadingView.frame.size.height/2.0 + 4 + loadingWheel.frame.size.height/2.0)
                     
-                    }, completion: { (finished) -> Void in
+                    }, completion: { [unowned self] (finished) -> Void in
                         
                         //TODO: Uncomment after legit activites on database
                         
-                        //let activitySession = CESDatabase.databaseManagerForPageManagerClass().activitySessionForActivityID(self.activities[indexPath.row].name, activity: self.activities[indexPath.row])
-                        //let pageManager = NewPageManager(nibName: nil, bundle: nil, activitySession: activitySession, forActivity: self.activities[indexPath.row], withParent:self)
-                        
-                        //Debug code
-                        UIView.animateWithDuration(1.5, delay: 1.5, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { [unowned self] () -> Void in
-                            
-                            activityLoadingView.transform = CGAffineTransformMakeScale(self.view.frame.size.width/activityLoadingView.frame.size.width, self.view.frame.size.height/activityLoadingView.frame.size.height)
-                            activityLoadingView.effect = nil
-                            activityLoadingView.contentView.alpha = 0.0
-                            
-                            }, completion: { [unowned self] (finished) -> Void in
-                                
-                                activityLoadingView.removeFromSuperview()
-                                self.view.userInteractionEnabled = true
-                        })
+                        self.vevView = activityLoadingView
+                        self.performSegueWithIdentifier("activityDisplaySegue", sender: self)
                 })
-        })
+            })
         
         
     }
@@ -375,9 +369,6 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         activityLoadingView.layer.cornerRadius = 10.0
     }
     
-    //MARK: - ScrollView Methods
-    
-    //Keeps the small loading view from scrolling with the tableView
     func scrollViewDidScroll(scrollView: UIScrollView)
     {
         loadingView?.frame = CGRectMake(0, scrollView.frame.size.height - 100 + scrollView.contentOffset.y, scrollView.frame.size.width, 100)

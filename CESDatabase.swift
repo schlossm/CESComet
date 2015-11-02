@@ -101,7 +101,7 @@ private class ActivityCreationDatabaseManager : ActivityCreationDatabase
             dateFormatter.timeZone = NSTimeZone.localTimeZone()
             dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
             
-            let data = NADatabase.sharedDatabase().encryptObject(activity.activityData)
+            let data = NADatabase.sharedDatabase().encryptObject(activity.activityData!)
             
             let SQLStatementInsertNewActivity = NASQL(rawSQL: "INSERT INTO `Activity`(activityID, name, description, totalPoints, Quiz, releaseDate, dueDate, activityData, classID) VALUES ('\(activityID)','\(activity.name)','\(activity.activityDescription)','\(activity.totalPoints)','\(activity.quizMode.rawValue)','\(dateFormatter.stringFromDate(activity.releaseDate))','\(dateFormatter.stringFromDate(activity.dueDate))','\(data)','\(activity.classID)')")
             
@@ -120,7 +120,7 @@ private class ActivityCreationDatabaseManager : ActivityCreationDatabase
     
     private func isValidActivity(activityInformation: Activity) -> Bool
     {
-        return activityInformation.name != "" && activityInformation.activityDescription != "" && activityInformation.totalPoints != -1 && activityInformation.releaseDate != NSDate() && activityInformation.dueDate != NSDate() && activityInformation.releaseDate.isEqualToDate(activityInformation.dueDate) == false && activityInformation.activityData.count > 0 && activityInformation.classID != -1
+        return activityInformation.name != "" && activityInformation.activityDescription != "" && activityInformation.totalPoints != -1 && activityInformation.releaseDate != NSDate() && activityInformation.dueDate != NSDate() && activityInformation.releaseDate.isEqualToDate(activityInformation.dueDate) == false && activityInformation.activityData!.count > 0 && activityInformation.classID != -1
     }
 }
 
@@ -132,12 +132,12 @@ private class ActivityManagerDatabaseManager: ActivityManagerVCDatabase
     @objc func activitySessionForActivity(activity: Activity) -> ActivitySession
     {
         let request = NSFetchRequest(entityName: "ActivitySession")
-        request.predicate = NSPredicate(format: "activityID==%@", activity.activityID)
+        request.predicate = NSPredicate(format: "activityID == %d", activity.activityID)
         let foundActivitySession = try? NADatabase.sharedDatabase().managedObjectContext.executeFetchRequest(request) as! [NSManagedObject]
         
         guard let activitySession = foundActivitySession?.first else
         {
-            return CESDatabaseActivitySessionObject(activitySessionID: nil, activityID: activity.activityID, grade: -1.0, activityData: activity.activityData, startDate: NSDate(), endDate: nil, status: ActivitySessionStatus.Started)
+            return CESDatabaseActivitySessionObject(activitySessionID: nil, activityID: activity.activityID, grade: -1.0, activityData: activity.activityData ?? [[Int : AnyObject]](), startDate: NSDate(), endDate: nil, status: ActivitySessionStatus.Started)
         }
         
         let score = Double(activitySession.valueForKey("score") as! String)!
@@ -172,7 +172,7 @@ private class ActivityManagerDatabaseManager: ActivityManagerVCDatabase
         
         var SQLStatementUploadActivitySession = NASQL()
         
-        let data = NADatabase.sharedDatabase().encryptObject(activitySession.activityData)
+        let data = NADatabase.sharedDatabase().encryptObject(activitySession.activityData!)
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeZone = NSTimeZone.localTimeZone()
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
@@ -546,7 +546,7 @@ private class CESDatabaseActivityObject : Activity
     
     @objc var dueDate : NSDate { get { return _dueDate } }
     
-    @objc var activityData : [[Int:AnyObject]] { get { return _activityData } }
+    @objc var activityData : [[Int:AnyObject]]? { get { return _activityData } }
     
     @objc var quizMode : QuizMode { get { return _quizMode } }
     
@@ -582,7 +582,7 @@ private class CESDatabaseActivitySessionObject : ActivitySession
     
     @objc var grade : Double
     
-    @objc var activityData : [[Int:AnyObject]]
+    @objc var activityData : [[Int:AnyObject]]?
     
     @objc var startDate : NSDate
     

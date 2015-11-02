@@ -149,7 +149,8 @@ class PasswordVC: UIViewController, UITextFieldDelegate
                         if success == true
                         {
                             CurrentUser.currentUser().loadSavedUser()
-                            self.dismissViewControllerAnimated(true, completion: nil)
+                            self.loginLoadingWheel.showComplete()
+                            NSTimer.scheduledTimerWithTimeInterval(2.3, target: self, selector: "dismissSelf", userInfo: nil, repeats: false)
                         }
                         else
                         {
@@ -171,6 +172,14 @@ class PasswordVC: UIViewController, UITextFieldDelegate
         }
         
         return false
+    }
+    
+    func dismissSelf()
+    {
+        dispatch_async(dispatch_queue_create("Load Activities From PasswordVC", nil)) { () -> Void in
+            CESDatabase.databaseManagerForMainActivitiesClass().loadUserActivities()
+        }
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     private func showLoginError()

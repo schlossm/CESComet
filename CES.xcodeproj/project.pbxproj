@@ -15,7 +15,6 @@
 		103265CF1A600CF800511546 /* PageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103265CD1A600CE800511546 /* PageManager.swift */; };
 		103E82F21BE3BF5B0076E8DB /* MSProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103E82F11BE3BF5B0076E8DB /* MSProgressView.swift */; };
 		104187D21A461DDC001C571C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104187D11A461DDC001C571C /* MediaPlayer.framework */; };
-		104A4CA01A6AD75800BE217A /* ActivitySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104A4C9F1A6AD75800BE217A /* ActivitySession.swift */; };
 		104BA0F51A040C4A007BD9DE /* Page_ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */; };
 		104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104BA0F81A042717007BD9DE /* Page_IntroVC.swift */; };
 		1051A5911BC4637800D3CBB9 /* NALoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051A5901BC4637800D3CBB9 /* NALoginTextField.swift */; };
@@ -70,6 +69,7 @@
 		10CF10E41AD8C4BF0016207D /* CESComet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10CF10E31AD8C4BF0016207D /* CESComet.storyboard */; };
 		10CF10E61AD8D7AF0016207D /* HomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CF10E51AD8D7AF0016207D /* HomeButton.swift */; };
 		10CF10E81AD9F4500016207D /* PhrasesPerGrade.strings in Resources */ = {isa = PBXBuildFile; fileRef = 10CF10E71AD9F4500016207D /* PhrasesPerGrade.strings */; };
+		10CF1A821BE6FC580081A16D /* ActivityManagerPresentationSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CF1A811BE6FC580081A16D /* ActivityManagerPresentationSegue.swift */; };
 		10D9770A1AB8D00800BD54BD /* DrawingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D977091AB8D00800BD54BD /* DrawingVC.swift */; };
 		10DD07D21A1661350026B0DA /* MathProblemTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DD07D11A1661350026B0DA /* MathProblemTextField.swift */; };
 		10DDE8C81A00616C0079FAB9 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787B19FC250A005D9937 /* HomeVC.swift */; };
@@ -189,7 +189,6 @@
 		103265CD1A600CE800511546 /* PageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageManager.swift; sourceTree = "<group>"; };
 		103E82F11BE3BF5B0076E8DB /* MSProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSProgressView.swift; sourceTree = "<group>"; };
 		104187D11A461DDC001C571C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		104A4C9F1A6AD75800BE217A /* ActivitySession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitySession.swift; sourceTree = "<group>"; };
 		104BA0F41A040C4A007BD9DE /* Page_ReadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_ReadVC.swift; sourceTree = "<group>"; };
 		104BA0F81A042717007BD9DE /* Page_IntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page_IntroVC.swift; sourceTree = "<group>"; };
 		1051A5901BC4637800D3CBB9 /* NALoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NALoginTextField.swift; sourceTree = "<group>"; };
@@ -259,6 +258,7 @@
 		10CF10E31AD8C4BF0016207D /* CESComet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CESComet.storyboard; sourceTree = "<group>"; };
 		10CF10E51AD8D7AF0016207D /* HomeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeButton.swift; sourceTree = "<group>"; };
 		10CF10E71AD9F4500016207D /* PhrasesPerGrade.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = PhrasesPerGrade.strings; sourceTree = "<group>"; };
+		10CF1A811BE6FC580081A16D /* ActivityManagerPresentationSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityManagerPresentationSegue.swift; sourceTree = "<group>"; };
 		10D977091AB8D00800BD54BD /* DrawingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingVC.swift; sourceTree = "<group>"; };
 		10DD07D11A1661350026B0DA /* MathProblemTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathProblemTextField.swift; sourceTree = "<group>"; };
 		10E76B231A86D4F600D9BD83 /* CESCometUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESCometUIImageView.swift; sourceTree = "<group>"; };
@@ -423,7 +423,6 @@
 			isa = PBXGroup;
 			children = (
 				105C7C231BE52799003B413A /* ActivityProtocols.swift */,
-				104A4C9F1A6AD75800BE217A /* ActivitySession.swift */,
 				107363C21A702F2D000D13A6 /* CESDatabaseProtocols.swift */,
 				1009AC3C1A3BD712009B4813 /* CESDatabase.swift */,
 			);
@@ -459,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				10B8787B19FC250A005D9937 /* HomeVC.swift */,
+				100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */,
 				106948E61A6301AA0093F9DF /* SubjectVC.swift */,
 				106C8BD319FED841009B0983 /* SettingsVC.swift */,
 			);
@@ -650,6 +650,14 @@
 			name = "Weather View";
 			sourceTree = "<group>";
 		};
+		10CF1A801BE6FC3D0081A16D /* Activity Manager Segues */ = {
+			isa = PBXGroup;
+			children = (
+				10CF1A811BE6FC580081A16D /* ActivityManagerPresentationSegue.swift */,
+			);
+			name = "Activity Manager Segues";
+			sourceTree = "<group>";
+		};
 		10D977081AB8CF6200BD54BD /* DrawingVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,7 +670,6 @@
 			isa = PBXGroup;
 			children = (
 				10ACD4971BC9CCF7004BE460 /* ActivityManagerVC.swift */,
-				100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */,
 				105C7C211BE52247003B413A /* Core Pages */,
 				1009AC3B1A3BD5FC009B4813 /* CESDatabase */,
 				10B8787719FC1B3F005D9937 /* Flora Dummy-Bridging-Header.h */,
@@ -676,6 +683,7 @@
 		10EE3B7C1BE0271A00285448 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				10CF1A801BE6FC3D0081A16D /* Activity Manager Segues */,
 				105C7C221BE5225A003B413A /* CES Subject Segues */,
 				1078FC151A0E945000A14836 /* Calculator Transition */,
 				101F311D1A87D3B300F81711 /* ColorManager.swift */,
@@ -1230,8 +1238,8 @@
 				92F78D8E1A2609C20048612E /* IntroCreationVC.m in Sources */,
 				92C117721A223BF0003506DB /* ContentCreationVC.m in Sources */,
 				10CA6B8E1BBDA1D800DFFC35 /* CESLabel.swift in Sources */,
+				10CF1A821BE6FC580081A16D /* ActivityManagerPresentationSegue.swift in Sources */,
 				9211951519FE01DC00644054 /* GardenDetailVC.m in Sources */,
-				104A4CA01A6AD75800BE217A /* ActivitySession.swift in Sources */,
 				108E9B0D1A27A65F00120A63 /* MWFeedParser.m in Sources */,
 				10A4EA3D1A2790820062D905 /* UIButton_Typical.swift in Sources */,
 				1009AC3D1A3BD712009B4813 /* CESDatabase.swift in Sources */,

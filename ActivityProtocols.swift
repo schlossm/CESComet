@@ -33,7 +33,7 @@ import CoreData
     
     var dueDate : NSDate { get }
     
-    var activityData : [[Int:AnyObject]] { get }
+    var activityData : [[Int:AnyObject]]? { get }
     
     var quizMode : QuizMode { get }
     
@@ -48,7 +48,7 @@ import CoreData
     
     var grade : Double { get set }
     
-    var activityData : [[Int:AnyObject]] { get set }
+    var activityData : [[Int:AnyObject]]? { get set }
     
     var startDate : NSDate { get set }
     

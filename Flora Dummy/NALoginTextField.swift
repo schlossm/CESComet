@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class NALoginTextField: UITextField
 {
     @IBInspectable
@@ -36,6 +37,11 @@ class NALoginTextField: UITextField
     {
         super.init(coder: aDecoder)
         
+        commonInit()
+    }
+    
+    override func prepareForInterfaceBuilder()
+    {
         commonInit()
     }
     

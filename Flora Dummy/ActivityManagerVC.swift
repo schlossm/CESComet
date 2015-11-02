@@ -15,7 +15,7 @@ import UIKit
 
 //MARK: - ActivityManager Main
 
-private class ActivityManagerVC: UIViewController, CESActivityManager
+class ActivityManagerVC: UIViewController, CESActivityManager
 {
     private var databaseManager = CESDatabase.databaseManagerForPageManagerClass()
     
@@ -45,6 +45,12 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
     @IBOutlet private var contentView: UIView!
     @IBOutlet var saveProgressIndicator: MSProgressView!
     @IBOutlet var tableOfContentsView: UIView!
+        {
+        didSet
+        {
+            tableOfContentsView.backgroundColor = ColorScheme.currentColorScheme().backgroundColor
+        }
+    }
     
     private var tableOfContentsLoadingQueue : dispatch_queue_t!
     private var activityLoadingQueue : dispatch_queue_t!
@@ -81,13 +87,13 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
         {
         get
         {
-            if currentActivitySession.activityData.isEmpty == false
+            if currentActivitySession.activityData?.isEmpty == false
             {
-                return currentActivitySession.activityData.count
+                return currentActivitySession.activityData!.count
             }
             else
             {
-                return currentActivity.activityData.count
+                return currentActivity.activityData?.count ?? 0
             }
         }
     }
@@ -121,7 +127,7 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
         activityLoadingQueue = dispatch_queue_create("Activity Loading Queue", DISPATCH_QUEUE_SERIAL)
         
         view.backgroundColor = ColorScheme.currentColorScheme().backgroundColor
-        contentView.backgroundColor = ColorScheme.currentColorScheme().backgroundColor
+        //contentView.backgroundColor = ColorScheme.currentColorScheme().backgroundColor
         saveProgressIndicator.barColor = ColorScheme.currentColorScheme().secondaryColor
         
         pageNumberLabel.textColor = ColorScheme.currentColorScheme().primaryColor
@@ -133,8 +139,10 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
         nextButton.titleLabel?.textColor = ColorScheme.currentColorScheme().primaryColor
         
         let introVC = ActivityIntroVC()
+        introVC.activityManager = self
         introVC.activityTitle = currentActivity.name
         introVC.summary = currentActivity.activityDescription
+        addChildViewController(introVC)
         contentView.addSubview(introVC.view)
         currentViewController = introVC
         constrainCurrentViewController()
@@ -149,15 +157,17 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
             return
         }
         
+        currentVC.view.translatesAutoresizingMaskIntoConstraints = false
+        
         switch currentViewController.activityWantsFullScreen()
         {
         case true:
-            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[vc]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["vc":currentVC]))
-            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[vc]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["vc":currentVC]))
+            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[vc]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["vc":currentVC.view]))
+            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[vc]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["vc":currentVC.view]))
             
         case false:
-            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(==leftMargin)-[vc]-(==rightMargin)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics:["leftMargin":margins.left, "rightMargin":margins.right], views: ["vc":currentVC]))
-            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(==topMargin)-[vc]-(==bottomMargin)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics:["topMargin":margins.top, "bottomMargin":margins.bottom], views: ["vc":currentVC]))
+            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-(==leftMargin)-[vc]-(==rightMargin)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics:["leftMargin":margins.left, "rightMargin":margins.right], views: ["vc":currentVC.view]))
+            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(==topMargin)-[vc]-(==bottomMargin)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics:["topMargin":margins.top, "bottomMargin":margins.bottom], views: ["vc":currentVC.view]))
         }
     }
     
@@ -216,8 +226,10 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
         {
             currentActivityIndex = -1
             let introVC = ActivityIntroVC()
+            introVC.activityManager = self
             introVC.activityTitle = currentActivity.name
             introVC.summary = currentActivity.activityDescription
+            addChildViewController(introVC)
             contentView.addSubview(introVC.view)
             currentViewController = introVC
             constrainCurrentViewController()
@@ -240,30 +252,30 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
         dispatch_async(activityLoadingQueue) { [unowned self] () -> Void in
             var activityType : ActivityViewControllerType
             var activityData : AnyObject
-            if self.currentActivitySession.activityData.isEmpty == false
+            if self.currentActivitySession.activityData!.isEmpty == false
             {
-                activityType = ActivityViewControllerType(rawValue: self.currentActivitySession.activityData[self.currentActivityIndex].keys.first!)!
-                activityData = self.currentActivitySession.activityData[self.currentActivityIndex].values.first!
+                activityType = ActivityViewControllerType(rawValue: self.currentActivitySession.activityData![self.currentActivityIndex].keys.first!)!
+                activityData = self.currentActivitySession.activityData![self.currentActivityIndex].values.first!
                 
             }
             else
             {
-                activityType = ActivityViewControllerType(rawValue: self.currentActivity.activityData[self.currentActivityIndex].keys.first!)!
-                activityData = self.currentActivity.activityData[self.currentActivityIndex].values.first!
+                activityType = ActivityViewControllerType(rawValue: self.currentActivity.activityData![self.currentActivityIndex].keys.first!)!
+                activityData = self.currentActivity.activityData![self.currentActivityIndex].values.first!
             }
             
             var previousActivityType : ActivityViewControllerType
-            if self.currentActivitySession.activityData.isEmpty == false
+            if self.currentActivitySession.activityData!.isEmpty == false
             {
-                previousActivityType = ActivityViewControllerType(rawValue: self.currentActivitySession.activityData[self.currentActivityIndex + 1].keys.first!)!
+                previousActivityType = ActivityViewControllerType(rawValue: self.currentActivitySession.activityData![self.currentActivityIndex + 1].keys.first!)!
                 
             }
             else
             {
-                previousActivityType = (self.currentActivity.activityData[self.currentActivityIndex + 1] as NSDictionary).allKeys.first! as! ActivityViewControllerType
+                previousActivityType = (self.currentActivity.activityData![self.currentActivityIndex + 1] as NSDictionary).allKeys.first! as! ActivityViewControllerType
             }
             
-            self.currentActivitySession.activityData[self.currentActivityIndex + 1].updateValue(self.currentViewController.saveActivityState?() ?? "", forKey: previousActivityType.rawValue)
+            self.currentActivitySession.activityData![self.currentActivityIndex + 1].updateValue(self.currentViewController.saveActivityState?() ?? "", forKey: previousActivityType.rawValue)
             
             dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
                 guard let previousPageVC = self.viewControllerForPageType(activityType) else { return }
@@ -295,16 +307,16 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
         
         dispatch_async(activityLoadingQueue) { [unowned self] () -> Void in
             var previousActivityType : ActivityViewControllerType
-            if self.currentActivitySession.activityData.isEmpty == false
+            if self.currentActivitySession.activityData!.isEmpty == false
             {
-                previousActivityType = ActivityViewControllerType(rawValue: self.currentActivitySession.activityData[self.currentActivityIndex + 1].keys.first!)!
+                previousActivityType = ActivityViewControllerType(rawValue: self.currentActivitySession.activityData![self.currentActivityIndex + 1].keys.first!)!
                 
             }
             else
             {
-                previousActivityType = ActivityViewControllerType(rawValue: self.currentActivity.activityData[self.currentActivityIndex + 1].keys.first!)!
+                previousActivityType = ActivityViewControllerType(rawValue: self.currentActivity.activityData![self.currentActivityIndex + 1].keys.first!)!
             }
-            self.currentActivitySession.activityData[self.currentActivityIndex].updateValue(self.currentViewController.saveActivityState?() ?? "", forKey: previousActivityType.rawValue)
+            self.currentActivitySession.activityData![self.currentActivityIndex].updateValue(self.currentViewController.saveActivityState?() ?? "", forKey: previousActivityType.rawValue)
             
             dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
                 self.saveProgressIndicator.startAnimating(true)
@@ -347,30 +359,30 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
         dispatch_async(activityLoadingQueue) { [unowned self] () -> Void in
             var activityType : ActivityViewControllerType
             var activityData : AnyObject
-            if self.currentActivitySession.activityData.isEmpty == false
+            if self.currentActivitySession.activityData!.isEmpty == false
             {
-                activityType = ActivityViewControllerType(rawValue: self.currentActivitySession.activityData[self.currentActivityIndex].keys.first!)!
-                activityData = self.currentActivitySession.activityData[self.currentActivityIndex].values.first!
+                activityType = ActivityViewControllerType(rawValue: self.currentActivitySession.activityData![self.currentActivityIndex].keys.first!)!
+                activityData = self.currentActivitySession.activityData![self.currentActivityIndex].values.first!
                 
             }
             else
             {
-                activityType = ActivityViewControllerType(rawValue: self.currentActivity.activityData[self.currentActivityIndex].keys.first!)!
-                activityData = self.currentActivity.activityData[self.currentActivityIndex].keys.first!
+                activityType = ActivityViewControllerType(rawValue: self.currentActivity.activityData![self.currentActivityIndex].keys.first!)!
+                activityData = self.currentActivity.activityData![self.currentActivityIndex].keys.first!
             }
             
             var previousActivityType : ActivityViewControllerType
-            if self.currentActivitySession.activityData.isEmpty == false
+            if self.currentActivitySession.activityData!.isEmpty == false
             {
-                previousActivityType = ActivityViewControllerType(rawValue: self.currentActivitySession.activityData[self.currentActivityIndex - 1].keys.first!)!
+                previousActivityType = ActivityViewControllerType(rawValue: self.currentActivitySession.activityData![self.currentActivityIndex - 1].keys.first!)!
                 
             }
             else
             {
-                previousActivityType = ActivityViewControllerType(rawValue: self.currentActivity.activityData[self.currentActivityIndex - 1].keys.first!)!
+                previousActivityType = ActivityViewControllerType(rawValue: self.currentActivity.activityData![self.currentActivityIndex - 1].keys.first!)!
             }
             
-            self.currentActivitySession.activityData[self.currentActivityIndex - 1].updateValue(self.currentViewController.saveActivityState?() ?? "", forKey: previousActivityType.rawValue)
+            self.currentActivitySession.activityData![self.currentActivityIndex - 1].updateValue(self.currentViewController.saveActivityState?() ?? "", forKey: previousActivityType.rawValue)
             
             dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
                 guard let nextPageVC = self.viewControllerForPageType(activityType) else { return }
@@ -406,7 +418,7 @@ private class ActivityManagerVC: UIViewController, CESActivityManager
 
 extension ActivityManagerVC
 {
-    class ActivityIntroVC: FormattedVC
+    private class ActivityIntroVC: FormattedVC
     {
         var summary : String!
             {
@@ -433,22 +445,24 @@ extension ActivityManagerVC
         private var titleLabel : CESOutlinedLabel!
         private var summaryTextView : CESOutlinedLabel!
         
-        private override func viewDidLoad()
+        override func viewDidLoad()
         {
             super.viewDidLoad()
+            view.backgroundColor = .clearColor()
             
             summaryTextView = CESOutlinedLabel()
+            summaryTextView.translatesAutoresizingMaskIntoConstraints = false
             summaryTextView.text = summary
             summaryTextView.textAlignment = .Center
             summaryTextView.font = UIFont.systemFontOfSize(28.0, weight: UIFontWeightRegular)
-            summaryTextView.backgroundColor = view.backgroundColor?.lighter
+            summaryTextView.backgroundColor = ColorScheme.currentColorScheme().backgroundColor.lighter
             summaryTextView.textColor = ColorScheme.currentColorScheme().primaryColor
             summaryTextView.layer.borderColor = ColorScheme.currentColorScheme().secondaryColor.CGColor
             view.addSubview(summaryTextView)
             view.addConstraint(NSLayoutConstraint(item: summaryTextView, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
             view.addConstraint(NSLayoutConstraint(item: summaryTextView, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
-            view.addConstraint(NSLayoutConstraint(item: summaryTextView, attribute: .Width, relatedBy: .LessThanOrEqual, toItem: view, attribute: .Width, multiplier: 0.7, constant: 0.0))
-            view.addConstraint(NSLayoutConstraint(item: summaryTextView, attribute: .Height, relatedBy: .LessThanOrEqual, toItem: view, attribute: .Height, multiplier: 0.5, constant: 0.0))
+            view.addConstraint(NSLayoutConstraint(item: summaryTextView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.7, constant: 0.0))
+            view.addConstraint(NSLayoutConstraint(item: summaryTextView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.5, constant: 0.0))
             
             titleLabel = CESOutlinedLabel()
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
