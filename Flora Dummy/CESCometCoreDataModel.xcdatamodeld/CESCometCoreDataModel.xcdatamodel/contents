@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15B22c" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15C27e" minimumToolsVersion="Xcode 7.0">
     <entity name="Activity" syncable="YES">
         <attribute name="activityData" attributeType="String" syncable="YES"/>
         <attribute name="activityDescription" attributeType="String" syncable="YES"/>
@@ -23,6 +23,7 @@
     </entity>
     <entity name="Class" syncable="YES">
         <attribute name="classID" attributeType="String" syncable="YES"/>
+        <attribute name="notifications" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="schoolYear" attributeType="String" syncable="YES"/>
         <attribute name="subjectID" attributeType="String" syncable="YES"/>
     </entity>
@@ -48,11 +49,11 @@
         <attribute name="userType" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Activity" positionX="-27" positionY="63" width="128" height="180"/>
         <element name="ActivitySession" positionX="-18" positionY="18" width="128" height="165"/>
-        <element name="Class" positionX="0" positionY="99" width="128" height="90"/>
+        <element name="Class" positionX="0" positionY="99" width="128" height="30"/>
         <element name="Color" positionX="-54" positionY="-18" width="128" height="30"/>
         <element name="CurrentColor" positionX="-36" positionY="9" width="128" height="30"/>
         <element name="CurrentUser" positionX="-63" positionY="-18" width="128" height="180"/>
-        <element name="Activity" positionX="-27" positionY="63" width="128" height="180"/>
     </elements>
 </model>

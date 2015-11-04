@@ -18,7 +18,7 @@
     {
         // Initialize
         type = [[NSString alloc] initWithFormat:@""];
-        variableContent = [[NSDictionary alloc] initWithObjects:nil forKeys:nil];
+        variableContent = [NSDictionary new];
         
     }
     return self;
@@ -30,7 +30,7 @@
     {
         // Initialize
         type = [[NSString alloc] initWithFormat:@""];
-        variableContent = [[NSDictionary alloc] initWithObjects:nil forKeys:nil];
+        variableContent = [NSDictionary new];
         
     }
     return self;

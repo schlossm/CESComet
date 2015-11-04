@@ -9,17 +9,17 @@
 import UIKit
 /*
 UIView.animateWithDuration(1.5, delay: 1.5, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { [unowned self] () -> Void in
-    
-    activityLoadingView.transform = CGAffineTransformMakeScale(self.view.frame.size.width/activityLoadingView.frame.size.width, self.view.frame.size.height/activityLoadingView.frame.size.height)
-    activityLoadingView.effect = nil
-    activityLoadingView.contentView.alpha = 0.0
-    
-    }, completion: { [unowned self] (finished) -> Void in
-        
-        loadingWheel.stopAnimating(true)
-        activityLoadingView.removeFromSuperview()
-        self.view.userInteractionEnabled = true
-    })*/
+
+activityLoadingView.transform = CGAffineTransformMakeScale(self.view.frame.size.width/activityLoadingView.frame.size.width, self.view.frame.size.height/activityLoadingView.frame.size.height)
+activityLoadingView.effect = nil
+activityLoadingView.contentView.alpha = 0.0
+
+}, completion: { [unowned self] (finished) -> Void in
+
+loadingWheel.stopAnimating(true)
+activityLoadingView.removeFromSuperview()
+self.view.userInteractionEnabled = true
+})*/
 
 class ActivityManagerPresentationSegue: UIStoryboardSegue
 {
@@ -29,8 +29,6 @@ class ActivityManagerPresentationSegue: UIStoryboardSegue
     {
         let sourceVCView = sourceViewController.view
         let destVCView = destinationViewController.view
-        
-        //(destinationViewController as! CESActivityManager).sourceView = sourceView
         
         let deltaX = sourceVCView.frame.midX - sourceView.frame.midX
         let deltaY = sourceVCView.frame.midY - sourceView.frame.midY
@@ -44,11 +42,29 @@ class ActivityManagerPresentationSegue: UIStoryboardSegue
         destVCView.transform = CGAffineTransformMakeTranslation(-deltaX, -deltaY)
         destVCView.transform = CGAffineTransformScale(destVCView.transform, 1/deltaWidth, 1/deltaHeight)
         
-        UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: .AllowAnimatedContent, animations: { [unowned self] () -> Void in
+        UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.0, usingSpringWithDamping: 0.77, initialSpringVelocity: 0.9, options: .AllowAnimatedContent, animations: { [unowned self] () -> Void in
             self.sourceView.transform = CGAffineTransformConcat(CGAffineTransformMakeTranslation(deltaX, deltaY), CGAffineTransformMakeScale(deltaWidth, deltaHeight))
             destVCView.transform = CGAffineTransformIdentity
             destVCView.alpha = 1.0
             }) { (finished) -> Void in
+                for subview in self.sourceView.subviews
+                {
+                    if subview.classForCoder == NSClassFromString("_UIVisualEffectContentView")
+                    {
+                        for subviewSubview in subview.subviews
+                        {
+                            for subviewSubviewSubview in subviewSubview.subviews
+                            {
+                                if subviewSubviewSubview.classForCoder == MSProgressView.classForCoder()
+                                {
+                                    (subviewSubviewSubview as! MSProgressView).stopAnimating(true)
+                                }
+                            }
+                        }
+                    }
+                }
+                destVCView.userInteractionEnabled = true
+                self.sourceView.removeFromSuperview()
                 self.sourceViewController.presentViewController(self.destinationViewController, animated: false, completion: nil)
         }
     }

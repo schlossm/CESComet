@@ -26,7 +26,6 @@
 
 @property (nonatomic, weak) id<ActivityInfoDelegate>delegate;
 
--(id)init;
 -(id)initWithActivity: (id<Activity>)a;
 -(IBAction)save:(id)sender;
 

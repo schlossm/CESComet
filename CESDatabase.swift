@@ -419,13 +419,23 @@ private class MainActivitiesDatabaseManager : MainActivitiesDatabase
             guard let downloadedClasses = returnArray as? [NSDictionary] else {print("Class Error 2"); /*//TODO: Error*/ return }
             for downloadedClass in downloadedClasses
             {
-                guard NADatabase.sharedDatabase().keyValuePairIsNewForEntity("Class", keyValuePair: ("classID", downloadedClass["classID"] as! String)) else { continue }
+                guard NADatabase.sharedDatabase().keyValuePairIsNewForEntity("Class", keyValuePair: ("classID", downloadedClass["classID"] as! String)) else
+                {
+                    let fetch = NSFetchRequest(entityName: "Class")
+                    fetch.predicate = NSPredicate(format: "classID ==[c] %@", downloadedClass["classID"] as! String)
+                    let results = try! NADatabase.sharedDatabase().managedObjectContext.executeFetchRequest(fetch) as! [NSManagedObject]
+                    let classObject = results.first!
+                    classObject.setValue(downloadedClass["notifications"] as? String, forKey: "notifications")
+                    try! saveCoreData()
+                    continue
+                }
                 
                 let entity = NSEntityDescription.entityForName("Class", inManagedObjectContext: NADatabase.sharedDatabase().managedObjectContext)!
-                let activitySession = NSManagedObject(entity: entity, insertIntoManagedObjectContext: NADatabase.sharedDatabase().managedObjectContext)
-                activitySession.setValue(downloadedClass["schoolYear"] as! String, forKey: "schoolYear")
-                activitySession.setValue(downloadedClass["classID"] as! String, forKey: "classID")
-                activitySession.setValue(downloadedClass["subjectID"] as! String, forKey: "subjectID")
+                let classObject = NSManagedObject(entity: entity, insertIntoManagedObjectContext: NADatabase.sharedDatabase().managedObjectContext)
+                classObject.setValue(downloadedClass["notifications"] as? String, forKey: "notifications")
+                classObject.setValue(downloadedClass["schoolYear"] as! String, forKey: "schoolYear")
+                classObject.setValue(downloadedClass["classID"] as! String, forKey: "classID")
+                classObject.setValue(downloadedClass["subjectID"] as! String, forKey: "subjectID")
                 
                 do
                 {

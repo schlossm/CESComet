@@ -158,117 +158,127 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvD-PQ-Oyo">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yEh-yb-5WE">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvD-PQ-Oyo">
+                                        <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </containerView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page X of X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7C-fw-XbQ" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="20" width="178" height="50"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="2xf-dV-1J6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nh-wm-tVL">
+                                        <rect key="frame" x="530" y="20" width="50" height="50"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="4nh-wm-tVL" secondAttribute="height" multiplier="1:1" id="9PX-h2-4ml"/>
+                                        </constraints>
+                                        <state key="normal" title="⊞" image="TOC">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="viewTOC" destination="XoX-SV-9rb" eventType="touchUpInside" id="HUE-gb-Won"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lN2-f8-ggW">
+                                        <rect key="frame" x="20" y="529" width="138" height="51"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                                        <state key="normal" title="Previous">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="previousPage" destination="XoX-SV-9rb" eventType="touchUpInside" id="AsF-nB-6I9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70x-sV-DfH">
+                                        <rect key="frame" x="261" y="529" width="78" height="51"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveActivityProgress" destination="XoX-SV-9rb" eventType="touchUpInside" id="d0d-8f-QWO"/>
+                                        </connections>
+                                    </button>
+                                    <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RcP-hf-yD3" customClass="MSProgressView" customModule="CES" customModuleProvider="target">
+                                        <rect key="frame" x="274" y="529" width="51" height="51"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="RcP-hf-yD3" secondAttribute="height" multiplier="1:1" id="WfR-i9-Wre"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="barWidth">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="barColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMq-w8-bIx">
+                                        <rect key="frame" x="506" y="529" width="74" height="51"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                                        <state key="normal" title="Next">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="nextPage" destination="XoX-SV-9rb" eventType="touchUpInside" id="Vxm-nd-xhA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page X of X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7C-fw-XbQ" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
-                                <rect key="frame" x="20" y="20" width="178" height="50"/>
-                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="2xf-dV-1J6"/>
+                                    <constraint firstItem="dvD-PQ-Oyo" firstAttribute="top" secondItem="yEh-yb-5WE" secondAttribute="top" constant="20" id="0WD-8U-ds8"/>
+                                    <constraint firstItem="k7C-fw-XbQ" firstAttribute="top" secondItem="yEh-yb-5WE" secondAttribute="top" constant="20" id="3gk-gR-KqY"/>
+                                    <constraint firstItem="70x-sV-DfH" firstAttribute="centerX" secondItem="yEh-yb-5WE" secondAttribute="centerX" id="4dL-kc-b0b"/>
+                                    <constraint firstItem="dvD-PQ-Oyo" firstAttribute="leading" secondItem="yEh-yb-5WE" secondAttribute="leading" id="6ez-i9-57E"/>
+                                    <constraint firstAttribute="trailing" secondItem="KMq-w8-bIx" secondAttribute="trailing" constant="20" id="7jR-ig-ubQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="KMq-w8-bIx" secondAttribute="bottom" constant="20" id="BKa-8h-EzR"/>
+                                    <constraint firstItem="4nh-wm-tVL" firstAttribute="height" secondItem="k7C-fw-XbQ" secondAttribute="height" id="FhP-q1-Q3a"/>
+                                    <constraint firstAttribute="bottom" secondItem="70x-sV-DfH" secondAttribute="bottom" constant="20" id="P0n-Xl-qCH"/>
+                                    <constraint firstItem="lN2-f8-ggW" firstAttribute="leading" secondItem="yEh-yb-5WE" secondAttribute="leading" constant="20" id="PWM-BN-KSC"/>
+                                    <constraint firstItem="4nh-wm-tVL" firstAttribute="top" secondItem="yEh-yb-5WE" secondAttribute="top" constant="20" id="RY7-BX-vkM"/>
+                                    <constraint firstItem="RcP-hf-yD3" firstAttribute="centerX" secondItem="70x-sV-DfH" secondAttribute="centerX" id="VBm-83-Ftm"/>
+                                    <constraint firstItem="RcP-hf-yD3" firstAttribute="centerY" secondItem="70x-sV-DfH" secondAttribute="centerY" id="WX9-rI-HmV"/>
+                                    <constraint firstAttribute="bottom" secondItem="lN2-f8-ggW" secondAttribute="bottom" constant="20" id="Xk7-qZ-I6A"/>
+                                    <constraint firstItem="RcP-hf-yD3" firstAttribute="height" secondItem="70x-sV-DfH" secondAttribute="height" id="YRN-9N-Eql"/>
+                                    <constraint firstAttribute="bottom" secondItem="dvD-PQ-Oyo" secondAttribute="bottom" id="a3S-sc-xkL"/>
+                                    <constraint firstAttribute="trailing" secondItem="4nh-wm-tVL" secondAttribute="trailing" constant="20" id="dAT-bg-KUM"/>
+                                    <constraint firstItem="k7C-fw-XbQ" firstAttribute="leading" secondItem="yEh-yb-5WE" secondAttribute="leading" constant="20" id="eIS-u8-AgI"/>
+                                    <constraint firstAttribute="trailing" secondItem="dvD-PQ-Oyo" secondAttribute="trailing" id="eJ9-yW-YvP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lN2-f8-ggW">
-                                <rect key="frame" x="20" y="530" width="138" height="50"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
-                                <state key="normal" title="Previous">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="previousPage" destination="XoX-SV-9rb" eventType="touchUpInside" id="AsF-nB-6I9"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70x-sV-DfH">
-                                <rect key="frame" x="261" y="530" width="78" height="50"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveActivityProgress" destination="XoX-SV-9rb" eventType="touchUpInside" id="d0d-8f-QWO"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMq-w8-bIx">
-                                <rect key="frame" x="506" y="530" width="74" height="50"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
-                                <state key="normal" title="Next">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="nextPage" destination="XoX-SV-9rb" eventType="touchUpInside" id="Vxm-nd-xhA"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nh-wm-tVL">
-                                <rect key="frame" x="530" y="20" width="50" height="50"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="4nh-wm-tVL" secondAttribute="height" multiplier="1:1" id="9PX-h2-4ml"/>
-                                </constraints>
-                                <state key="normal" title="⊞" image="TOC">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="viewTOC" destination="XoX-SV-9rb" eventType="touchUpInside" id="HUE-gb-Won"/>
-                                </connections>
-                            </button>
-                            <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RcP-hf-yD3" customClass="MSProgressView" customModule="CES" customModuleProvider="target">
-                                <rect key="frame" x="275" y="530" width="50" height="50"/>
-                                <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="RcP-hf-yD3" secondAttribute="height" multiplier="1:1" id="WfR-i9-Wre"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="barWidth">
-                                        <real key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="barColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="RZG-Gd-QFy" firstAttribute="width" secondItem="lWh-Jp-eya" secondAttribute="width" id="1Hy-Mn-xDp"/>
-                            <constraint firstItem="KMq-w8-bIx" firstAttribute="centerY" secondItem="70x-sV-DfH" secondAttribute="centerY" id="5FC-sS-82l"/>
-                            <constraint firstItem="dvD-PQ-Oyo" firstAttribute="leading" secondItem="lWh-Jp-eya" secondAttribute="leading" id="66t-G5-e6c"/>
-                            <constraint firstItem="70x-sV-DfH" firstAttribute="centerX" secondItem="lWh-Jp-eya" secondAttribute="centerX" id="9e1-gr-a2q"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="dvD-PQ-Oyo" secondAttribute="bottom" id="AT3-Zg-ALk"/>
-                            <constraint firstItem="70x-sV-DfH" firstAttribute="height" secondItem="lN2-f8-ggW" secondAttribute="height" id="Dj8-Wx-63W"/>
-                            <constraint firstAttribute="trailing" secondItem="dvD-PQ-Oyo" secondAttribute="trailing" id="EtW-GW-ef2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="KMq-w8-bIx" secondAttribute="trailing" id="GE4-id-5If"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="lN2-f8-ggW" secondAttribute="leading" id="HXL-YH-AAu"/>
-                            <constraint firstItem="lN2-f8-ggW" firstAttribute="height" secondItem="k7C-fw-XbQ" secondAttribute="height" id="Her-E5-euE"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="k7C-fw-XbQ" secondAttribute="leading" id="HfU-dR-1UL"/>
-                            <constraint firstItem="4bk-Pn-eeK" firstAttribute="top" secondItem="KMq-w8-bIx" secondAttribute="bottom" constant="20" id="RHT-ha-EWD"/>
-                            <constraint firstItem="70x-sV-DfH" firstAttribute="centerY" secondItem="lN2-f8-ggW" secondAttribute="centerY" id="SQo-sH-pBB"/>
-                            <constraint firstItem="dvD-PQ-Oyo" firstAttribute="top" secondItem="k7C-fw-XbQ" secondAttribute="top" id="TTj-Kc-aca"/>
-                            <constraint firstItem="k7C-fw-XbQ" firstAttribute="top" secondItem="LuS-bL-edQ" secondAttribute="bottom" id="V3T-77-ijm"/>
-                            <constraint firstItem="4nh-wm-tVL" firstAttribute="height" secondItem="k7C-fw-XbQ" secondAttribute="height" id="Ywl-8L-v1d"/>
+                            <constraint firstItem="yEh-yb-5WE" firstAttribute="leading" secondItem="lWh-Jp-eya" secondAttribute="leading" id="IXd-Wc-kg8"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="yEh-yb-5WE" secondAttribute="bottom" id="JGw-n5-7Iq"/>
+                            <constraint firstAttribute="trailing" secondItem="yEh-yb-5WE" secondAttribute="trailing" id="Pij-ZQ-Gvw"/>
+                            <constraint firstItem="yEh-yb-5WE" firstAttribute="top" secondItem="lWh-Jp-eya" secondAttribute="topMargin" id="YeH-Cf-xVC"/>
                             <constraint firstItem="RZG-Gd-QFy" firstAttribute="centerY" secondItem="lWh-Jp-eya" secondAttribute="centerY" id="bmH-TL-T3k"/>
                             <constraint firstItem="RZG-Gd-QFy" firstAttribute="centerX" secondItem="lWh-Jp-eya" secondAttribute="centerX" id="bzY-Dt-bdY"/>
                             <constraint firstItem="RZG-Gd-QFy" firstAttribute="height" secondItem="lWh-Jp-eya" secondAttribute="height" id="dDo-Dj-tGg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4nh-wm-tVL" secondAttribute="trailing" id="eSu-wn-CXj"/>
-                            <constraint firstItem="RcP-hf-yD3" firstAttribute="height" secondItem="70x-sV-DfH" secondAttribute="height" id="h8N-5g-9pa"/>
-                            <constraint firstItem="4nh-wm-tVL" firstAttribute="top" secondItem="LuS-bL-edQ" secondAttribute="bottom" id="hrL-1g-2bL"/>
-                            <constraint firstItem="RcP-hf-yD3" firstAttribute="centerX" secondItem="70x-sV-DfH" secondAttribute="centerX" id="jqC-TG-ZCz"/>
-                            <constraint firstItem="RcP-hf-yD3" firstAttribute="centerY" secondItem="70x-sV-DfH" secondAttribute="centerY" id="k1D-vi-5ZZ"/>
-                            <constraint firstItem="KMq-w8-bIx" firstAttribute="height" secondItem="lN2-f8-ggW" secondAttribute="height" id="myk-QC-HvZ"/>
-                            <constraint firstItem="4bk-Pn-eeK" firstAttribute="top" secondItem="lN2-f8-ggW" secondAttribute="bottom" constant="20" id="xPS-BR-lBf"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="contentView" destination="dvD-PQ-Oyo" id="mpb-0d-7W8"/>
+                        <outlet property="containerView" destination="dvD-PQ-Oyo" id="Ze9-oH-cgM"/>
+                        <outlet property="contentView" destination="yEh-yb-5WE" id="Y4g-MN-hfI"/>
                         <outlet property="nextButton" destination="KMq-w8-bIx" id="1NI-QT-8F4"/>
                         <outlet property="pageNumberLabel" destination="k7C-fw-XbQ" id="fTX-t3-EF3"/>
                         <outlet property="previousButton" destination="lN2-f8-ggW" id="Gyb-zO-Jme"/>
@@ -469,7 +479,7 @@ Arts</string>
                                     <outlet property="delegate" destination="oUn-n2-GXL" id="YKN-Pu-Hkh"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ca1-8X-Bm1" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ca1-8X-Bm1" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
                                 <rect key="frame" x="308" y="78" width="272" height="221.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -651,7 +661,7 @@ Arts</string>
                                     <outlet property="delegate" destination="dYs-TJ-pFa" id="bhu-gP-yDR"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urB-tE-27Y" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urB-tE-27Y" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
                                 <rect key="frame" x="308" y="78.5" width="264" height="221.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -833,7 +843,7 @@ Arts</string>
                                     <outlet property="delegate" destination="4Hd-Eo-SsX" id="Hjy-xa-6vz"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pp5-E2-87l" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pp5-E2-87l" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
                                 <rect key="frame" x="308" y="78" width="264" height="221.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -1015,7 +1025,7 @@ Arts</string>
                                     <outlet property="delegate" destination="pVU-qu-p08" id="Qsu-82-5L7"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcH-m1-sPT" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcH-m1-sPT" customClass="CESOutlinedLabel" customModule="CES" customModuleProvider="target">
                                 <rect key="frame" x="308" y="78" width="264" height="221.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -1144,6 +1154,6 @@ Arts</string>
         <image name="username" width="595" height="842"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dnm-iz-g5t"/>
+        <segue reference="cGw-dV-P1f"/>
     </inferredMetricsTieBreakers>
 </document>

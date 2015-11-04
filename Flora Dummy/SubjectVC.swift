@@ -142,6 +142,8 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
         view.addConstraint(NSLayoutConstraint(item: statusBarView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0.0))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[statusBarView(20)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["statusBarView":statusBarView]))
         
+        notificationField.text = "Loading Notifications..."
+        
         checkForActivityDataLoaded()
     }
     
@@ -187,6 +189,12 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
                 noActivitiesView?.alpha = 1.0
                 noActivitiesView?.userInteractionEnabled = true
             }
+            
+            let classFetchRequest = NSFetchRequest(entityName: "Class")
+            classFetchRequest.predicate = NSPredicate(format: "classID ==[c] %d", subjectID)
+            let classResults = try! NADatabase.sharedDatabase().managedObjectContext.executeFetchRequest(classFetchRequest) as! [NSManagedObject]
+            let classObject = classResults.first
+            notificationField.text = classObject?.valueForKey("notifications") as? String ?? "No Notifications"
         }
     }
     
@@ -202,6 +210,13 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
             activities.append(CESDatabase.databaseManagerForMainActivitiesClass().activityForActivityID(result.valueForKey("activityID") as! String))
         }
         activitiesTable.reloadData()
+        let classFetchRequest = NSFetchRequest(entityName: "Class")
+        classFetchRequest.predicate = NSPredicate(format: "classID ==[c] %d", subjectID)
+        let classResults = try! NADatabase.sharedDatabase().managedObjectContext.executeFetchRequest(classFetchRequest) as! [NSManagedObject]
+        let classObject = classResults.first!
+        UIView.transitionWithView(notificationField, duration: CESCometTransitionDuration, options: [.AllowAnimatedContent, .TransitionCrossDissolve], animations: { [unowned self] () -> Void in
+            self.notificationField.text = classObject.valueForKey("notifications") as? String ?? "No Notifications"
+            }, completion: nil)
         UIView.animateWithDuration(CESCometTransitionDuration, delay: 2.3, options: [.AllowAnimatedContent], animations: { [unowned self] () -> Void in
             self.loadingView?.alpha = 0.0
             if self.activities.isEmpty
