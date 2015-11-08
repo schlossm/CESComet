@@ -499,9 +499,6 @@ extension ActivityManagerVC
     {
         switch pageType
         {
-        case .Calculator:
-            return CalculatorVC()
-            
         case .ClockDrag:
             return ClockDragVC()
             

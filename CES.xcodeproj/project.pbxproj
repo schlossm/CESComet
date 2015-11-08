@@ -10,6 +10,7 @@
 		1009AC3D1A3BD712009B4813 /* CESDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009AC3C1A3BD712009B4813 /* CESDatabase.swift */; };
 		100ACDE01AA14FE900B0FAC2 /* PasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */; };
 		100ACDE41AA156F100B0FAC2 /* CESCometAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100ACDE31AA156F100B0FAC2 /* CESCometAlertController.swift */; };
+		101668F31BEBA83D00433A3B /* String+Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101668F21BEBA83D00433A3B /* String+Functions.swift */; };
 		101F31191A87CC0500F81711 /* Carroll.json in Resources */ = {isa = PBXBuildFile; fileRef = 101F31181A87CC0500F81711 /* Carroll.json */; };
 		101F311E1A87D3B300F81711 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101F311D1A87D3B300F81711 /* ColorManager.swift */; };
 		103265CF1A600CF800511546 /* PageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103265CD1A600CE800511546 /* PageManager.swift */; };
@@ -75,11 +76,11 @@
 		10DDE8C81A00616C0079FAB9 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B8787B19FC250A005D9937 /* HomeVC.swift */; };
 		10DDE8CB1A0061FC0079FAB9 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106C8BD319FED841009B0983 /* SettingsVC.swift */; };
 		10E76B241A86D4F600D9BD83 /* CESCometUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E76B231A86D4F600D9BD83 /* CESCometUIImageView.swift */; };
+		10F7D9C61BEA7DD6008F5802 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F7D9C51BEA7DD6008F5802 /* Calculator.swift */; };
 		4C6A6C321A0E8C9500C3A7A7 /* trigView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A6C311A0E8C9500C3A7A7 /* trigView.xib */; };
 		4C6A6C341A11613800C3A7A7 /* constView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A6C331A11613800C3A7A7 /* constView.xib */; };
 		4C6A6C361A11669200C3A7A7 /* expoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A6C351A11669200C3A7A7 /* expoView.xib */; };
 		4C6A6C381A11685200C3A7A7 /* extraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A6C371A11685200C3A7A7 /* extraView.xib */; };
-		4C7DC3FE1A09A32C006E3E23 /* CalculatorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7DC3FC1A09A32C006E3E23 /* CalculatorVC.m */; };
 		4C7DC3FF1A09A32C006E3E23 /* CalculatorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C7DC3FD1A09A32C006E3E23 /* CalculatorVC.xib */; };
 		4CC305E819FC42C00066A53B /* VocabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC305E619FC42C00066A53B /* VocabVC.m */; };
 		4CC305E919FC42C00066A53B /* VocabVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC305E719FC42C00066A53B /* VocabVC.xib */; };
@@ -184,6 +185,7 @@
 		1009AC3C1A3BD712009B4813 /* CESDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESDatabase.swift; sourceTree = "<group>"; };
 		100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordVC.swift; sourceTree = "<group>"; };
 		100ACDE31AA156F100B0FAC2 /* CESCometAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESCometAlertController.swift; sourceTree = "<group>"; };
+		101668F21BEBA83D00433A3B /* String+Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Functions.swift"; sourceTree = "<group>"; };
 		101F31181A87CC0500F81711 /* Carroll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Carroll.json; sourceTree = "<group>"; };
 		101F311D1A87D3B300F81711 /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		103265CD1A600CE800511546 /* PageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageManager.swift; sourceTree = "<group>"; };
@@ -255,13 +257,14 @@
 		10CA6B8B1BBD9EDC00DFFC35 /* UIColor+Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Functions.swift"; sourceTree = "<group>"; };
 		10CA6B8D1BBDA1D800DFFC35 /* CESLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESLabel.swift; sourceTree = "<group>"; };
 		10CA6B8F1BBDA28200DFFC35 /* CESOutlinedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESOutlinedView.swift; sourceTree = "<group>"; };
-		10CF10E31AD8C4BF0016207D /* CESComet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CESComet.storyboard; sourceTree = "<group>"; };
+		10CF10E31AD8C4BF0016207D /* CESComet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CESComet.storyboard; path = ../CESComet.storyboard; sourceTree = "<group>"; };
 		10CF10E51AD8D7AF0016207D /* HomeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeButton.swift; sourceTree = "<group>"; };
 		10CF10E71AD9F4500016207D /* PhrasesPerGrade.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = PhrasesPerGrade.strings; sourceTree = "<group>"; };
 		10CF1A811BE6FC580081A16D /* ActivityManagerPresentationSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityManagerPresentationSegue.swift; sourceTree = "<group>"; };
 		10D977091AB8D00800BD54BD /* DrawingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingVC.swift; sourceTree = "<group>"; };
 		10DD07D11A1661350026B0DA /* MathProblemTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathProblemTextField.swift; sourceTree = "<group>"; };
 		10E76B231A86D4F600D9BD83 /* CESCometUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESCometUIImageView.swift; sourceTree = "<group>"; };
+		10F7D9C51BEA7DD6008F5802 /* Calculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		4C6A6C311A0E8C9500C3A7A7 /* trigView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = trigView.xib; sourceTree = "<group>"; };
 		4C6A6C331A11613800C3A7A7 /* constView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = constView.xib; sourceTree = "<group>"; };
 		4C6A6C351A11669200C3A7A7 /* expoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = expoView.xib; sourceTree = "<group>"; };
@@ -320,9 +323,6 @@
 		921894EF17F7752A00DFB26B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		921894F117F7752A00DFB26B /* CES-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CES-Prefix.pch"; sourceTree = "<group>"; };
 		921894FE17F7752A00DFB26B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9218950D17F7752A00DFB26B /* FloraDummyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FloraDummyTests-Info.plist"; sourceTree = "<group>"; };
-		9218950F17F7752A00DFB26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9218951117F7752A00DFB26B /* Flora_DummyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Flora_DummyTests.m; sourceTree = "<group>"; };
 		9218953517F776BA00DFB26B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		921DD2661A2A434D00C18079 /* PageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageVC.h; sourceTree = "<group>"; };
 		921DD2671A2A434D00C18079 /* PageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageVC.m; sourceTree = "<group>"; };
@@ -459,8 +459,9 @@
 			children = (
 				10B8787B19FC250A005D9937 /* HomeVC.swift */,
 				100ACDDF1AA14FE900B0FAC2 /* PasswordVC.swift */,
-				106948E61A6301AA0093F9DF /* SubjectVC.swift */,
 				106C8BD319FED841009B0983 /* SettingsVC.swift */,
+				106948E61A6301AA0093F9DF /* SubjectVC.swift */,
+				10F7D9C51BEA7DD6008F5802 /* Calculator.swift */,
 			);
 			name = "Core Pages";
 			sourceTree = "<group>";
@@ -650,14 +651,6 @@
 			name = "Weather View";
 			sourceTree = "<group>";
 		};
-		10CF1A801BE6FC3D0081A16D /* Activity Manager Segues */ = {
-			isa = PBXGroup;
-			children = (
-				10CF1A811BE6FC580081A16D /* ActivityManagerPresentationSegue.swift */,
-			);
-			name = "Activity Manager Segues";
-			sourceTree = "<group>";
-		};
 		10D977081AB8CF6200BD54BD /* DrawingVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -683,12 +676,13 @@
 		10EE3B7C1BE0271A00285448 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				10CF1A801BE6FC3D0081A16D /* Activity Manager Segues */,
-				105C7C221BE5225A003B413A /* CES Subject Segues */,
+				10CF1A811BE6FC580081A16D /* ActivityManagerPresentationSegue.swift */,
 				1078FC151A0E945000A14836 /* Calculator Transition */,
+				105C7C221BE5225A003B413A /* CES Subject Segues */,
 				101F311D1A87D3B300F81711 /* ColorManager.swift */,
 				10AA29991BBD74E1004AB2B1 /* CurrentUser.swift */,
 				10B8787D19FC2881005D9937 /* Definitions.swift */,
+				101668F21BEBA83D00433A3B /* String+Functions.swift */,
 				10CA6B8B1BBD9EDC00DFFC35 /* UIColor+Functions.swift */,
 			);
 			name = Utilities;
@@ -750,9 +744,7 @@
 		921894D717F7752A00DFB26B = {
 			isa = PBXGroup;
 			children = (
-				10CF10E31AD8C4BF0016207D /* CESComet.storyboard */,
-				921894E917F7752A00DFB26B /* Flora Dummy */,
-				9218950B17F7752A00DFB26B /* Flora DummyTests */,
+				921894E917F7752A00DFB26B /* CESComet */,
 				921894E217F7752A00DFB26B /* Frameworks */,
 				921894E117F7752A00DFB26B /* Products */,
 			);
@@ -787,10 +779,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		921894E917F7752A00DFB26B /* Flora Dummy */ = {
+		921894E917F7752A00DFB26B /* CESComet */ = {
 			isa = PBXGroup;
 			children = (
 				10B8787819FC1B40005D9937 /* AppDelegate.swift */,
+				10CF10E31AD8C4BF0016207D /* CESComet.storyboard */,
 				10BF3FA01A2BEF5900B1A755 /* Launch Screen.xib */,
 				10EE3B7B1BE0271500285448 /* CoreApp */,
 				10BFE6E01A20465100E68C77 /* Home View Controller */,
@@ -808,6 +801,7 @@
 				5D709CAC1A09A28A000F44DF /* Mason */,
 				921894EA17F7752A00DFB26B /* Supporting Files */,
 			);
+			name = CESComet;
 			path = "Flora Dummy";
 			sourceTree = "<group>";
 		};
@@ -819,24 +813,6 @@
 				921894EC17F7752A00DFB26B /* InfoPlist.strings */,
 				921894EF17F7752A00DFB26B /* main.m */,
 				921894F117F7752A00DFB26B /* CES-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9218950B17F7752A00DFB26B /* Flora DummyTests */ = {
-			isa = PBXGroup;
-			children = (
-				9218951117F7752A00DFB26B /* Flora_DummyTests.m */,
-				9218950C17F7752A00DFB26B /* Supporting Files */,
-			);
-			path = "Flora DummyTests";
-			sourceTree = "<group>";
-		};
-		9218950C17F7752A00DFB26B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9218950D17F7752A00DFB26B /* FloraDummyTests-Info.plist */,
-				9218950E17F7752A00DFB26B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1231,6 +1207,7 @@
 				92F78DA61A263D0B0048612E /* QuickQuizCreationPopOverVC.m in Sources */,
 				5DC011811A37CD190016F981 /* MicrophoneVC.m in Sources */,
 				921194FF19FE015100644054 /* QuickQuizVC.m in Sources */,
+				101668F31BEBA83D00433A3B /* String+Functions.swift in Sources */,
 				101F311E1A87D3B300F81711 /* ColorManager.swift in Sources */,
 				10E76B241A86D4F600D9BD83 /* CESCometUIImageView.swift in Sources */,
 				10AA29C81BBD75A7004AB2B1 /* String+AppendingPath.swift in Sources */,
@@ -1260,7 +1237,6 @@
 				10AA29CB1BBD75A7004AB2B1 /* NADataUploader.swift in Sources */,
 				1078FC1D1A0E952C00A14836 /* CalculatorPresentationController.swift in Sources */,
 				10CA6B8C1BBD9EDC00DFFC35 /* UIColor+Functions.swift in Sources */,
-				4C7DC3FE1A09A32C006E3E23 /* CalculatorVC.m in Sources */,
 				108E9B151A27A67E00120A63 /* NSString+HTML.m in Sources */,
 				108E9B0F1A27A65F00120A63 /* MWFeedItem.m in Sources */,
 				10BFE6ED1A20468E00E68C77 /* WeatherItem+Parse.m in Sources */,
@@ -1270,6 +1246,7 @@
 				105C7C1E1BE50C06003B413A /* CESSubjectSegue.swift in Sources */,
 				104BA0F91A042717007BD9DE /* Page_IntroVC.swift in Sources */,
 				103265CF1A600CF800511546 /* PageManager.swift in Sources */,
+				10F7D9C61BEA7DD6008F5802 /* Calculator.swift in Sources */,
 				10B8787919FC1B40005D9937 /* AppDelegate.swift in Sources */,
 				92CB449A1A203F740082C761 /* Content.m in Sources */,
 				103E82F21BE3BF5B0076E8DB /* MSProgressView.swift in Sources */,
@@ -1283,14 +1260,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				921894ED17F7752A00DFB26B /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		9218950E17F7752A00DFB26B /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9218950F17F7752A00DFB26B /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

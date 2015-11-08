@@ -14,8 +14,8 @@ import UIKit
 //  Global Variables
 //------------------
 
-let titleFont = UIFont(name: "MarkerFelt-Wide", size: 48.0)!
-let bodyFont  = UIFont(name: "Marker Felt", size: 24.0)!
+let titleFont = UIFont.systemFontOfSize(48.0, weight: UIFontWeightHeavy)
+let bodyFont  = UIFont.systemFontOfSize(24.0, weight: UIFontWeightRegular)
 
 let CESCometTransitionDuration = 0.3
 
@@ -23,7 +23,7 @@ let ActivityDataLoaded = "CESDatabase Activity Data Downloaded"
 
 @objc enum ActivityViewControllerType : Int
 {
-    case Intro, Module, Sandbox, Read, SquaresDragAndDrop, MathProblem, DrawingVC, Calculator, Garden, ClockDrag, PictureQuiz, QuickQuiz, Vocab, Spelling
+    case Intro, Module, Sandbox, Read, SquaresDragAndDrop, MathProblem, DrawingVC, Garden, ClockDrag, PictureQuiz, QuickQuiz, Vocab, Spelling
 }
 
 @objc enum DrawingVCOrientation : Int
@@ -194,11 +194,26 @@ class Definitions: NSObject
 }
 
 ///Returns a string for the current grade given the key.  This application handles six different grades
-func stringForKey(key: String) -> String
+extension String
 {
-    guard CurrentUser.currentUser().grade != Grade.None else { return key }
-    
-    let newKey = key + "-\(CurrentUser.currentUser().grade.rawValue)"
-    
-    return NSBundle.mainBundle().localizedStringForKey(newKey, value: "", table: "PhrasesPerGrade")
+    static func stringForKey(key: String) -> String
+    {
+        guard CurrentUser.currentUser().grade != Grade.None else { return key }
+        
+        let newKey = key + "-\(CurrentUser.currentUser().grade.rawValue)"
+        
+        return NSBundle.mainBundle().localizedStringForKey(newKey, value: "", table: "PhrasesPerGrade")
+    }
+}
+
+extension NSString
+{
+    static func stringForKey(key: String) -> String
+    {
+        guard CurrentUser.currentUser().grade != Grade.None else { return key }
+        
+        let newKey = key + "-\(CurrentUser.currentUser().grade.rawValue)"
+        
+        return NSBundle.mainBundle().localizedStringForKey(newKey, value: "", table: "PhrasesPerGrade")
+    }
 }

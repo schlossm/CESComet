@@ -8,9 +8,9 @@
 
 import UIKit
 
-class HomeVC: FormattedVC//, NewsFeedDelegate
+class HomeVC: FormattedVC, UIViewControllerTransitioningDelegate//, NewsFeedDelegate
 {
-    @IBOutlet private var titleLabel      : CESOutlinedLabel!
+    @IBOutlet private var titleLabel : CESOutlinedLabel!
         {
         didSet
         {
@@ -18,7 +18,7 @@ class HomeVC: FormattedVC//, NewsFeedDelegate
         }
     }
     
-    @IBOutlet private var languageArts    : HomeButton!
+    @IBOutlet private var languageArts : HomeButton!
         {
         didSet
         {
@@ -27,7 +27,7 @@ class HomeVC: FormattedVC//, NewsFeedDelegate
             }
         }
     }
-    @IBOutlet private var math            : HomeButton!
+    @IBOutlet private var math : HomeButton!
         {
         didSet
         {
@@ -36,7 +36,7 @@ class HomeVC: FormattedVC//, NewsFeedDelegate
             }
         }
     }
-    @IBOutlet private var history         : HomeButton!
+    @IBOutlet private var history : HomeButton!
         {
         didSet
         {
@@ -45,7 +45,7 @@ class HomeVC: FormattedVC//, NewsFeedDelegate
             }
         }
     }
-    @IBOutlet private var science         : HomeButton!
+    @IBOutlet private var science : HomeButton!
         {
         didSet
         {
@@ -54,11 +54,6 @@ class HomeVC: FormattedVC//, NewsFeedDelegate
             }
         }
     }
-    
-    //For View Type One
-    private var scrollView      : UIScrollView!
-    
-    var viewType = 0
     
     override func viewDidLoad()
     {
@@ -99,6 +94,12 @@ class HomeVC: FormattedVC//, NewsFeedDelegate
         {
             performSegueWithIdentifier("loginScreen", sender: self)
         }
+        
+        let calc = Calculator(nibName: "CalculatorVC", bundle: nil)
+        calc.modalPresentationStyle = .Custom
+        calc.transitioningDelegate = self
+        calc.preferredContentSize = CGSizeMake(304, 508)
+        presentViewController(calc, animated: true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
@@ -155,6 +156,21 @@ class HomeVC: FormattedVC//, NewsFeedDelegate
     
     @IBAction func returnFromSegueActions(sender: UIStoryboardSegue)
     {
-        
+        //This method is purposefully blank
+    }
+    
+    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController?
+    {
+        return CalculatorPresentationController(presentedViewController:presented, presentingViewController:presenting)
+    }
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    {
+        return CalculatorTransitionManager(isPresenting: true)
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    {
+        return CalculatorTransitionManager(isPresenting: false)
     }
 }

@@ -54,8 +54,6 @@
         [_butAnswer5 setTitleColor:[ColorScheme currentColorScheme].primaryColor forState:UIControlStateNormal];
         //[Definitions outlineButton:_butAnswer5];
     }
-   
-    
 }
 
 - (void) didReceiveMemoryWarning

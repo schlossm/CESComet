@@ -665,7 +665,7 @@ class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitio
     //Open the calculator
     func presentCalculator()
     {
-        let calculator = CalculatorVC()
+        let calculator = Calculator()
         calculator.modalPresentationStyle = .Custom
         calculator.transitioningDelegate = self
         calculator.preferredContentSize = CGSizeMake(304, 508)
@@ -674,7 +674,7 @@ class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitio
     
     func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController?
     {
-        if presented.classForCoder === CalculatorVC.classForCoder()
+        if presented.classForCoder === Calculator.classForCoder()
         {
             return CalculatorPresentationController(presentedViewController: presented, presentingViewController: presenting)
         }
@@ -683,7 +683,7 @@ class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitio
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?
     {
-        if presented.classForCoder === CalculatorVC.classForCoder()
+        if presented.classForCoder === Calculator.classForCoder()
         {
             return CalculatorTransitionManager(isPresenting: true)
         }
@@ -692,7 +692,7 @@ class MathProblemVC: FormattedVC, UITextFieldDelegate, UIViewControllerTransitio
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?
     {
-        if dismissed.classForCoder === CalculatorVC.classForCoder()
+        if dismissed.classForCoder === Calculator.classForCoder()
         {
             return CalculatorTransitionManager(isPresenting: false)
         }

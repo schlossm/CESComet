@@ -7,19 +7,6 @@
 //
 
 import UIKit
-/*
-UIView.animateWithDuration(1.5, delay: 1.5, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: .AllowAnimatedContent, animations: { [unowned self] () -> Void in
-
-activityLoadingView.transform = CGAffineTransformMakeScale(self.view.frame.size.width/activityLoadingView.frame.size.width, self.view.frame.size.height/activityLoadingView.frame.size.height)
-activityLoadingView.effect = nil
-activityLoadingView.contentView.alpha = 0.0
-
-}, completion: { [unowned self] (finished) -> Void in
-
-loadingWheel.stopAnimating(true)
-activityLoadingView.removeFromSuperview()
-self.view.userInteractionEnabled = true
-})*/
 
 class ActivityManagerPresentationSegue: UIStoryboardSegue
 {
