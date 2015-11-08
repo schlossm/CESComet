@@ -95,11 +95,12 @@ class HomeVC: FormattedVC, UIViewControllerTransitioningDelegate//, NewsFeedDele
             performSegueWithIdentifier("loginScreen", sender: self)
         }
         
+        /*
         let calc = Calculator(nibName: "CalculatorVC", bundle: nil)
         calc.modalPresentationStyle = .Custom
         calc.transitioningDelegate = self
         calc.preferredContentSize = CGSizeMake(304, 508)
-        presentViewController(calc, animated: true, completion: nil)
+        presentViewController(calc, animated: true, completion: nil)*/
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
