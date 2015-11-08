@@ -20,7 +20,7 @@ class ColorScheme : NSObject
         {
             if currentColor != nil
             {
-            return UIColor(hexString: currentColor.valueForKey("primaryColor") as! String)
+                return UIColor(hexString: currentColor.valueForKey("primaryColor") as! String)
             }
             return UIColor(hexString: "FFFFFF")
         }
