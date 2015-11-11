@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeVC: FormattedVC, UIViewControllerTransitioningDelegate//, NewsFeedDelegate
+class HomeVC: FormattedVC//, NewsFeedDelegate
 {
     @IBOutlet private var titleLabel : CESOutlinedLabel!
         {
@@ -94,13 +94,6 @@ class HomeVC: FormattedVC, UIViewControllerTransitioningDelegate//, NewsFeedDele
         {
             performSegueWithIdentifier("loginScreen", sender: self)
         }
-        
-        /*
-        let calc = Calculator(nibName: "CalculatorVC", bundle: nil)
-        calc.modalPresentationStyle = .Custom
-        calc.transitioningDelegate = self
-        calc.preferredContentSize = CGSizeMake(304, 508)
-        presentViewController(calc, animated: true, completion: nil)*/
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
@@ -158,20 +151,5 @@ class HomeVC: FormattedVC, UIViewControllerTransitioningDelegate//, NewsFeedDele
     @IBAction func returnFromSegueActions(sender: UIStoryboardSegue)
     {
         //This method is purposefully blank
-    }
-    
-    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController?
-    {
-        return CalculatorPresentationController(presentedViewController:presented, presentingViewController:presenting)
-    }
-    
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?
-    {
-        return CalculatorTransitionManager(isPresenting: true)
-    }
-    
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?
-    {
-        return CalculatorTransitionManager(isPresenting: false)
     }
 }
