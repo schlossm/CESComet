@@ -367,6 +367,7 @@ class SubjectVC: FormattedVC, UIViewControllerTransitioningDelegate
                         //TODO: Uncomment after legit activites on database
                         
                         self.vevView = activityLoadingView
+                        self.view.userInteractionEnabled = true
                         self.performSegueWithIdentifier("activityDisplaySegue", sender: self)
                 })
             })

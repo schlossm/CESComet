@@ -28,8 +28,9 @@ class ActivityManagerPresentationSegue: UIStoryboardSegue
         destVCView.alpha = 0.0
         destVCView.transform = CGAffineTransformMakeTranslation(-deltaX, -deltaY)
         destVCView.transform = CGAffineTransformScale(destVCView.transform, 1/deltaWidth, 1/deltaHeight)
+        destinationViewController.viewDidLoad()
         
-        UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.0, usingSpringWithDamping: 0.77, initialSpringVelocity: 0.9, options: .AllowAnimatedContent, animations: { [unowned self] () -> Void in
+        UIView.animateWithDuration(CESCometTransitionDuration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.9, options: .AllowAnimatedContent, animations: { [unowned self] () -> Void in
             self.sourceView.transform = CGAffineTransformConcat(CGAffineTransformMakeTranslation(deltaX, deltaY), CGAffineTransformMakeScale(deltaWidth, deltaHeight))
             destVCView.transform = CGAffineTransformIdentity
             destVCView.alpha = 1.0

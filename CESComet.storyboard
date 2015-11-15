@@ -190,7 +190,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lN2-f8-ggW">
-                                        <rect key="frame" x="20" y="529" width="138" height="51"/>
+                                        <rect key="frame" x="20" y="530" width="138" height="50"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
                                         <state key="normal" title="Previous">
@@ -201,7 +201,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70x-sV-DfH">
-                                        <rect key="frame" x="261" y="529" width="78" height="51"/>
+                                        <rect key="frame" x="261" y="530" width="78" height="50"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
                                         <state key="normal" title="Save">
@@ -212,7 +212,7 @@
                                         </connections>
                                     </button>
                                     <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RcP-hf-yD3" customClass="MSProgressView" customModule="CES" customModuleProvider="target">
-                                        <rect key="frame" x="274" y="529" width="51" height="51"/>
+                                        <rect key="frame" x="274.5" y="530" width="50" height="50"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -228,7 +228,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMq-w8-bIx">
-                                        <rect key="frame" x="506" y="529" width="74" height="51"/>
+                                        <rect key="frame" x="506" y="530" width="74" height="50"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
                                         <state key="normal" title="Next">
@@ -238,6 +238,17 @@
                                             <action selector="nextPage" destination="XoX-SV-9rb" eventType="touchUpInside" id="Vxm-nd-xhA"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51w-xD-vDN">
+                                        <rect key="frame" x="462" y="20" width="60" height="50"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                                        <state key="normal" title="Exit">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="exitActivity" destination="XoX-SV-9rb" eventType="touchUpInside" id="Oxj-gI-OIi"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -245,13 +256,18 @@
                                     <constraint firstItem="dvD-PQ-Oyo" firstAttribute="top" secondItem="yEh-yb-5WE" secondAttribute="top" constant="20" id="0WD-8U-ds8"/>
                                     <constraint firstItem="k7C-fw-XbQ" firstAttribute="top" secondItem="yEh-yb-5WE" secondAttribute="top" constant="20" id="3gk-gR-KqY"/>
                                     <constraint firstItem="70x-sV-DfH" firstAttribute="centerX" secondItem="yEh-yb-5WE" secondAttribute="centerX" id="4dL-kc-b0b"/>
+                                    <constraint firstItem="lN2-f8-ggW" firstAttribute="height" secondItem="70x-sV-DfH" secondAttribute="height" id="5r5-Gk-WdS"/>
                                     <constraint firstItem="dvD-PQ-Oyo" firstAttribute="leading" secondItem="yEh-yb-5WE" secondAttribute="leading" id="6ez-i9-57E"/>
                                     <constraint firstAttribute="trailing" secondItem="KMq-w8-bIx" secondAttribute="trailing" constant="20" id="7jR-ig-ubQ"/>
+                                    <constraint firstItem="lN2-f8-ggW" firstAttribute="height" secondItem="4nh-wm-tVL" secondAttribute="height" id="AAw-xu-ivW"/>
                                     <constraint firstAttribute="bottom" secondItem="KMq-w8-bIx" secondAttribute="bottom" constant="20" id="BKa-8h-EzR"/>
                                     <constraint firstItem="4nh-wm-tVL" firstAttribute="height" secondItem="k7C-fw-XbQ" secondAttribute="height" id="FhP-q1-Q3a"/>
+                                    <constraint firstItem="51w-xD-vDN" firstAttribute="centerY" secondItem="4nh-wm-tVL" secondAttribute="centerY" id="Fw3-GB-cHu"/>
+                                    <constraint firstItem="51w-xD-vDN" firstAttribute="height" secondItem="4nh-wm-tVL" secondAttribute="height" id="Nld-RI-NoQ"/>
                                     <constraint firstAttribute="bottom" secondItem="70x-sV-DfH" secondAttribute="bottom" constant="20" id="P0n-Xl-qCH"/>
                                     <constraint firstItem="lN2-f8-ggW" firstAttribute="leading" secondItem="yEh-yb-5WE" secondAttribute="leading" constant="20" id="PWM-BN-KSC"/>
                                     <constraint firstItem="4nh-wm-tVL" firstAttribute="top" secondItem="yEh-yb-5WE" secondAttribute="top" constant="20" id="RY7-BX-vkM"/>
+                                    <constraint firstItem="lN2-f8-ggW" firstAttribute="height" secondItem="KMq-w8-bIx" secondAttribute="height" id="TiA-du-ovX"/>
                                     <constraint firstItem="RcP-hf-yD3" firstAttribute="centerX" secondItem="70x-sV-DfH" secondAttribute="centerX" id="VBm-83-Ftm"/>
                                     <constraint firstItem="RcP-hf-yD3" firstAttribute="centerY" secondItem="70x-sV-DfH" secondAttribute="centerY" id="WX9-rI-HmV"/>
                                     <constraint firstAttribute="bottom" secondItem="lN2-f8-ggW" secondAttribute="bottom" constant="20" id="Xk7-qZ-I6A"/>
@@ -260,6 +276,7 @@
                                     <constraint firstAttribute="trailing" secondItem="4nh-wm-tVL" secondAttribute="trailing" constant="20" id="dAT-bg-KUM"/>
                                     <constraint firstItem="k7C-fw-XbQ" firstAttribute="leading" secondItem="yEh-yb-5WE" secondAttribute="leading" constant="20" id="eIS-u8-AgI"/>
                                     <constraint firstAttribute="trailing" secondItem="dvD-PQ-Oyo" secondAttribute="trailing" id="eJ9-yW-YvP"/>
+                                    <constraint firstItem="4nh-wm-tVL" firstAttribute="leading" secondItem="51w-xD-vDN" secondAttribute="trailing" constant="8" id="qPl-kb-Ouw"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -279,6 +296,7 @@
                     <connections>
                         <outlet property="containerView" destination="dvD-PQ-Oyo" id="Ze9-oH-cgM"/>
                         <outlet property="contentView" destination="yEh-yb-5WE" id="Y4g-MN-hfI"/>
+                        <outlet property="exitButton" destination="51w-xD-vDN" id="60I-eR-33Z"/>
                         <outlet property="nextButton" destination="KMq-w8-bIx" id="1NI-QT-8F4"/>
                         <outlet property="pageNumberLabel" destination="k7C-fw-XbQ" id="fTX-t3-EF3"/>
                         <outlet property="previousButton" destination="lN2-f8-ggW" id="Gyb-zO-Jme"/>

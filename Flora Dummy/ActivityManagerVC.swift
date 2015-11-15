@@ -10,7 +10,7 @@ import UIKit
 
 @objc enum FrameType : Int
 {
-    case PageNumberLabel, TOCButtonFrame, PreviousButtonFrame, SaveButtonFrame, NextButtonFrame
+    case PageNumberLabel, TOCButtonFrame, PreviousButtonFrame, SaveButtonFrame, NextButtonFrame, ExitButtonFrame
 }
 
 //MARK: - ActivityManager Main
@@ -40,6 +40,13 @@ internal class ActivityManagerVC: UIViewController, CESActivityManager
         didSet
         {
             UILabel.outlineLabel(nextButton.titleLabel!)
+        }
+    }
+    @IBOutlet private var exitButton: UIButton!
+        {
+        didSet
+        {
+            UILabel.outlineLabel(exitButton.titleLabel!)
         }
     }
     @IBOutlet private var containerView: UIView!
@@ -145,6 +152,10 @@ internal class ActivityManagerVC: UIViewController, CESActivityManager
             
         case .NextButtonFrame:
             return nextButton.frame
+            
+        case .ExitButtonFrame:
+            return exitButton.frame
+            
         }
     }
     
@@ -175,16 +186,19 @@ internal class ActivityManagerVC: UIViewController, CESActivityManager
         currentViewController = introVC
         constrainCurrentViewController()
         
+        setUpTOCView()
+        
         updateButtons()
     }
     
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
-        
-        dispatch_async(tableOfContentsLoadingQueue) { [unowned self] () -> Void in
-            self.buildTableOfContentsView()
-        }
+    }
+    
+    @IBAction private func exitActivity()
+    {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     private func constrainCurrentViewController()
@@ -520,9 +534,6 @@ extension ActivityManagerVC
         case .Read:
             return Page_ReadVC()
             
-            //case .Sandbox:
-            //    return SandboxVC()
-            
         case .DrawingVC:
             return DrawingVC()
             
@@ -551,6 +562,7 @@ extension ActivityManagerVC
         introVC.activityManager = self
         introVC.activityTitle = currentActivity.name
         introVC.summary = currentActivity.activityDescription
+        
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0)
         introVC.view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: true)
         let copied = UIGraphicsGetImageFromCurrentImageContext()
@@ -576,9 +588,7 @@ extension ActivityManagerVC
             tableOfContentViews.append(imageView)
         }
         
-        dispatch_async(dispatch_get_main_queue()) { [unowned self] () -> Void in
-            self.setUpTOCView()
-        }
+        setUpTOCView()
     }
     
     private func setUpTOCView()
